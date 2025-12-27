@@ -37,13 +37,18 @@ crossorigin="anonymous"></script>
     .result-row:last-child{border-bottom:0}.result-key{color:var(--muted);font-size:.95rem}.result-val{font-weight:800;color:var(--accent-2)}
     #map{height:360px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)}.small{font-size:.9rem;color:var(--muted)}
     .price-table{display:flex;gap:8px;margin-top:8px}.price-card{flex:1;padding:8px;border-radius:8px;background:#fafafa;border:1px solid rgba(15,23,42,0.03);text-align:center}.price-card strong{display:block;font-size:1.05rem;color:var(--accent-2);margin-top:6px}
-    @media(max-width:980px){.layout{grid-template-columns:1fr}#map{height:260px}.spinner button{width:38px;height:38px}}
+    .ad-slot{display:flex;justify-content:center;align-items:center;margin:24px auto;padding:12px 0;width:100%}
+    .ad-slot ins{display:block;max-width:970px;width:100%}
+    @media(max-width:980px){.layout{grid-template-columns:1fr}#map{height:260px}.spinner button{width:38px;height:38px}.ad-slot{margin:16px auto;padding:8px 0}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>Fuel Cost Calculator</h1>
+      <section class="ad-slot" style="margin:16px auto">
+        <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      </section>
       <nav class="tabs" role="tablist">
         <button role="tab" data-target="sprit" aria-selected="true">Fuel Costs</button>
         <button role="tab" data-target="calc">Calculator</button>
@@ -142,6 +147,10 @@ crossorigin="anonymous"></script>
               <div style="margin-top:8px;color:var(--muted);font-size:.85rem">
                 Running costs include: wear, maintenance, insurance, tyres, depreciation, taxes and country‑specific toll estimations (vignettes, route fees).
               </div>
+
+              <section class="ad-slot" style="margin:20px auto">
+                <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
+              </section>
             </div>
           </div>
 
@@ -169,6 +178,10 @@ crossorigin="anonymous"></script>
         <p style="margin-top:12px" class="small">Result: <strong id="erg">–</strong></p>
       </section>
     </main>
+
+    <section class="ad-slot" style="margin:24px auto 12px">
+      <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </section>
 
     <footer style="margin-top:12px" class="small">Local: Internet required for maps/geocoding. Fuel price proxy: http://localhost:3000</footer>
   </div>
@@ -462,12 +475,10 @@ crossorigin="anonymous"></script>
     });
   </script>
   
-  <footer style="margin-top:25px;text-align:center;font-size:14px;opacity:0.85;">
-  <a href="./privacy.html">Privacy Policy</a> ·
-  <a href="./impressum.html">Legal Notice</a> ·
-  <a href="./terms.html">Terms & Conditions</a> ·
-  <a href="./contact.html">Contact</a>
-</footer>
+  <footer style="margin-top:20px; text-align:center; font-size:14px; opacity:0.8;">
+  <a href="/impressum.html">Legal Notice</a> ·
+  <a href="/privacy.html">Privacy Policy</a>
+  </footer>
 
 </body>
 
