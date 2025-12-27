@@ -528,12 +528,16 @@
         const prices = countryFuelPrices[countryCode];
         fuelPrices = { unleaded91: prices.unleaded91, unleaded95: prices.unleaded95, diesel: prices.diesel };
         renderAvgPrices();
+        console.log('[price-detect] updating prices', { countryCode, prices, manualOverride: userEditedPrice });
         
         if(!userEditedPrice) {
           const currentFuel = fuelTypeEl.value;
           priceEl.value = fuelPrices[currentFuel] || '';
           priceInfoEl.textContent = `Default price for ${prices.name} set – you can change it.`;
           priceInfoEl.classList.remove('error');
+          console.log('[price-detect] applied price', { fuelType: currentFuel, appliedPrice: priceEl.value });
+        } else {
+          console.log('[price-detect] manual override active, not applying price input');
         }
         return true;
       }
@@ -545,12 +549,15 @@
         const location = placeFromEl.value.trim();
         if(!location) return;
         
+        console.log('[price-detect] trigger', { location, manualOverride: userEditedPrice });
         const countryCode = parseCountryFromLocation(location);
+        console.log('[price-detect] parsed country', countryCode);
         if(countryCode) {
           updatePricesFromCountry(countryCode);
         } else {
           priceInfoEl.textContent = 'Country not recognised – please enter price manually.';
           priceInfoEl.classList.add('error');
+          console.log('[price-detect] country not recognised');
         }
       }
       
@@ -573,6 +580,7 @@
         priceEl.value = fuelPrices[fuelTypeEl.value] || '';
         priceInfoEl.textContent = 'Default price restored.';
         priceInfoEl.classList.remove('error');
+        console.log('[price-detect] reset price clicked', { manualOverride: userEditedPrice, fuelType: fuelTypeEl.value, appliedPrice: priceEl.value });
       });
 
       // Map (centered on Australia)
