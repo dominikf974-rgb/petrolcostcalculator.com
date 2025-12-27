@@ -1,457 +1,61 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en-AU">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
-crossorigin="anonymous"></script>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Spritkostenrechner</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <style>
-    :root{
-      --bg:#f6f8fa; --card:#ffffff; --muted:#4b5563; --text:#0b1220;
-      --accent:#0ea5a3; --accent-2:#4f46e5; --button-h:48px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:linear-gradient(180deg,var(--bg) 0%, #e9eef5 100%);color:var(--text);
-      padding:20px;display:flex;align-items:flex-start;justify-content:center;min-height:100vh;}
-    .wrap{width:100%;max-width:1200px}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-    h1{margin:0;font-size:1.25rem}
-    .tabs button{background:transparent;border:1px solid transparent;color:var(--muted);
-      padding:.6rem 1rem;border-radius:.6rem;margin-left:.5rem;cursor:pointer;font-weight:700;
-      font-size:.95rem;height:var(--button-h);}
-    .tabs button[aria-selected="true"]{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white}
-    main.container{display:grid;grid-template-columns:1fr;gap:16px}
-    .card{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 8px 24px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04)}
-    .layout{display:grid;grid-template-columns:420px 1fr;gap:16px;align-items:start}
-    label{display:block;margin:.35rem 0;font-size:.9rem;color:var(--muted)}
-    input[type="number"], input[type="text"], select{width:100%;padding:.6rem .75rem;border-radius:8px;border:1px solid rgba(15,23,42,0.06);background:transparent;color:var(--text);outline:none;font-size:1rem;margin-top:.25rem}
-    .km-row{display:flex;gap:8px;align-items:center}.km-row .km-input{flex:1}
-    .spinner{display:flex;flex-direction:column;gap:6px}.spinner button{width:44px;height:44px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;font-weight:800;font-size:18px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
-    .big-action{display:flex;gap:10px;margin-top:12px}.btn{flex:1;height:var(--button-h);border-radius:10px;border:none;cursor:pointer;font-weight:700;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;font-size:1rem}.btn.secondary{background:#eef2ff;color:var(--accent-2);border:1px solid rgba(79,70,229,0.08)}.btn.large{font-size:1.05rem;padding:0 14px;height:54px}
-    .resultbox{margin-top:12px;padding:12px;border-radius:8px;background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid rgba(15,23,42,0.03)}
-    .result-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed rgba(15,23,42,0.03)}
-    .result-row:last-child{border-bottom:0}.result-key{color:var(--muted);font-size:.95rem}.result-val{font-weight:800;color:var(--accent-2)}
-    #map{height:360px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)}.small{font-size:.9rem;color:var(--muted)}
-    .price-table{display:flex;gap:8px;margin-top:8px}.price-card{flex:1;padding:8px;border-radius:8px;background:#fafafa;border:1px solid rgba(15,23,42,0.03);text-align:center}.price-card strong{display:block;font-size:1.05rem;color:var(--accent-2);margin-top:6px}
-    @media(max-width:980px){.layout{grid-template-columns:1fr}#map{height:260px}.spinner button{width:38px;height:38px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Petrol Cost Calculator Australia – Fuel Cost Calculator 2025</title>
+
+<meta name="description" content="Free petrol cost calculator for Australia. Calculate your fuel cost, trip cost, and petrol expenses instantly. Works for cars, vans, and trucks.">
+
+<link rel="canonical" href="https://petrolcostcalculator.com/">
+
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f5f5f5;color:#222;}
+.container{max-width:800px;margin:auto;background:#fff;padding:20px;border-radius:10px;margin-top:40px;}
+h1{color:#0b5394;}
+input,button{width:100%;padding:12px;margin-top:10px;font-size:16px;}
+button{background:#0b5394;color:#fff;border:none;border-radius:5px;cursor:pointer;}
+.result{margin-top:20px;font-size:18px;}
+.footer{margin-top:40px;font-size:14px;color:#666;}
+.email{font-weight:bold;color:#0b5394;}
+.smallname{opacity:.35;font-size:12px;}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <h1>Spritkostenrechner</h1>
-      <nav class="tabs" role="tablist">
-        <button role="tab" data-target="sprit" aria-selected="true">Spritkosten</button>
-        <button role="tab" data-target="calc">Taschenrechner</button>
-      </nav>
-    </header>
+<div class="container">
+<h1>Petrol Cost Calculator Australia</h1>
 
-    <main class="container">
-      <section id="sprit" class="card active" aria-hidden="false">
-        <div class="layout">
-          <div>
-            <h2 style="margin:0 0 8px 0;font-size:1rem">Eingaben</h2>
+<p>Calculate your fuel cost easily for any trip in Australia.</p>
 
-            <label>Entfernung (km) — oder berechne von / nach</label>
-            <div class="km-row">
-              <input id="km" class="km-input" type="number" inputmode="decimal" min="0" step="0.1" placeholder="z. B. 120.5" />
-              <div class="spinner" title="Entfernung erhöhen / verringern">
-                <button id="km-inc" aria-label="Entfernung erhöhen">▲</button>
-                <button id="km-dec" aria-label="Entfernung verringern">▼</button>
-              </div>
-            </div>
+<label>Distance (km)</label>
+<input id="distance" type="number">
 
-            <div style="margin-top:10px">
-              <label>Oder: Start (Stadt, Land)</label>
-              <input id="place-from" type="text" placeholder="z. B. Berlin, Germany" />
-              <label style="margin-top:8px">Ziel (Stadt, Land)</label>
-              <input id="place-to" type="text" placeholder="z. B. Moskau, Russia" />
-              <div class="map-controls" style="margin-top:8px">
-                <button id="btn-geocode" class="btn secondary">Entfernung berechnen</button>
-                <button id="btn-clearmap" class="btn secondary">Karte zurücksetzen</button>
-              </div>
-              <div class="small">Die Entfernung wird per Nominatim (OpenStreetMap) ermittelt. Kartenkacheln: OpenStreetMap.</div>
-            </div>
+<label>Fuel consumption (L/100km)</label>
+<input id="consumption" type="number">
 
-            <label style="margin-top:12px">Kraftstofftyp</label>
-            <select id="fuel-type" aria-label="Kraftstofftyp">
-              <option value="super95">Super 95</option>
-              <option value="e10">E10</option>
-              <option value="diesel">Diesel</option>
-            </select>
+<label>Fuel price (AUD per litre)</label>
+<input id="price" type="number">
 
-            <label style="margin-top:12px">Verbrauch (L/100 km)</label>
-            <input id="verbrauch" type="number" inputmode="decimal" min="0" step="0.1" value="7.5" placeholder="z. B. 7.5" />
+<button onclick="calc()">Calculate</button>
 
-            <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
-              <div style="flex:1">
-                <label>Preis pro Liter (€)</label>
-                <input id="preis" type="number" inputmode="decimal" min="0" step="0.01" placeholder="z. B. 1.65" />
-              </div>
-              <div style="width:160px">
-                <label style="visibility:hidden">Aktual.</label>
-                <button id="btn-update-prices" class="btn secondary" style="width:100%">Aktualisieren</button>
-              </div>
-            </div>
+<div class="result" id="result"></div>
 
-            <div class="price-table" aria-hidden="false">
-              <div class="price-card">
-                <div class="small">Ø Super 95</div>
-                <strong id="avg-super">— €</strong>
-              </div>
-              <div class="price-card">
-                <div class="small">Ø E10</div>
-                <strong id="avg-e10">— €</strong>
-              </div>
-              <div class="price-card">
-                <div class="small">Ø Diesel</div>
-                <strong id="avg-diesel">— €</strong>
-              </div>
-            </div>
+<div class="footer">
+<p class="smallname">Website operated by Dominik Fisher</p>
+<p>Contact: <span class="email">info@spritkosten-check.de</span></p>
+</div>
+</div>
 
-            <label style="margin-top:12px">Personen (inkl. Fahrer)</label>
-            <input id="personen" type="number" min="1" step="1" value="1" />
-
-            <div class="big-action">
-              <button id="calc-sprit" class="btn large">Berechnen</button>
-              <button id="reset-sprit" class="btn secondary large">Zurücksetzen</button>
-            </div>
-
-            <div class="resultbox" aria-live="polite">
-              <div class="result-row"><div class="result-key">Spritkosten</div><div class="result-val" id="cost-fuel">0,00 €</div></div>
-              <div class="result-row"><div class="result-key">Laufende Kosten inkl. Maut (geschätzt)</div><div class="result-val" id="cost-running">0,00 €</div></div>
-              <div class="result-row"><div class="result-key">Gesamtkosten</div><div class="result-val" id="cost-total">0,00 €</div></div>
-              <div class="result-row"><div class="result-key">Pro Person</div><div class="result-val" id="cost-person">0,00 €</div></div>
-              <div class="result-row"><div class="result-key">Benötigte Liter</div><div class="result-val" id="liters">0,00 L</div></div>
-              <div class="result-row"><div class="result-key">Durchschnitt (€/100 km)</div><div class="result-val" id="avg100">0,00 € /100km</div></div>
-              <div class="result-row"><div class="result-key small">Geschätzte laufende Kosten /100 km (inkl. Maut)</div><div class="result-val small" id="running-est">— € /100km</div></div>
-              <div style="margin-top:8px;color:var(--muted);font-size:.85rem">
-                Laufende Kosten enthalten: Verschleiß, Wartung, Versicherung, Reifen, Abschreibung, Steuern und länderspezifische Maut‑Schätzung (Vignetten, Streckengebühren).
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h2 style="margin:0 0 8px 0;font-size:1rem">Karte & Entfernung</h2>
-            <div id="map"></div>
-            <div style="margin-top:8px" class="small">Klicke "Entfernung berechnen", um Start/Ziel zu suchen. Maut wird automatisch länderspezifisch geschätzt (Vignetten, Streckengebühren).</div>
-            <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="calc" class="card" aria-hidden="true" style="display:none">
-        <h2>Taschenrechner</h2>
-        <label>Zahl 1</label>
-        <input id="zahl1" type="number" inputmode="decimal" placeholder="Zahl 1" />
-        <label>Zahl 2</label>
-        <input id="zahl2" type="number" inputmode="decimal" placeholder="Zahl 2" />
-        <div style="display:flex;gap:8px;margin-top:10px">
-          <button data-op="+" class="btn">+</button>
-          <button data-op="-" class="btn">−</button>
-          <button data-op="*" class="btn">×</button>
-          <button data-op="/" class="btn">÷</button>
-        </div>
-        <p style="margin-top:12px" class="small">Ergebnis: <strong id="erg">–</strong></p>
-      </section>
-    </main>
-
-    <footer style="margin-top:12px" class="small">Lokal: Internet für Karten/Geocoding erforderlich. Proxy für Tankpreise: http://localhost:3000</footer>
-  </div>
-
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const MAPBOX_API_KEY = '';
-      const PRICES_API_URL = '';
-
-      // Tabs
-      document.querySelectorAll('.tabs [role="tab"]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.tabs [role="tab"]').forEach(b => b.setAttribute('aria-selected','false'));
-          btn.setAttribute('aria-selected','true');
-          const target = btn.dataset.target;
-          document.querySelectorAll('main > section').forEach(s => {
-            s.style.display = (s.id === target) ? '' : 'none';
-            s.setAttribute('aria-hidden', s.id === target ? 'false' : 'true');
-          });
-        });
-      });
-
-      const parse = v => (v === '' || v == null) ? NaN : Number(String(v).replace(',', '.'));
-      const fmt = n => (Number.isFinite(n) ? Number.parseFloat(n.toFixed(2)).toLocaleString('de-DE') : '0,00');
-
-      // DOM
-      const kmEl = document.getElementById('km');
-      const verbEl = document.getElementById('verbrauch');
-      const priceEl = document.getElementById('preis');
-      const personsEl = document.getElementById('personen');
-      const fuelTypeEl = document.getElementById('fuel-type');
-
-      const litersEl = document.getElementById('liters');
-      const costFuelEl = document.getElementById('cost-fuel');
-      const costRunningEl = document.getElementById('cost-running');
-      const costTotalEl = document.getElementById('cost-total');
-      const costPersonEl = document.getElementById('cost-person');
-      const avg100El = document.getElementById('avg100');
-      const runningEstEl = document.getElementById('running-est');
-
-      const avgSuperEl = document.getElementById('avg-super');
-      const avgE10El = document.getElementById('avg-e10');
-      const avgDieselEl = document.getElementById('avg-diesel');
-      const btnUpdatePrices = document.getElementById('btn-update-prices');
-      const tollInfoEl = document.getElementById('toll-info');
-
-      // Fallback prices
-      let fuelPrices = { super95:1.85, e10:1.82, diesel:1.70 };
-      function renderAvgPrices(){
-        avgSuperEl.textContent = fmt(fuelPrices.super95) + ' €';
-        avgE10El.textContent = fmt(fuelPrices.e10) + ' €';
-        avgDieselEl.textContent = fmt(fuelPrices.diesel) + ' €';
-      }
-      renderAvgPrices();
-
-      fuelTypeEl.addEventListener('change', () => {
-        const t = fuelTypeEl.value;
-        priceEl.value = fuelPrices[t] || '';
-      });
-
-      async function fetchAverageFuelPrices(){
-        btnUpdatePrices.disabled = true;
-        btnUpdatePrices.textContent = 'Aktualisiere…';
-        try{
-          const center = map.getCenter();
-          let url = PRICES_API_URL || `http://localhost:3000/prices?lat=${center.lat}&lng=${center.lng}&rad=100`;
-          const res = await fetch(url);
-          if(!res.ok) throw new Error('Preis-API nicht erreichbar');
-          const data = await res.json();
-          if(data && data.averages){
-            if(data.averages.super95 != null) fuelPrices.super95 = data.averages.super95;
-            if(data.averages.e10 != null) fuelPrices.e10 = data.averages.e10;
-            if(data.averages.diesel != null) fuelPrices.diesel = data.averages.diesel;
-            renderAvgPrices();
-            if(!priceEl.value) priceEl.value = fuelPrices[fuelTypeEl.value] || '';
-            return;
-          }
-        }catch(e){
-          console.warn('Preisabruf fehlgeschlagen, verwende Fallback.', e);
-        } finally {
-          btnUpdatePrices.disabled = false;
-          btnUpdatePrices.textContent = 'Aktualisieren';
-        }
-      }
-      btnUpdatePrices.addEventListener('click', fetchAverageFuelPrices);
-
-      // Map
-      const map = L.map('map', { attributionControl: true }).setView([51.1657, 10.4515], 5);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; OpenStreetMap contributors' }).addTo(map);
-      let markers = [];
-      function clearMarkers(){ markers.forEach(m=>map.removeLayer(m)); markers = []; }
-      function addMarker(lat, lon, label){ const m = L.marker([lat, lon]).addTo(map).bindPopup(label||''); markers.push(m); return m; }
-
-      function haversineKm(lat1, lon1, lat2, lon2){
-        const R = 6371; const toRad = d => d * Math.PI / 180;
-        const dLat = toRad(lat2 - lat1); const dLon = toRad(lon2 - lon1);
-        const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return R * c;
-      }
-
-      async function geocode(q){
-        if(MAPBOX_API_KEY){
-          try{
-            const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(q)}.json?access_token=${encodeURIComponent(MAPBOX_API_KEY)}&limit=1&language=de`;
-            const res = await fetch(url);
-            if(res.ok){
-              const data = await res.json();
-              if(data && Array.isArray(data.features) && data.features.length){
-                const f = data.features[0];
-                return { lat: f.center[1], lon: f.center[0], name: f.place_name };
-              }
-            }
-          }catch(err){
-            console.warn('Mapbox geocoding failed, falling back to Nominatim', err);
-          }
-        }
-        const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q);
-        const res = await fetch(url, { headers:{ 'Accept-Language':'de' }});
-        if(!res.ok) throw new Error('Geocoding failed');
-        const data = await res.json();
-        if(data && data.length) return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: data[0].display_name };
-        return null;
-      }
-
-      // Länderspezifische Maut pro 100 km (PKW, Durchschnittswerte für Vignetten + Streckengebühren)
-      const tollPer100km = {
-        de:0, at:9.2, ch:40, fr:8, it:7, es:10, pl:2, cz:13, sk:10, hu:15, si:15, hr:5, pt:8,
-        be:0, nl:0, dk:0, no:5, se:3, by:3, ru:2, ua:1, lt:0, lv:0, ee:0, bg:5, ro:3, rs:5, mk:2, al:3, ba:3, me:2, tr:4, gr:3
-      };
-
-      // Maut‑Schätzung: Sample entlang Linie, hole Länder per reverse-geocoding, addiere Maut pro Land
-      async function estimateTollsMultiCountry(pointA, pointB){
-        const dist = haversineKm(pointA.lat, pointA.lon, pointB.lat, pointB.lon);
-        const samplesCount = Math.min(15, Math.max(5, Math.ceil(dist / 150)));
-        const samples = [];
-        for(let i=0;i<=samplesCount;i++){
-          const t = i / samplesCount;
-          samples.push({ lat: pointA.lat + (pointB.lat - pointA.lat) * t, lon: pointA.lon + (pointB.lon - pointA.lon) * t });
-        }
-
-        const countriesFound = new Set();
-        for(const s of samples){
-          try{
-            const rev = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${s.lat}&lon=${s.lon}`);
-            if(rev.ok){
-              const j = await rev.json();
-              const cc = j.address && j.address.country_code ? j.address.country_code.toLowerCase() : null;
-              if(cc) countriesFound.add(cc);
-            }
-          }catch(e){ /* ignore */ }
-          await new Promise(r => setTimeout(r, 250)); // rate limit Nominatim
-        }
-
-        // Schätze Anteil jedes Landes an der Strecke (vereinfacht: gleichmäßig)
-        const countries = Array.from(countriesFound);
-        const segmentKm = dist / Math.max(1, countries.length);
-        let totalToll = 0;
-        const breakdown = [];
-        for(const cc of countries){
-          const rate = tollPer100km[cc] != null ? tollPer100km[cc] : 3;
-          const cost = (segmentKm / 100) * rate;
-          totalToll += cost;
-          breakdown.push({ country: cc.toUpperCase(), ratePer100: rate, segmentKm, cost: Math.round(cost * 100) / 100 });
-        }
-
-        return {
-          totalCost: Math.round(totalToll * 100) / 100,
-          countries: breakdown,
-          distKm: dist
-        };
-      }
-
-      let estimatedTollPer100 = 0;
-
-      document.getElementById('btn-geocode').addEventListener('click', async () => {
-        const from = document.getElementById('place-from').value.trim();
-        const to = document.getElementById('place-to').value.trim();
-        if(!from || !to){ alert('Bitte Start und Ziel eingeben.'); return; }
-        try{
-          const a = await geocode(from);
-          const b = await geocode(to);
-          if(!a || !b){ alert('Ort nicht gefunden. Bitte genauer eingeben.'); return; }
-          clearMarkers();
-          addMarker(a.lat,a.lon,'Start: '+a.name);
-          addMarker(b.lat,b.lon,'Ziel: '+b.name);
-          map.fitBounds([[a.lat,a.lon],[b.lat,b.lon]], { padding:[60,60] });
-          const dist = haversineKm(a.lat,a.lon,b.lat,b.lon);
-          kmEl.value = Math.round(dist*10)/10;
-
-          tollInfoEl.textContent = 'Mautschätzung läuft (mehrere Länder-Samples) …';
-          const toll = await estimateTollsMultiCountry(a,b);
-          if(toll && toll.distKm > 0){
-            estimatedTollPer100 = +(toll.totalCost / toll.distKm * 100).toFixed(2);
-            const breakdown = toll.countries.map(c => `${c.country}: ${fmt(c.cost)} €`).join(', ');
-            tollInfoEl.textContent = `Maut (geschätzt): ${fmt(toll.totalCost)} € insgesamt — Länder: ${breakdown} — ca. ${fmt(estimatedTollPer100)} € /100 km`;
-          } else {
-            estimatedTollPer100 = 0;
-            tollInfoEl.textContent = `Keine Maut-Schätzung möglich.`;
-          }
-        }catch(e){
-          console.error(e);
-          alert('Fehler bei Geocoding oder Mautschätzung. Prüfe Verbindung.');
-        }
-      });
-
-      document.getElementById('btn-clearmap').addEventListener('click', () => {
-        clearMarkers(); map.setView([51.1657,10.4515],5);
-        document.getElementById('place-from').value=''; document.getElementById('place-to').value='';
-        tollInfoEl.textContent = ''; estimatedTollPer100 = 0;
-      });
-
-      document.getElementById('km-inc').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.round((cur+1)*10)/10; });
-      document.getElementById('km-dec').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.max(0, Math.round((cur-1)*10)/10); });
-
-      function estimateRunningPer100(consumptionL100){
-        if(!Number.isFinite(consumptionL100) || consumptionL100 <= 0) return 8.0;
-        const est = 0.9 * consumptionL100 + 2.5;
-        return Math.max(3, Math.min(20, Math.round(est * 10) / 10));
-      }
-
-      document.getElementById('calc-sprit').addEventListener('click', () => {
-        const km = parse(kmEl.value);
-        const v = parse(verbEl.value);
-        let p = parse(priceEl.value);
-        const persons = Math.max(1, Math.floor(parse(personsEl.value) || 1));
-
-        if(!Number.isFinite(p)){
-          p = (fuelTypeEl && fuelTypeEl.value && ({ super95:1.85,e10:1.82,diesel:1.70 })[fuelTypeEl.value]) || NaN;
-        }
-
-        if(Number.isNaN(km) || km <= 0 || Number.isNaN(v) || Number.isNaN(p)){
-          alert('Bitte Entfernung, Verbrauch und Preis korrekt eingeben.');
-          return;
-        }
-
-        const liters = (km * v) / 100;
-        const costFuel = liters * p;
-
-        const runningPer100Base = estimateRunningPer100(v);
-        const runningPer100Total = runningPer100Base + (estimatedTollPer100 || 0);
-
-        const costRunning = (km * runningPer100Total) / 100;
-        const total = costFuel + costRunning;
-        const perPerson = total / persons;
-        const avgPer100 = (total / km) * 100;
-
-        litersEl.textContent = fmt(liters) + ' L';
-        costFuelEl.textContent = fmt(costFuel) + ' €';
-        costRunningEl.textContent = fmt(costRunning) + ' €';
-        costTotalEl.textContent = fmt(total) + ' €';
-        costPersonEl.textContent = fmt(perPerson) + ' €';
-        avg100El.textContent = fmt(avgPer100) + ' € /100km';
-        runningEstEl.textContent = fmt(runningPer100Total) + ' € /100km';
-      });
-
-      document.getElementById('reset-sprit').addEventListener('click', () => {
-        kmEl.value = ''; verbEl.value = '7.5'; priceEl.value = ''; personsEl.value = 1;
-        litersEl.textContent='0,00 L'; costFuelEl.textContent='0,00 €'; costRunningEl.textContent='0,00 €';
-        costTotalEl.textContent='0,00 €'; costPersonEl.textContent='0,00 €'; avg100El.textContent='0,00 € /100km';
-        runningEstEl.textContent='— € /100km'; tollInfoEl.textContent=''; estimatedTollPer100 = 0;
-        clearMarkers(); map.setView([51.1657,10.4515],5);
-      });
-
-      // Taschenrechner
-      const zahl1 = document.getElementById('zahl1');
-      const zahl2 = document.getElementById('zahl2');
-      const erg = document.getElementById('erg');
-      document.querySelectorAll('[data-op]').forEach(btn =>
-        btn.addEventListener('click', () => {
-          const a = parse(zahl1.value); const b = parse(zahl2.value);
-          if(Number.isNaN(a) || Number.isNaN(b)){ erg.textContent = '–'; return; }
-          let res;
-          switch(btn.dataset.op){
-            case '+': res = a + b; break;
-            case '-': res = a - b; break;
-            case '*': res = a * b; break;
-            case '/': res = (b === 0 ? '∞' : a / b); break;
-          }
-          erg.textContent = (typeof res === 'number') ? fmt(res) : res;
-        })
-      );
-    });
-  </script>
-  
-  <footer style="margin-top:20px; text-align:center; font-size:14px; opacity:0.8;">
-  <a href="/impressum.html">Impressum</a> ·
-  <a href="/datenschutz.html">Datenschutz</a>
-</footer>
-
+<script>
+function calc(){
+ let d = document.getElementById("distance").value;
+ let c = document.getElementById("consumption").value;
+ let p = document.getElementById("price").value;
+ let cost = (d/100*c*p).toFixed(2);
+ document.getElementById("result").innerHTML = "Your petrol cost: $" + cost + " AUD";
+}
+</script>
 </body>
-
 </html>
-
-
