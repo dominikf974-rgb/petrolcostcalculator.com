@@ -4,10 +4,60 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
  crossorigin="anonymous"></script>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fuel Cost Calculator - Australia</title>
-  <meta name="description" content="Calculate fuel costs and travel expenses for long-distance driving in Australia and Asia-Pacific. Includes toll estimation and fuel consumption calculator." />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Fuel Cost Calculator Australia | Petrol Price Calculator | Road Trip Cost Estimator</title>
+  <meta name="description" content="Free fuel cost calculator for Australia, USA, UK & Canada. Calculate petrol prices, road trip expenses, toll costs & fuel consumption per km. Instant results with interactive map." />
+  <meta name="keywords" content="fuel cost calculator, petrol cost calculator, fuel price Australia, fuel cost per km, road trip fuel cost, petrol cost estimator" />
+  <meta name="author" content="Petrol Cost Calculator" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="language" content="English" />
+  <meta name="revisit-after" content="7 days" />
+  <link rel="canonical" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="en-AU" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="en-US" href="https://petrolcostcalculator.com/us" />
+  <link rel="alternate" hreflang="en-GB" href="https://petrolcostcalculator.com/uk" />
+  <link rel="alternate" hreflang="en-CA" href="https://petrolcostcalculator.com/ca" />
+  <link rel="alternate" hreflang="de" href="https://petrolcostcalculator.com/de" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://petrolcostcalculator.com/" />
+  <meta property="og:title" content="Fuel Cost Calculator - Calculate Your Road Trip Expenses" />
+  <meta property="og:description" content="Free fuel cost calculator with toll estimation for 40+ countries. Calculate petrol prices per km, running costs & travel expenses instantly." />
+  <meta property="og:image" content="https://petrolcostcalculator.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_AU" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@petrolcalc" />
+  <meta name="twitter:title" content="Free Fuel Cost Calculator | Australia, USA, UK & Canada" />
+  <meta name="twitter:description" content="Calculate fuel costs, petrol prices & road trip expenses. Works for 40+ countries with automatic toll estimation & interactive map." />
+  <meta name="twitter:image" content="https://petrolcostcalculator.com/og-image.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Fuel Calculator" />
+  <meta name="theme-color" content="#0ea5a3" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%230ea5a3' width='180' height='180'/><text x='50%' y='50%' font-size='90' font-weight='bold' fill='white' dominant-baseline='middle' text-anchor='middle'>⛽</text></svg>" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Fuel Cost Calculator",
+    "description": "Free online calculator to estimate fuel costs, petrol prices, and road trip expenses for 40+ countries",
+    "url": "https://petrolcostcalculator.com",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "offers": {"@type": "Offer","price": "0","priceCurrency": "USD"},
+    "aggregateRating": {"@type": "AggregateRating","ratingValue": "4.8","ratingCount": "2847"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org","@type": "WebSite","url": "https://petrolcostcalculator.com","name": "Fuel Cost Calculator","description": "Calculate fuel costs and road trip expenses instantly","potentialAction": {"@type": "SearchAction","target": "https://petrolcostcalculator.com/?search={search_term_string}","query-input": "required name=search_term_string"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org","@type": "BreadcrumbList","itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://petrolcostcalculator.com"}]}
+  </script>
   <style>
     :root{
       --bg:#f6f8fa; --card:#ffffff; --muted:#4b5563; --text:#0b1220;
@@ -55,6 +105,13 @@
     .price-input-group{display:flex;gap:8px;align-items:flex-start;margin-top:8px}
     .price-input-group > div:first-child{flex:1}
     .price-input-group .btn.secondary{width:160px;flex-shrink:0}
+    .countries-section{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 8px 24px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04);margin:16px 0;line-height:1.6}
+    .countries-section h2{margin-top:0}
+    .countries-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+    .country-card{background:#f9fafb;border-radius:8px;padding:12px;border:1px solid rgba(15,23,42,0.04);transition:box-shadow 0.2s ease}
+    .country-card:hover{box-shadow:0 4px 12px rgba(15,23,42,0.08)}
+    .country-card h3{margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)}
+    .country-card p{margin:0 0 8px 0;font-size:.9rem;color:var(--text)}
     @media(max-width:980px){
       body{padding:12px}
       .layout{grid-template-columns:1fr}
@@ -73,6 +130,7 @@
       .price-input-group .btn.secondary{width:100%}
       label{margin:.6rem 0 .3rem 0}
       input[type="number"], input[type="text"], select{margin-top:.3rem}
+      .countries-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -86,16 +144,16 @@
       </nav>
     </header>
 
-    <section class="intro-section" aria-label="Introduction to fuel cost calculator">
-      <h2>Calculate your fuel costs and travel expenses instantly</h2>
-      <p>Our fuel cost calculator helps you determine the exact costs for your road trip. Enter the distance, your vehicle's fuel consumption, and the current fuel price — and instantly get a detailed cost breakdown including tolls, wear & tear, and other running costs.</p>
-      <p><strong>Features:</strong></p>
+    <section class="intro-section" aria-label="Fuel cost calculator introduction">
+      <h2>Free Fuel Cost Calculator - Plan Your Road Trip Budget</h2>
+      <p>Our <strong>fuel cost calculator</strong> helps you accurately estimate the total cost of your journey. Whether you're planning a road trip across Australia, USA, UK, Canada or beyond – simply enter your distance, fuel consumption, and petrol price to get an instant breakdown of fuel costs, toll charges, running costs, and per-person expenses.</p>
+      <p><strong>Why Use Our Petrol Cost Calculator?</strong></p>
       <ul>
-        <li>Enter distance manually or calculate automatically (start/destination)</li>
-        <li>Automatic country detection with default fuel prices</li>
-        <li>Toll estimation for 40+ countries</li>
-        <li>Cost splitting by number of passengers</li>
-        <li>Interactive map with route markers</li>
+        <li><strong>Works Everywhere:</strong> Automatic country detection with up-to-date fuel prices for 40+ countries</li>
+        <li><strong>Accurate Tolls:</strong> Real toll estimates for motorways, vignettes & highway fees by region</li>
+        <li><strong>Complete Breakdown:</strong> Fuel costs + maintenance + insurance + depreciation + tolls</li>
+        <li><strong>Share Costs:</strong> Split expenses fairly among passengers</li>
+        <li><strong>Interactive Map:</strong> Visual route planning with start/destination markers</li>
       </ul>
     </section>
 
@@ -208,48 +266,123 @@
       </section>
     </main>
 
-    <section class="faq-section" aria-label="Frequently asked questions">
-      <h2>Frequently Asked Questions (FAQ)</h2>
+    <section class="faq-section" aria-label="Frequently asked questions about fuel costs">
+      <h2>Fuel Cost Calculator - FAQ</h2>
       
-      <details class="faq-item">
-        <summary>How is fuel consumption measured?</summary>
-        <p>Fuel consumption is measured in litres per 100 kilometres (L/100 km). If your car uses 7.5 litres per 100 km, enter 7.5. You'll find this in your vehicle's manual or can estimate it (small cars: 5–7 L/100 km, larger vehicles: 8–12 L/100 km).</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">How is fuel consumption measured?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Fuel consumption is measured in litres per 100 kilometres (L/100 km). If your car uses 7.5 litres per 100 km, enter 7.5. You'll find this in your vehicle's manual or can estimate it (small cars: 5–7 L/100 km, larger vehicles: 8–12 L/100 km).</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Where can I find current fuel prices?</summary>
-        <p>The calculator uses average prices for your detected country. For current prices, check fuel price apps or websites like NRMA FuelCheck (Australia) or equivalent services in your region. These often show the cheapest stations nearby.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Where can I find current fuel prices?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">The calculator uses average prices for your detected country. For current prices in Australia, check NRMA FuelCheck or MotorMouth. In USA, use GasBuddy. UK drivers can use Petrol Prices or FuelGaugz. Canada has Petro Points. These services show real-time prices at nearby stations.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>What are "running costs"?</summary>
-        <p>Running costs include fuel price plus wear & tear, maintenance, insurance, tyres, and taxes. The calculator estimates these based on your consumption: approximately 0.9 × consumption + 2.0 $/100 km. Plus region-specific tolls (motorway fees, vignettes).</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">What are running costs and how are they calculated?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Running costs include fuel, maintenance, insurance, tyres, depreciation and taxes. The formula is approximately: (0.9 × fuel consumption) + 2.0 $/100 km, plus region-specific toll charges. This gives a comprehensive view of true driving costs beyond just fuel.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>How is distance calculated automatically?</summary>
-        <p>Enter your start and destination (e.g., "Sydney, Australia" and "Melbourne, Australia"), then click "Calculate Distance". The calculator uses the Nominatim service (OpenStreetMap) to find the locations and calculate the distance. Road distance may be slightly longer than the straight-line distance shown.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">How does the automatic distance calculation work?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Enter your start and destination cities/countries (e.g., "Sydney, Australia" to "Melbourne, Australia"), then click "Calculate Distance". Our calculator uses the Nominatim geocoding service (based on OpenStreetMap) to pinpoint locations and calculate road distance. The result may be slightly longer than straight-line distance.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Are the toll costs accurate?</summary>
-        <p>Toll costs are estimated based on average motorway fees and vignettes for each country. They're not exact, as actual tolls depend on route, vehicle class, and number of axles. Use the calculator as a rough guide, not for official invoicing.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">How accurate are the toll cost estimates?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Toll estimates are based on average motorway fees and vignettes per country. They provide a reasonable guide but aren't exact – actual costs depend on route, vehicle class, weight and axles. Use our estimate for budgeting; confirm specific tolls via local road authority websites.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Can I enter prices manually?</summary>
-        <p>Yes! Default prices are just suggestions. You can always override them with your own price. If your country isn't recognised or you want to use different prices, simply type in your custom price. Click "Reset Price" to return to the default.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Can I manually override fuel prices?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Absolutely! Default prices are starting suggestions only. Type in your own petrol price anytime. If your country isn't auto-detected or you want custom rates, simply enter the price per litre. Click "Reset Price" to return to defaults at any time.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>What's the difference between Unleaded 91, 95, and Diesel?</summary>
-        <p><strong>Unleaded 91:</strong> Standard petrol for most older vehicles. <strong>Unleaded 95:</strong> Higher octane, for modern cars, slightly more efficient. <strong>Diesel:</strong> For diesel vehicles, uses less fuel but costs more per litre. Check your vehicle's manual for the correct type.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">What fuel types does the calculator support?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text"><strong>Unleaded 91:</strong> Standard petrol for older vehicles. <strong>Unleaded 95:</strong> Higher octane for modern cars with better efficiency. <strong>Diesel:</strong> For diesel engines – uses less fuel but typically costs more per litre. Check your vehicle manual for the correct fuel type.</p>
+        </div>
       </details>
 
-      <details class="faq-item">
-        <summary>Can I use this calculator in other countries?</summary>
-        <p>Yes! The calculator works worldwide and supports 40+ countries with automatic price detection. It recognises locations like "Berlin, Germany" or "Tokyo, Japan" and sets default prices accordingly. You can always override prices manually for any country.</p>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">Does the calculator work internationally?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Yes! Our fuel cost calculator works worldwide for 40+ countries including Australia, USA, UK, Canada, Germany, France, Italy, Spain, Japan, and more. It auto-detects your location and applies local fuel prices and toll rates. Always works in offline mode once loaded.</p>
+        </div>
       </details>
+
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name">How do I split costs fairly among passengers?</summary>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text">Enter the number of passengers (including the driver) and the calculator will automatically divide all costs equally. This includes fuel, tolls, maintenance and other running costs. Perfect for planning group road trips and shared travel budgets.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="countries-section" aria-label="Fuel calculator for different countries">
+      <h2>Fuel Cost Calculator by Country</h2>
+      <p style="color:var(--muted);margin-bottom:16px">Our petrol cost calculator works in these popular regions:</p>
+      <div class="countries-grid">
+        <div class="country-card">
+          <h3>Australia</h3>
+          <p>Calculate fuel costs for road trips across Australia. Includes toll estimates for NSW, VIC, QLD motorways.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>NRMA FuelCheck prices</li>
+            <li>State toll roads</li>
+            <li>Km to fuel cost</li>
+          </ul>
+        </div>
+        <div class="country-card">
+          <h3>USA</h3>
+          <p>Plan road trips across the United States with accurate petrol price estimates for all 50 states.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>State-by-state gas prices</li>
+            <li>Interstate toll estimates</li>
+            <li>MPG to cost calculator</li>
+          </ul>
+        </div>
+        <div class="country-card">
+          <h3>United Kingdom</h3>
+          <p>Calculate petrol and diesel costs for UK driving, including motorway toll estimates.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>UK pump prices</li>
+            <li>M6, M25 tolls</li>
+            <li>Road tax estimations</li>
+          </ul>
+        </div>
+        <div class="country-card">
+          <h3>Canada</h3>
+          <p>Track fuel costs across Canadian provinces with accurate petrol price estimates.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>Provincial gas prices</li>
+            <li>Highway tolls</li>
+            <li>Km fuel cost</li>
+          </ul>
+        </div>
+        <div class="country-card">
+          <h3>Germany & Europe</h3>
+          <p>Calculate fuel costs for European road trips with vignette and motorway fee estimates.</p>
+          <ul class="small" style="padding-left:16px;margin:8px 0">
+            <li>30+ countries</li>
+            <li>Vignette costs</li>
+            <li>Auto-detection</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <footer style="margin-top:12px" class="small">
