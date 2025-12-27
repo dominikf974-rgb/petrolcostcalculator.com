@@ -79,8 +79,10 @@ crossorigin="anonymous"></script>
 
             <label style="margin-top:12px">Fuel type</label>
             <select id="fuel-type" aria-label="Fuel type">
-              <option value="super95">Premium 95</option>
+              <option value="u91">Unleaded 91 (U91)</option>
               <option value="e10">E10</option>
+              <option value="p95">Premium 95 (P95)</option>
+              <option value="p98">Premium 98 (P98)</option>
               <option value="diesel">Diesel</option>
             </select>
 
@@ -100,12 +102,20 @@ crossorigin="anonymous"></script>
 
             <div class="price-table" aria-hidden="false">
               <div class="price-card">
-                <div class="small">Avg Premium 95</div>
-                <strong id="avg-super">— $</strong>
+                <div class="small">Avg U91</div>
+                <strong id="avg-u91">— $</strong>
               </div>
               <div class="price-card">
                 <div class="small">Avg E10</div>
                 <strong id="avg-e10">— $</strong>
+              </div>
+              <div class="price-card">
+                <div class="small">Avg P95</div>
+                <strong id="avg-p95">— $</strong>
+              </div>
+              <div class="price-card">
+                <div class="small">Avg P98</div>
+                <strong id="avg-p98">— $</strong>
               </div>
               <div class="price-card">
                 <div class="small">Avg Diesel</div>
@@ -200,17 +210,21 @@ crossorigin="anonymous"></script>
       const avg100El = document.getElementById('avg100');
       const runningEstEl = document.getElementById('running-est');
 
-      const avgSuperEl = document.getElementById('avg-super');
+      const avgU91El = document.getElementById('avg-u91');
       const avgE10El = document.getElementById('avg-e10');
+      const avgP95El = document.getElementById('avg-p95');
+      const avgP98El = document.getElementById('avg-p98');
       const avgDieselEl = document.getElementById('avg-diesel');
       const btnUpdatePrices = document.getElementById('btn-update-prices');
       const tollInfoEl = document.getElementById('toll-info');
 
       // Fallback prices
-      let fuelPrices = { super95:1.85, e10:1.82, diesel:1.70 };
+      let fuelPrices = { u91:2.02, e10:1.98, p95:2.18, p98:2.30, diesel:2.05 };
       function renderAvgPrices(){
-        avgSuperEl.textContent = fmt(fuelPrices.super95) + ' $';
+        avgU91El.textContent = fmt(fuelPrices.u91) + ' $';
         avgE10El.textContent = fmt(fuelPrices.e10) + ' $';
+        avgP95El.textContent = fmt(fuelPrices.p95) + ' $';
+        avgP98El.textContent = fmt(fuelPrices.p98) + ' $';
         avgDieselEl.textContent = fmt(fuelPrices.diesel) + ' $';
       }
       renderAvgPrices();
@@ -230,8 +244,10 @@ crossorigin="anonymous"></script>
           if(!res.ok) throw new Error('Price API not reachable');
           const data = await res.json();
           if(data && data.averages){
-            if(data.averages.super95 != null) fuelPrices.super95 = data.averages.super95;
+            if(data.averages.u91 != null) fuelPrices.u91 = data.averages.u91;
             if(data.averages.e10 != null) fuelPrices.e10 = data.averages.e10;
+            if(data.averages.p95 != null) fuelPrices.p95 = data.averages.p95;
+            if(data.averages.p98 != null) fuelPrices.p98 = data.averages.p98;
             if(data.averages.diesel != null) fuelPrices.diesel = data.averages.diesel;
             renderAvgPrices();
             if(!priceEl.value) priceEl.value = fuelPrices[fuelTypeEl.value] || '';
@@ -389,7 +405,7 @@ crossorigin="anonymous"></script>
         const persons = Math.max(1, Math.floor(parse(personsEl.value) || 1));
 
         if(!Number.isFinite(p)){
-          p = (fuelTypeEl && fuelTypeEl.value && ({ super95:1.85,e10:1.82,diesel:1.70 })[fuelTypeEl.value]) || NaN;
+          p = (fuelTypeEl && fuelTypeEl.value && ({ u91:2.02,e10:1.98,p95:2.18,p98:2.30,diesel:2.05 })[fuelTypeEl.value]) || NaN;
         }
 
         if(Number.isNaN(km) || km <= 0 || Number.isNaN(v) || Number.isNaN(p)){
@@ -454,5 +470,4 @@ crossorigin="anonymous"></script>
 </body>
 
 </html>
-
 
