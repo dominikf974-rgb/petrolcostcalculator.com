@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en-AU">
 <head>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="icon" href="/favicon.ico">
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
  crossorigin="anonymous"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Spritkosten Rechner | Kraftstoffkosten berechnen | Fahrtkosten</title>
-  <meta name="description" content="Kostenloser Spritkosten-Rechner für Deutschland, Europa & weltweit. Kraftstoffpreise, Fahrtkosten, Maut & Verbrauch pro km – mit interaktiver Karte." />
-  <meta name="keywords" content="Spritkosten Rechner, Kraftstoffkosten, Benzinpreis, Dieselpreis, Fahrtkosten, Verbrauch pro km, Mautkosten" />
+  <title>Fuel Cost Calculator - Petrol, Diesel & Road Trip Cost Estimator</title>
+  <meta name="description" content="Free fuel cost calculator for Australia, USA, UK & Canada. Calculate petrol prices, road trip expenses, toll costs & fuel consumption per km. Instant results with interactive map." />
+  <meta name="keywords" content="fuel cost calculator, petrol cost calculator, fuel price Australia, fuel cost per km, road trip fuel cost, petrol cost estimator" />
   <meta name="author" content="Petrol Cost Calculator" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="language" content="English" />
@@ -136,16 +143,20 @@
 </head>
 <body>
   <div class="wrap">
+   
     <header>
      
-     <a href="index-au.html" style="display:flex;align-items:center;gap:16px;padding:6px 0;text-decoration:none;color:inherit">
+     <div style="display:flex;align-items:center;gap:16px;padding:6px 0">
        <img src="/logo.png" alt="Fuel Cost Calculator Logo" style="height:60px;width:auto">
-       <span style="font-weight:700;font-size:24px">Fuel Cost Calculator</span>
-     </a>
+     <h1 style="font-weight:700;font-size:24px;margin:0">
+    Fuel Cost Calculator – Petrol Cost & Trip Cost Calculator
+    </h1>
+
+     </div>
 
       <nav class="tabs" role="tablist">
-        <button role="tab" data-target="fuel" aria-selected="true">Spritkosten</button>
-        <button role="tab" data-target="calc">Rechner</button>
+        <button role="tab" data-target="fuel" aria-selected="true">Fuel Costs</button>
+        <button role="tab" data-target="calc">Calculator</button>
       </nav>
     </header>
 
@@ -166,79 +177,79 @@
       <section id="fuel" class="card active" aria-hidden="false">
         <div class="layout">
           <div>
-            <h2 style="margin:0 0 8px 0;font-size:1rem">Eingaben</h2>
+            <h2 style="margin:0 0 8px 0;font-size:1rem">Inputs</h2>
 
-            <label for="km">Distanz (km) — oder von/nach berechnen</label>
+            <label for="km">Distance (km) — or calculate from / to</label>
             <div class="km-row">
               <input id="km" class="km-input" type="number" inputmode="decimal" min="0" step="0.1" placeholder="e.g. 120.5" aria-label="Distance in kilometres" />
-              <div class="spinner" title="Distanz erhöhen/verringern">
-                <button id="km-inc" aria-label="Distanz erhöhen">▲</button>
-                <button id="km-dec" aria-label="Distanz verringern">▼</button>
+              <div class="spinner" title="Increase / decrease distance">
+                <button id="km-inc" aria-label="Increase distance">▲</button>
+                <button id="km-dec" aria-label="Decrease distance">▼</button>
               </div>
             </div>
 
             <div style="margin-top:12px">
-              <label for="place-from">Oder: Start (Stadt, Land)</label>
-              <input id="place-from" type="text" placeholder="z. B. Berlin, Deutschland" aria-label="Startort" />
-              <label for="place-to" style="margin-top:10px">Ziel (Stadt, Land)</label>
-              <input id="place-to" type="text" placeholder="z. B. München, Deutschland" aria-label="Zielort" />
+              <label for="place-from">Or: Start (City, Country)</label>
+              <input id="place-from" type="text" placeholder="e.g. Sydney, Australia" aria-label="Starting location" />
+              <label for="place-to" style="margin-top:10px">Destination (City, Country)</label>
+              <input id="place-to" type="text" placeholder="e.g. Melbourne, Australia" aria-label="Destination location" />
               <div class="map-controls" style="margin-top:10px">
-                <button id="btn-geocode" class="btn secondary">Entfernung berechnen</button>
-                <button id="btn-clearmap" class="btn secondary">Karte zurücksetzen</button>
+                <button id="btn-geocode" class="btn secondary">Calculate Distance</button>
+                <button id="btn-clearmap" class="btn secondary">Reset Map</button>
               </div>
-              <div class="small">Entfernung via Nominatim (OpenStreetMap) berechnet. Karten: OpenStreetMap.</div>
+              <div class="small">Distance calculated via Nominatim (OpenStreetMap). Map tiles: OpenStreetMap.</div>
             </div>
 
-            <label for="fuel-type" style="margin-top:12px">Kraftstoffart</label>
+            <label for="fuel-type" style="margin-top:12px">Fuel Type</label>
             <select id="fuel-type" aria-label="Fuel Type">
-              <option value="unleaded91">Super 91</option>
-              <option value="unleaded95">Super 95</option>
+              <option value="unleaded91">Unleaded 91</option>
+              <option value="unleaded95">Unleaded 95</option>
               <option value="diesel">Diesel</option>
             </select>
 
-            <label for="consumption" style="margin-top:12px">Verbrauch (L/100 km)</label>
-            <input id="consumption" type="number" inputmode="decimal" min="0" step="0.1" value="7.5" placeholder="z. B. 7.5" aria-label="Kraftstoffverbrauch in Litern pro 100 km" />
+            <label for="consumption" style="margin-top:12px">Consumption (L/100 km)</label>
+            <input id="consumption" type="number" inputmode="decimal" min="0" step="0.1" value="7.5" placeholder="e.g. 7.5" aria-label="Vehicle fuel consumption in litres per 100 km" />
 
             <div class="price-input-group">
               <div>
-                <label for="price">Preis pro Liter (€)</label>
-                <input id="price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="z. B. 1.95" aria-label="Kraftstoffpreis pro Liter in Euro" />
+                <label for="price">Price per Litre ($)</label>
+                <input id="price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 1.95" aria-label="Fuel price per litre in dollars" />
                 <span id="price-info" class="hint"></span>
               </div>
-              <button id="btn-reset-price" class="btn secondary" style="height:auto;padding:8px 12px;margin-top:28px;font-size:0.9rem" title="Standardpreis wiederherstellen">Standard wiederherstellen</button>
+              <button id="btn-reset-price" class="btn secondary" style="height:auto;padding:8px 12px;margin-top:28px;font-size:0.9rem" title="Reset to default price">Reset to default</button>
             </div>
 
             <div class="price-table" aria-hidden="false">
               <div class="price-card">
-                <div class="small">Ø Super 91</div>
-                <strong id="avg-unleaded91">— €</strong>
+                <div class="small">Avg Unleaded 91</div>
+                <strong id="avg-unleaded91">— $</strong>
               </div>
               <div class="price-card">
-                <div class="small">Ø Super 95</div>
-                <strong id="avg-unleaded95">— €</strong>
+                <div class="small">Avg Unleaded 95</div>
+                <strong id="avg-unleaded95">— $</strong>
               </div>
               <div class="price-card">
-                <div class="small">Ø Diesel</div>
-                <strong id="avg-diesel">— €</strong>
+                <div class="small">Avg Diesel</div>
+                <strong id="avg-diesel">— $</strong>
               </div>
             </div>
 
-            <label for="passengers" style="margin-top:12px">Personen (inkl. Fahrer)</label>
-            <input id="passengers" type="number" min="1" step="1" value="1" aria-label="Anzahl der Personen inkl. Fahrer" />
+            <label for="passengers" style="margin-top:12px">Passengers (incl. driver)</label>
+            <input id="passengers" type="number" min="1" step="1" value="1" aria-label="Number of passengers including driver" />
 
             <div class="big-action">
-              <button id="calc-fuel" class="btn large">Berechnen</button>
-              <button id="reset-fuel" class="btn secondary large">Zurücksetzen</button>
+              <button id="calc-fuel" class="btn large">Calculate</button>
+              <button id="reset-fuel" class="btn secondary large">Reset</button>
             </div>
 
             <div class="resultbox" aria-live="polite" aria-label="Calculation results">
-              <div class="result-row"><div class="result-key">Kraftstoffkosten</div><div class="result-val" id="cost-fuel">€0.00</div></div>
-              <div class="result-row"><div class="result-key">Laufende Kosten inkl. Maut (geschätzt)</div><div class="result-val" id="cost-running">€0.00</div></div>
-              <div class="result-row"><div class="result-key">Gesamtkosten</div><div class="result-val" id="cost-total">€0.00</div></div>
-              <div class="result-row"><div class="result-key">Pro Person</div><div class="result-val" id="cost-person">€0.00</div></div>
-              <div class="result-row"><div class="result-key">Benötigte Liter</div><div class="result-val" id="liters">0.00 L</div></div>
-              <div class="result-row"><div class="result-key">Durchschnitt (€/100 km)</div><div class="result-val" id="avg100">€0.00 /100km</div></div>
-              <div class="result-row"><div class="result-key small">Geschätzte laufende Kosten /100 km (inkl. Maut)</div><div class="result-val small" id="running-est">— € /100km</div></div>
+              <div class="result-row"><div class="result-key">Fuel Costs</div><div class="result-val" id="cost-fuel">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Running Costs incl. Tolls (estimated)</div><div class="result-val" id="cost-running">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Total Costs</div><div class="result-val" id="cost-total">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Per Person</div><div class="result-val" id="cost-person">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Litres Required</div><div class="result-val" id="liters">0.00 L</div></div>
+              <div class="result-row"><div class="result-key">Average ($/100 km)</div><div class="result-val" id="avg100">$0.00 /100km</div></div>
+              <div class="result-row"><div class="result-key small">Estimated running costs /100 km (incl. tolls)</div><div class="result-val small" id="running-est">— $ /100km</div></div>
               <div style="margin-top:8px;color:var(--muted);font-size:.85rem">
                 Running costs include: wear & tear, maintenance, insurance, tyres, depreciation, taxes and region-specific toll estimates.
               </div>
@@ -246,9 +257,9 @@
           </div>
 
           <div>
-            <h2 style="margin:0 0 8px 0;font-size:1rem">Karte & Entfernung</h2>
+            <h2 style="margin:0 0 8px 0;font-size:1rem">Map & Distance</h2>
             <div id="map"></div>
-            <div style="margin-top:8px" class="small">Klicke auf „Entfernung berechnen“, um Start/Ziel zu suchen. Maut wird automatisch nach Region geschätzt.</div>
+            <div style="margin-top:8px" class="small">Click "Calculate Distance" to search for start/destination. Tolls are automatically estimated by region.</div>
             <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
           </div>
         </div>
@@ -272,119 +283,119 @@
     </main>
 
     <section class="faq-section" aria-label="Frequently asked questions about fuel costs">
-      <h2>Spritkosten-Rechner – FAQ</h2>
+      <h2>Fuel Cost Calculator - FAQ</h2>
       
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Wie wird der Verbrauch gemessen?</summary>
+        <summary itemprop="name">How is fuel consumption measured?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text">Der Verbrauch wird in Litern pro 100 Kilometer (L/100 km) angegeben. Verbraucht dein Auto z. B. 7,5 L/100 km, gib 7,5 ein. Richtwerte: Kleinwagen 5–7 L/100 km, größere Fahrzeuge 8–12 L/100 km.</p>
+          <p itemprop="text">Fuel consumption is measured in litres per 100 kilometres (L/100 km). If your car uses 7.5 litres per 100 km, enter 7.5. You'll find this in your vehicle's manual or can estimate it (small cars: 5–7 L/100 km, larger vehicles: 8–12 L/100 km).</p>
         </div>
       </details>
 
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Wo finde ich aktuelle Kraftstoffpreise?</summary>
+        <summary itemprop="name">Where can I find current fuel prices?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text">Der Rechner nutzt Durchschnittspreise des erkannten Landes. Für Live-Preise nutze lokale Dienste (z. B. in Deutschland: regionale Preisportale; international: GasBuddy, MotorMouth etc.). Diese zeigen aktuelle Preise an Tankstellen.</p>
+          <p itemprop="text">The calculator uses average prices for your detected country. For current prices in Australia, check NRMA FuelCheck or MotorMouth. In USA, use GasBuddy. UK drivers can use Petrol Prices or FuelGaugz. Canada has Petro Points. These services show real-time prices at nearby stations.</p>
         </div>
       </details>
 
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Was sind laufende Kosten und wie werden sie berechnet?</summary>
+        <summary itemprop="name">What are running costs and how are they calculated?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text">Laufende Kosten umfassen Kraftstoff, Wartung, Versicherung, Reifen, Abschreibung und Steuern. Näherung: (0,9 × Verbrauch) + 2,0 €/100 km, plus regionsspezifische Maut. So erhältst du einen umfassenden Überblick über echte Fahrtkosten.</p>
+          <p itemprop="text">Running costs include fuel, maintenance, insurance, tyres, depreciation and taxes. The formula is approximately: (0.9 × fuel consumption) + 2.0 $/100 km, plus region-specific toll charges. This gives a comprehensive view of true driving costs beyond just fuel.</p>
         </div>
       </details>
 
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Wie funktioniert die automatische Entfernungsberechnung?</summary>
+        <summary itemprop="name">How does the automatic distance calculation work?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text">Gib Start und Ziel ein (z. B. „Berlin, Deutschland“ → „München, Deutschland“) und klicke „Entfernung berechnen“. Wir nutzen Nominatim (OpenStreetMap) zur Geokodierung und berechnen die Straßenentfernung.</p>
+          <p itemprop="text">Enter your start and destination cities/countries (e.g., "Sydney, Australia" to "Melbourne, Australia"), then click "Calculate Distance". Our calculator uses the Nominatim geocoding service (based on OpenStreetMap) to pinpoint locations and calculate road distance. The result may be slightly longer than straight-line distance.</p>
         </div>
       </details>
 
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Wie genau sind die Mautschätzungen?</summary>
+        <summary itemprop="name">How accurate are the toll cost estimates?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text">Die Maut basiert auf durchschnittlichen Autobahngebühren/Vignetten pro Land. Sie dient als Orientierung; tatsächliche Kosten hängen von Route und Fahrzeugklasse ab. Bitte ggf. bei lokalen Behörden prüfen.</p>
+          <p itemprop="text">Toll estimates are based on average motorway fees and vignettes per country. They provide a reasonable guide but aren't exact – actual costs depend on route, vehicle class, weight and axles. Use our estimate for budgeting; confirm specific tolls via local road authority websites.</p>
         </div>
       </details>
 
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Kann ich Preise manuell überschreiben?</summary>
+        <summary itemprop="name">Can I manually override fuel prices?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text">Ja. Standardpreise sind nur Vorschläge. Gib jederzeit deinen eigenen Preis pro Liter ein. Mit „Standard wiederherstellen“ setzt du die Vorgaben zurück.</p>
+          <p itemprop="text">Absolutely! Default prices are starting suggestions only. Type in your own petrol price anytime. If your country isn't auto-detected or you want custom rates, simply enter the price per litre. Click "Reset Price" to return to defaults at any time.</p>
         </div>
       </details>
 
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Welche Kraftstoffarten werden unterstützt?</summary>
+        <summary itemprop="name">What fuel types does the calculator support?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text"><strong>Super 91:</strong> Standardbenzin. <strong>Super 95:</strong> Höherer Oktanwert. <strong>Diesel:</strong> Für Dieselmotoren. Prüfe das Handbuch deines Fahrzeugs für die richtige Kraftstoffart.</p>
+          <p itemprop="text"><strong>Unleaded 91:</strong> Standard petrol for older vehicles. <strong>Unleaded 95:</strong> Higher octane for modern cars with better efficiency. <strong>Diesel:</strong> For diesel engines – uses less fuel but typically costs more per litre. Check your vehicle manual for the correct fuel type.</p>
         </div>
       </details>
 
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Funktioniert der Rechner international?</summary>
+        <summary itemprop="name">Does the calculator work internationally?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text">Ja. Der Rechner funktioniert weltweit für 40+ Länder und erkennt deine Region, um passende Preise und Mauten anzuwenden.</p>
+          <p itemprop="text">Yes! Our fuel cost calculator works worldwide for 40+ countries including Australia, USA, UK, Canada, Germany, France, Italy, Spain, Japan, and more. It auto-detects your location and applies local fuel prices and toll rates. Always works in offline mode once loaded.</p>
         </div>
       </details>
 
       <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <summary itemprop="name">Wie teile ich Kosten fair unter Mitfahrern?</summary>
+        <summary itemprop="name">How do I split costs fairly among passengers?</summary>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-          <p itemprop="text">Gib die Anzahl der Personen (inkl. Fahrer) ein. Der Rechner teilt alle Kosten automatisch gleichmäßig auf – inklusive Kraftstoff, Maut und laufender Kosten.</p>
+          <p itemprop="text">Enter the number of passengers (including the driver) and the calculator will automatically divide all costs equally. This includes fuel, tolls, maintenance and other running costs. Perfect for planning group road trips and shared travel budgets.</p>
         </div>
       </details>
     </section>
 
     <section class="countries-section" aria-label="Fuel calculator for different countries">
-      <h2>Spritkostenrechner nach Ländern</h2>
-      <p style="color:var(--muted);margin-bottom:16px">Unser Rechner funktioniert in diesen beliebten Regionen:</p>
+      <h2>Fuel Cost Calculator by Country</h2>
+      <p style="color:var(--muted);margin-bottom:16px">Our petrol cost calculator works in these popular regions:</p>
       <div class="countries-grid">
         <div class="country-card">
-          <h3>Australien</h3>
-          <p>Berechne Spritkosten für Roadtrips in Australien. Enthält Mautschätzungen für NSW, VIC, QLD.</p>
+          <h3>Australia</h3>
+          <p>Calculate fuel costs for road trips across Australia. Includes toll estimates for NSW, VIC, QLD motorways.</p>
           <ul class="small" style="padding-left:16px;margin:8px 0">
-            <li>Durchschnittliche Tankpreise</li>
-            <li>Mautstraßen nach Bundesstaat</li>
-            <li>km → Spritkosten</li>
+            <li>NRMA FuelCheck prices</li>
+            <li>State toll roads</li>
+            <li>Km to fuel cost</li>
           </ul>
         </div>
         <div class="country-card">
           <h3>USA</h3>
-          <p>Plane Roadtrips in den USA mit Preisabschätzungen für alle Bundesstaaten.</p>
+          <p>Plan road trips across the United States with accurate petrol price estimates for all 50 states.</p>
           <ul class="small" style="padding-left:16px;margin:8px 0">
-            <li>Preise nach Staat</li>
-            <li>Interstate-Mautschätzung</li>
-            <li>MPG → Kostenrechner</li>
+            <li>State-by-state gas prices</li>
+            <li>Interstate toll estimates</li>
+            <li>MPG to cost calculator</li>
           </ul>
         </div>
         <div class="country-card">
-          <h3>Vereinigtes Königreich</h3>
-          <p>Berechne Benzin- und Dieselkosten im UK inkl. Mautabschätzungen.</p>
+          <h3>United Kingdom</h3>
+          <p>Calculate petrol and diesel costs for UK driving, including motorway toll estimates.</p>
           <ul class="small" style="padding-left:16px;margin:8px 0">
-            <li>UK-Tankpreise</li>
-            <li>M6, M25 Maut</li>
-            <li>Straßenabgaben</li>
+            <li>UK pump prices</li>
+            <li>M6, M25 tolls</li>
+            <li>Road tax estimations</li>
           </ul>
         </div>
         <div class="country-card">
-          <h3>Kanada</h3>
-          <p>Verfolge Spritkosten über kanadische Provinzen mit Preisabschätzungen.</p>
+          <h3>Canada</h3>
+          <p>Track fuel costs across Canadian provinces with accurate petrol price estimates.</p>
           <ul class="small" style="padding-left:16px;margin:8px 0">
-            <li>Preise nach Provinz</li>
-            <li>Highway-Maut</li>
-            <li>km → Spritkosten</li>
+            <li>Provincial gas prices</li>
+            <li>Highway tolls</li>
+            <li>Km fuel cost</li>
           </ul>
         </div>
         <div class="country-card">
-          <h3>Deutschland & Europa</h3>
-          <p>Berechne Spritkosten für Europa inkl. Vignetten- und Autobahngebühren.</p>
+          <h3>Germany & Europe</h3>
+          <p>Calculate fuel costs for European road trips with vignette and motorway fee estimates.</p>
           <ul class="small" style="padding-left:16px;margin:8px 0">
-            <li>30+ Länder</li>
-            <li>Vignettenkosten</li>
-            <li>Auto-Erkennung</li>
+            <li>30+ countries</li>
+            <li>Vignette costs</li>
+            <li>Auto-detection</li>
           </ul>
         </div>
       </div>
@@ -636,9 +647,9 @@
       let fuelPrices = { ...fallbackPrices };
       let userEditedPrice = false;
       function renderAvgPrices(){
-        avgUnleaded91El.textContent = '€' + fmt(fuelPrices.unleaded91);
-        avgUnleaded95El.textContent = '€' + fmt(fuelPrices.unleaded95);
-        avgDieselEl.textContent = '€' + fmt(fuelPrices.diesel);
+        avgUnleaded91El.textContent = '$' + fmt(fuelPrices.unleaded91);
+        avgUnleaded95El.textContent = '$' + fmt(fuelPrices.unleaded95);
+        avgDieselEl.textContent = '$' + fmt(fuelPrices.diesel);
       }
       renderAvgPrices();
 
@@ -690,7 +701,7 @@
         if(!userEditedPrice){
           const currentFuel = fuelTypeEl.value;
           priceEl.value = fuelPrices[currentFuel] || '';
-          priceInfoEl.textContent = `Erkannt: ${prices.name}. Standardpreis gesetzt (€/L) – du kannst ihn ändern.`;
+          priceInfoEl.textContent = `Detected ${prices.name}. Default price set ($/L). You can edit it.`;
           priceInfoEl.classList.remove('error');
           console.log('[price-detect] applied price', { fuelType: currentFuel, appliedPrice: priceEl.value });
         } else {
@@ -719,7 +730,7 @@
         if(countryCode){
           applyCountryDefaults(countryCode);
         } else {
-          priceInfoEl.textContent = 'Ort/Land nicht erkannt — bitte Preis manuell eingeben.';
+          priceInfoEl.textContent = 'Country not recognised — please enter price manually.';
           priceInfoEl.classList.add('error');
           console.log('[price-detect] country not recognised');
         }
@@ -742,7 +753,7 @@
           }
         }
         priceEl.value = fuelPrices[fuelTypeEl.value] || '';
-        priceInfoEl.textContent = 'Standardpreis wiederhergestellt.';
+        priceInfoEl.textContent = 'Default price restored.';
         priceInfoEl.classList.remove('error');
         console.log('[price-detect] reset price clicked', { manualOverride: userEditedPrice, fuelType: fuelTypeEl.value, appliedPrice: priceEl.value });
       });
@@ -838,7 +849,7 @@
         const from = placeFromEl.value.trim();
         const to = document.getElementById('place-to').value.trim();
         if(!from || !to){ 
-          tollInfoEl.textContent = 'Bitte Start und Ziel eingeben.';
+          tollInfoEl.textContent = 'Please enter start and destination.';
           tollInfoEl.classList.add('error');
           return;
         }
@@ -846,7 +857,7 @@
           const a = await geocode(from);
           const b = await geocode(to);
           if(!a || !b){ 
-            tollInfoEl.textContent = 'Ort nicht gefunden – bitte genauer angeben.';
+            tollInfoEl.textContent = 'Location not found. Please be more specific.';
             tollInfoEl.classList.add('error');
             return;
           }
@@ -862,20 +873,20 @@
           const dist = haversineKm(a.lat,a.lon,b.lat,b.lon);
           kmEl.value = Math.round(dist*10)/10;
 
-          tollInfoEl.textContent = 'Maut wird geschätzt (mehrere Regionen) …';
+          tollInfoEl.textContent = 'Estimating tolls (multiple region samples) …';
           tollInfoEl.classList.remove('error');
           const toll = await estimateTollsMultiCountry(a,b);
           if(toll && toll.distKm > 0){
             estimatedTollPer100 = +(toll.totalCost / toll.distKm * 100).toFixed(2);
-            const breakdown = toll.countries.map(c => `${c.country}: €${fmt(c.cost)}`).join(', ');
-            tollInfoEl.textContent = `Maut (geschätzt): €${fmt(toll.totalCost)} gesamt — Regionen: ${breakdown} — ca. €${fmt(estimatedTollPer100)} /100 km`;
+            const breakdown = toll.countries.map(c => `${c.country}: $${fmt(c.cost)}`).join(', ');
+            tollInfoEl.textContent = `Tolls (estimated): $${fmt(toll.totalCost)} total — Regions: ${breakdown} — approx. $${fmt(estimatedTollPer100)} /100 km`;
           } else {
             estimatedTollPer100 = 0;
-            tollInfoEl.textContent = `Keine Mautschätzung verfügbar.`;
+            tollInfoEl.textContent = `No toll estimate available.`;
           }
         }catch(e){
           console.error(e);
-          tollInfoEl.textContent = 'Fehler bei Geokodierung oder Mautschätzung. Verbindung prüfen.';
+          tollInfoEl.textContent = 'Error during geocoding or toll estimation. Check connection.';
           tollInfoEl.classList.add('error');
         }
       });
@@ -908,7 +919,7 @@
         }
 
         if(Number.isNaN(km) || km <= 0 || Number.isNaN(v) || Number.isNaN(p)){
-          priceInfoEl.textContent = 'Bitte Distanz, Verbrauch und Preis korrekt eingeben.';
+          priceInfoEl.textContent = 'Please enter distance, consumption and price correctly.';
           priceInfoEl.classList.add('error');
           return;
         }
@@ -927,19 +938,19 @@
         const avgPer100 = (total / km) * 100;
 
         litersEl.textContent = fmt(liters) + ' L';
-        costFuelEl.textContent = '€' + fmt(costFuel);
-        costRunningEl.textContent = '€' + fmt(costRunning);
-        costTotalEl.textContent = '€' + fmt(total);
-        costPersonEl.textContent = '€' + fmt(perPerson);
-        avg100El.textContent = '€' + fmt(avgPer100) + ' /100km';
-        runningEstEl.textContent = '€' + fmt(runningPer100Total) + ' /100km';
+        costFuelEl.textContent = '$' + fmt(costFuel);
+        costRunningEl.textContent = '$' + fmt(costRunning);
+        costTotalEl.textContent = '$' + fmt(total);
+        costPersonEl.textContent = '$' + fmt(perPerson);
+        avg100El.textContent = '$' + fmt(avgPer100) + ' /100km';
+        runningEstEl.textContent = '$' + fmt(runningPer100Total) + ' /100km';
       });
 
       document.getElementById('reset-fuel').addEventListener('click', () => {
         kmEl.value = ''; consumptionEl.value = '7.5'; priceEl.value = ''; passengersEl.value = 1;
         litersEl.textContent='0.00 L'; costFuelEl.textContent='$0.00'; costRunningEl.textContent='$0.00';
         costTotalEl.textContent='$0.00'; costPersonEl.textContent='$0.00'; avg100El.textContent='$0.00 /100km';
-        runningEstEl.textContent='— € /100km'; tollInfoEl.textContent=''; 
+        runningEstEl.textContent='— $ /100km'; tollInfoEl.textContent=''; 
         tollInfoEl.classList.remove('error');
         estimatedTollPer100 = 0;
         priceInfoEl.textContent = ''; 
@@ -969,17 +980,16 @@
     });
   </script>
  
-   <div style="text-align:center;font-size:14px;opacity:.7;margin:20px 0;">
-   🇩🇪 Für Deutschland: <a href="https://spritkosten-check.de">Spritkosten-Check.de</a>  
-   &nbsp;&nbsp;|&nbsp;&nbsp;  
-   🌍 International: <a href="https://petrolcostcalculator.com">PetrolCostCalculator.com</a>
-   </div>
+<div style="text-align:center;font-size:14px;opacity:.7;margin:20px 0;">
+🇩🇪 Für Deutschland: <a href="https://spritkosten-check.de">Spritkosten-Check.de</a>  
+&nbsp;&nbsp;|&nbsp;&nbsp;  
+🌍 International: <a href="https://petrolcostcalculator.com">PetrolCostCalculator.com</a>
+</div>
 
-   <p style="text-align:center;">
-   <a href="/fahrtkosten-rechner.html">Fahrtkosten Rechner</a> |
-   <a href="/fuel-cost-calculator.html">Fuel Cost Calculator</a>
-   </p>
-
-   </div>
+<p style="text-align:center;">
+<a href="/fahrtkosten-rechner.html">Fahrtkosten Rechner</a> |
+<a href="/fuel-cost-calculator.html">Fuel Cost Calculator</a>
+</p>
+ 
 </body>
 </html>
