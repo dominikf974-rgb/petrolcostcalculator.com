@@ -1,49 +1,61 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Spritkosten-Check</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact | Fuel Cost Calculator</title>
+  <meta name="description" content="Contact Fuel Cost Calculator" />
   <style>
-    body{font-family:Arial,sans-serif;line-height:1.7;max-width:900px;margin:0 auto;padding:30px 20px;background:#f4f4f4;color:#333}
-    h1{color:#2c3e50;border-bottom:3px solid #3498db;padding-bottom:10px;margin-bottom:25px;font-size:2.2em}
-    h2{color:#34495e;margin-top:26px;margin-bottom:12px;font-size:1.5em;border-left:4px solid #3498db;padding-left:12px}
-    p{text-align:justify;margin-bottom:14px;line-height:1.75}
-    .container{background:#fff;padding:28px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-    .contact-email{font-size:1.2em;font-weight:bold;color:#fff;background:#3498db;padding:10px 14px;border-radius:5px;display:inline-block;margin:10px 0}
-    .name-hidden{font-size:0.85em;color:#95a5a6;letter-spacing:0.4px;font-style:italic}
-    ul{margin-left:20px;margin-bottom:14px}
-    li{margin-bottom:8px}
-    a{color:#3498db;text-decoration:none}a:hover{text-decoration:underline}
-    .note{font-size:0.95em;color:#555;margin-top:10px}
-    .last-updated{color:#95a5a6;font-size:0.9em;margin-top:28px;padding-top:14px;border-top:1px solid #ecf0f1}
+    :root{--bg:#f6f8fa;--card:#ffffff;--text:#0b1220;--muted:#4b5563;--accent:#0ea5a3;--max-width:860px}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--text);padding:24px}
+    .wrap{max-width:var(--max-width);margin:0 auto;background:var(--card);padding:24px 20px;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04)}
+    header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+    header img{height:54px;width:auto}
+    h1{margin:0;font-size:1.6rem}
+    h2{margin:20px 0 10px 0;font-size:1.1rem}
+    p{line-height:1.6;margin:10px 0;color:var(--text)}
+    ul{margin:10px 0 10px 18px;color:var(--text);line-height:1.6}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    .muted{color:var(--muted);font-size:0.95rem}
+    footer{margin-top:24px;font-size:0.8rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    .contact{font-weight:700;color:var(--accent)}
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Contact</h1>
+  <div class="wrap">
+    <header>
+      <img src="/logo.png" alt="Fuel Cost Calculator Logo">
+      <div>
+        <div style="font-weight:700;font-size:1.1rem">Fuel Cost Calculator</div>
+        <div class="muted">Contact</div>
+      </div>
+    </header>
 
-    <p>For questions about the Fuel Cost Calculator, data privacy, or corrections, reach out via email. We aim to respond within 3–5 business days.</p>
+    <h1>Contact</h1>
+    <p>We welcome feedback, bug reports, and partnership ideas. The fastest way to reach us is by email. We typically respond within two business days.</p>
 
     <h2>Email</h2>
-    <p><span class="contact-email">info@spritkosten-check.de</span></p>
+    <p><a class="contact" href="mailto:info@spritkosten-check.de">info@spritkosten-check.de</a></p>
+    <p>Please include clear details, screenshots, or URLs so we can help efficiently.</p>
 
-    <h2>Operator</h2>
-    <p class="name-hidden">Dominik Fisher, resident in Germany</p>
-
-    <h2>What to include</h2>
+    <h2>Common Requests</h2>
     <ul>
-      <li>A short description of your request</li>
-      <li>Screenshots or steps to reproduce (for calculator issues)</li>
-      <li>Optional: browser and device</li>
+      <li>Report incorrect fuel prices or add country/city coverage.</li>
+      <li>Suggest improvements for UX, accessibility, or performance.</li>
+      <li>Request media or press information about the calculator.</li>
+      <li>Discuss integration or data partnership opportunities.</li>
     </ul>
 
-    <h2>Data handling</h2>
-    <p>Emails are used solely to process your inquiry. See the <a href="privacy.html">Privacy Policy</a> for details.</p>
+    <h2>Response Expectations</h2>
+    <p>We operate from Germany. Responses may vary with time zones and workload. Critical issues (e.g., security) are prioritized.</p>
 
-    <p class="note">If you report price inaccuracies, please include approximate location (city/region) and fuel type (U91, E10, P95, P98, Diesel).</p>
+    <h2>Security Contact</h2>
+    <p>If you believe you have found a vulnerability, describe the issue responsibly and allow time for remediation before public disclosure.</p>
 
-    <p class="last-updated">Last updated: December 2025 — Contact: info@spritkosten-check.de — <span class="name-hidden">Responsible: Dominik Fisher</span></p>
+    <footer>
+      <span>Dominik Fisher (Germany)</span>
+      <span><a class="contact" href="mailto:info@spritkosten-check.de">info@spritkosten-check.de</a></span>
+    </footer>
   </div>
 </body>
 </html>
