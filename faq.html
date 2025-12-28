@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ | Petrol Cost Calculator</title>
+  <meta name="description" content="Frequently asked questions about fuel costs, consumption, tolls, and trip budgeting." />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
+
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#f7f7fb;color:#222}
+    .wrap{max-width:980px;margin:0 auto;padding:18px}
+    .top{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#fff;border-bottom:1px solid #e5e5e5;position:sticky;top:0}
+    .top img{height:36px;width:auto}
+    .top a{margin-left:auto;text-decoration:none;font-weight:600;color:#4f46e5}
+    .card{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;margin:14px 0}
+    h1{margin:10px 0 0}
+    details{border:1px solid #eee;border-radius:12px;padding:12px;margin:10px 0;background:#fafafa}
+    summary{cursor:pointer;font-weight:700}
+    .muted{color:#666}
+  </style>
+</head>
+<body>
+  <div class="top">
+    <img src="/logo.png" alt="Logo">
+    <div style="font-weight:800">Petrol Cost Calculator</div>
+    <a href="/">← Back to Calculator</a>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>FAQ</h1>
+      <div class="muted">Quick answers to the most common questions.</div>
+    </div>
+
+    <div class="card">
+      <details open>
+        <summary>How is fuel consumption measured?</summary>
+        <p>Most countries use <b>L/100 km</b>. The calculator multiplies your distance by your consumption and then by the price per litre.</p>
+      </details>
+
+      <details>
+        <summary>Where can I find current fuel prices?</summary>
+        <p>You can enter the price manually, or use the average shown on the page (if available for your region).</p>
+      </details>
+
+      <details>
+        <summary>What are “running costs”?</summary>
+        <p>Running costs are an estimate that can include maintenance, tyres, depreciation, insurance, taxes, and tolls (depending on your setup).</p>
+      </details>
+
+      <details>
+        <summary>How do I split costs among passengers?</summary>
+        <p>Enter the number of passengers (including the driver). The tool shows <b>Total</b> and <b>Per Person</b>.</p>
+      </details>
+
+      <details>
+        <summary>Why does it say “Country not recognised”?</summary>
+        <p>That means the auto-detection couldn’t match your input. Try “City, Country” (example: <i>Prague, Czechia</i>) or enter the fuel price manually.</p>
+      </details>
+    </div>
+
+    <div class="card muted">
+      <div>Need help? Use the <a href="/contact.html">contact page</a>.</div>
+    </div>
+  </div>
+</body>
+</html>
