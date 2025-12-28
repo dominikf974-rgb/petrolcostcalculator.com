@@ -2,72 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FAQ | Petrol Cost Calculator</title>
-  <meta name="description" content="Frequently asked questions about fuel costs, consumption, tolls, and trip budgeting." />
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="icon" href="/favicon.ico">
-
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FAQ | Fuel Cost Calculator</title>
+  <meta name="description" content="Frequently asked questions for Fuel Cost Calculator" />
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#f7f7fb;color:#222}
-    .wrap{max-width:980px;margin:0 auto;padding:18px}
-    .top{display:flex;align-items:center;gap:12px;padding:14px 18px;background:#fff;border-bottom:1px solid #e5e5e5;position:sticky;top:0}
-    .top img{height:36px;width:auto}
-    .top a{margin-left:auto;text-decoration:none;font-weight:600;color:#4f46e5}
-    .card{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;margin:14px 0}
-    h1{margin:10px 0 0}
-    details{border:1px solid #eee;border-radius:12px;padding:12px;margin:10px 0;background:#fafafa}
-    summary{cursor:pointer;font-weight:700}
-    .muted{color:#666}
+    :root{--bg:#f6f8fa;--card:#ffffff;--text:#0b1220;--muted:#4b5563;--accent:#0ea5a3;--max-width:860px}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--text);padding:24px}
+    .wrap{max-width:var(--max-width);margin:0 auto;background:var(--card);padding:24px 20px;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04)}
+    header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+    header img{height:54px;width:auto}
+    h1{margin:0;font-size:1.6rem}
+    h2{margin:20px 0 10px 0;font-size:1.1rem}
+    p{line-height:1.6;margin:10px 0;color:var(--text)}
+    details{border:1px solid rgba(15,23,42,0.06);border-radius:10px;padding:12px 14px;margin:10px 0;background:#fff}
+    summary{cursor:pointer;font-weight:700;color:var(--text)}
+    summary::-webkit-details-marker{display:none}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    .muted{color:var(--muted);font-size:0.95rem}
+    footer{margin-top:24px;font-size:0.8rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    .contact{font-weight:700;color:var(--accent)}
   </style>
 </head>
 <body>
-  <div class="top">
-    <img src="/logo.png" alt="Logo">
-    <div style="font-weight:800">Petrol Cost Calculator</div>
-    <a href="/">← Back to Calculator</a>
-  </div>
-
   <div class="wrap">
-    <div class="card">
-      <h1>FAQ</h1>
-      <div class="muted">Quick answers to the most common questions.</div>
-    </div>
+    <header>
+      <img src="/logo.png" alt="Fuel Cost Calculator Logo">
+      <div>
+        <div style="font-weight:700;font-size:1.1rem">Fuel Cost Calculator</div>
+        <div class="muted">FAQ</div>
+      </div>
+    </header>
 
-    <div class="card">
-      <details open>
-        <summary>How is fuel consumption measured?</summary>
-        <p>Most countries use <b>L/100 km</b>. The calculator multiplies your distance by your consumption and then by the price per litre.</p>
-      </details>
+    <h1>Frequently Asked Questions</h1>
 
-      <details>
-        <summary>Where can I find current fuel prices?</summary>
-        <p>You can enter the price manually, or use the average shown on the page (if available for your region).</p>
-      </details>
+    <details open>
+      <summary>How accurate are the fuel prices?</summary>
+      <p>Prices are averages for each country and refreshed periodically. They are intended as guidance, not live pump data. For exact rates, consult local price services.</p>
+    </details>
 
-      <details>
-        <summary>What are “running costs”?</summary>
-        <p>Running costs are an estimate that can include maintenance, tyres, depreciation, insurance, taxes, and tolls (depending on your setup).</p>
-      </details>
+    <details>
+      <summary>Can I override prices?</summary>
+      <p>Yes. Enter your own price per litre and the calculator will use it for all computations until you reset to defaults.</p>
+    </details>
 
-      <details>
-        <summary>How do I split costs among passengers?</summary>
-        <p>Enter the number of passengers (including the driver). The tool shows <b>Total</b> and <b>Per Person</b>.</p>
-      </details>
+    <details>
+      <summary>Do you track my trips?</summary>
+      <p>No. Calculations run in your browser. We do not store individual trip inputs server-side.</p>
+    </details>
 
-      <details>
-        <summary>Why does it say “Country not recognised”?</summary>
-        <p>That means the auto-detection couldn’t match your input. Try “City, Country” (example: <i>Prague, Czechia</i>) or enter the fuel price manually.</p>
-      </details>
-    </div>
+    <details>
+      <summary>Which countries are supported?</summary>
+      <p>Coverage includes major regions worldwide with default prices and city detection for many capitals. If you need an addition, email us and we will expand the list.</p>
+    </details>
 
-    <div class="card muted">
-      <div>Need help? Use the <a href="/contact.html">contact page</a>.</div>
-    </div>
+    <details>
+      <summary>How are tolls estimated?</summary>
+      <p>Tolls are approximated per 100 km by region, based on typical motorway fees. Actual costs vary by route, vehicle class, and local rules.</p>
+    </details>
+
+    <details>
+      <summary>Do you provide an API?</summary>
+      <p>We currently focus on the web tool. If you need API access or data sharing, contact us to discuss partnership options.</p>
+    </details>
+
+    <details>
+      <summary>How can I report an issue?</summary>
+      <p>Send details and screenshots to <a class="contact" href="mailto:info@spritkosten-check.de">info@spritkosten-check.de</a>. We prioritize fixes that impact correctness, accessibility, or security.</p>
+    </details>
+
+    <footer>
+      <span>Dominik Fisher (Germany)</span>
+      <span><a class="contact" href="mailto:info@spritkosten-check.de">info@spritkosten-check.de</a></span>
+    </footer>
   </div>
 </body>
 </html>
