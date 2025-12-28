@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://petrolcostcalculator.com/</loc>
-  </url>
-
-  <url>
-    <loc>https://petrolcostcalculator.com/faq.html</loc>
-  </url>
-
-  <url>
-    <loc>https://petrolcostcalculator.com/privacy.html</loc>
-  </url>
-
-  <url>
-    <loc>https://petrolcostcalculator.com/terms.html</loc>
-  </url>
-
-  <url>
-    <loc>https://petrolcostcalculator.com/impressum.html</loc>
-  </url>
-
-  <url>
-    <loc>https://petrolcostcalculator.com/contact.html</loc>
-  </url>
+<url><loc>https://petrolcostcalculator.com/</loc></url>
+<url><loc>https://petrolcostcalculator.com/faq.html</loc></url>
+<url><loc>https://petrolcostcalculator.com/legal.html</loc></url>
+<url><loc>https://petrolcostcalculator.com/privacy.html</loc></url>
+<url><loc>https://petrolcostcalculator.com/terms.html</loc></url>
+<url><loc>https://petrolcostcalculator.com/contact.html</loc></url>
 
 </urlset>
