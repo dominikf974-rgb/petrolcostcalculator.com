@@ -66,6 +66,17 @@
   {"@context": "https://schema.org","@type": "BreadcrumbList","itemListElement": [{"@type": "ListItem","position": 1,"name": "Home","item": "https://petrolcostcalculator.com"}]}
   </script>
   <style>
+   .site-header{
+  width:100%;
+  background:#ffffff;
+}
+
+.site-header .wrap{
+  max-width:970px;
+  margin:0 auto;
+  padding:10px 16px;
+}
+
    :root{
   --bg:#0f172a;
   --card:#ffffff;
@@ -85,7 +96,7 @@
       background:linear-gradient(180deg,var(--bg) 0%, #e9eef5 100%);color:var(--text);
       padding:16px;display:flex;align-items:flex-start;justify-content:center;min-height:100vh;}
     .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 8px}
-   header{
+   .site-header{
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -155,8 +166,9 @@
   </style>
 </head>
 <body>
+
+<header class="site-header">
   <div class="wrap">
-    <header>
      
      <div style="display:flex;align-items:center;gap:16px;padding:6px 0">
        <img src="/logo.png" alt="Fuel Cost Calculator Logo" style="height:60px;width:auto">
@@ -171,7 +183,8 @@
         <button role="tab" data-target="calc">Calculator</button>
       </nav>
     </header>
-
+</div>
+<main class="wrap">
 <div style="margin:20px 0;">
 <ins class="adsbygoogle"
      style="display:block"
