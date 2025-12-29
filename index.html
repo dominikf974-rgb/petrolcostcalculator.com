@@ -211,18 +211,29 @@
   display:flex;
   gap:8px;
 }
-      .page-container{
-  max-width: 970px;
+ 
+.page-container{
+  max-width: 980px;
   margin: 0 auto;
   padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.page-container > section,
+.page-container > main{
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .intro-section,
-.container,
 .faq-section,
-.countries-section{
-  width: 100%;
-  max-width: 100%;
+.countries-section,
+main.container{
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
   </style>
 </head>
