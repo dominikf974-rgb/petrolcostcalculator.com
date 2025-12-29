@@ -179,9 +179,9 @@
 }
 
 .header-inner{
-  max-width:970px;
+  max-width:1200px;
   margin:0 auto;
-  padding:10px 16px;
+  padding:10px 24px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -190,11 +190,16 @@
 .logo-title{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
+  text-decoration:none;
+  color:inherit;
 }
 
+.logo-title:hover{
+  opacity:0.85;
+}
 .logo-title img{
-  height:42px;
+  height:48px;
 }
 
 .site-title{
@@ -202,7 +207,7 @@
   font-size:18px;
 }
 
-.tabs{
+.tabs{ margin-left:auto;
   display:flex;
   gap:8px;
 }
@@ -212,10 +217,10 @@
 
 <header class="site-header">
   <div class="header-inner">
-    <div class="logo-title">
-      <img src="/logo.png" alt="Fuel Cost Calculator Logo">
-      <span class="site-title">Fuel Cost Calculator</span>
-    </div>
+  <a href="/index.html" class="logo-title">
+  <img src="/logo.png" alt="Fuel Cost Calculator Logo">
+  <span class="site-title">Fuel Cost Calculator – Petrol & Trip Cost Calculator</span>
+</a>
 
     <nav class="tabs" role="tablist">
       <button role="tab" data-target="fuel" aria-selected="true">Fuel Costs</button>
