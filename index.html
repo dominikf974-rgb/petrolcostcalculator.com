@@ -25,6 +25,11 @@
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
+  <!-- Google Font for header -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
   <!-- Google Ads (optional) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
     crossorigin="anonymous"></script>
@@ -58,13 +63,19 @@
       --maxw:1000px;
     }
 
-    html,body{height:100%;width:100%;}
+    /* ✅ FIX: clean background without seams/lines */
+    html{
+      min-height:100%;
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+    }
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       color:var(--text);
       min-height:100vh;
-      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      background:transparent; /* important: html holds the gradient */
     }
 
     /* ✅ CENTERED CONTENT WRAPPER (only for content) */
@@ -73,6 +84,12 @@
       margin:0 auto;
       padding:0 12px;
     }
+
+    /* ✅ CONSISTENT SPACING between all blocks */
+    .page-container > *{ margin-top:18px; }
+    .page-container > *:first-child{ margin-top:14px; }
+    main > section{ margin-top:18px; }
+    main > section:first-child{ margin-top:0; } /* first section inside main */
 
     /* ✅ FULL WIDTH HEADER (screen edges) */
     .site-header{
@@ -87,7 +104,7 @@
       width:100%;
       max-width:none;
       margin:0;
-      padding:10px 18px; /* screen edge spacing */
+      padding:10px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -105,14 +122,18 @@
     }
     .logo-title:hover{opacity:.88;}
     .logo-title img{
-      height:54px; /* a bit bigger */
+      height:54px;
       width:auto;
       display:block;
     }
+
+    /* ✅ Header title font/style */
     .site-title{
-      font-weight:800;
+      font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-weight:700;
       font-size:18px;
       white-space:nowrap;
+      letter-spacing:0.2px;
     }
 
     .tabs{
@@ -153,22 +174,20 @@
       align-items:center;
     }
 
-    /* Cards / layout */
     h1{margin:0;font-size:1.25rem}
     h2{font-size:1.1rem;margin:16px 0 12px 0}
 
     .card{
       background:var(--card);
-      border-radius:10px;
+      border-radius:16px;
       padding:16px;
-      box-shadow:0 8px 24px rgba(15,23,42,0.06);
+      box-shadow:0 12px 30px rgba(0,0,0,.08);
       border:1px solid rgba(15,23,42,0.05);
       width:100%;
       overflow:hidden;
     }
 
     .intro-section{
-      margin-top:16px;
       line-height:1.65;
     }
     .intro-section p{margin:0 0 12px 0;}
@@ -236,6 +255,7 @@
     .small{font-size:.9rem;color:var(--muted)}
     .hint{font-size:.85rem;color:var(--accent);margin-top:4px;min-height:18px;display:block}
     .hint.error{color:#e53e3e}
+    .error{color:#e53e3e}
 
     .price-input-group{display:flex;gap:8px;align-items:flex-start;margin-top:8px}
     .price-input-group > div:first-child{flex:1}
@@ -273,7 +293,7 @@
     }
 
     /* FAQ */
-    .faq-section{margin-top:16px}
+    .faq-section{line-height:1.6}
     .faq-item{margin:10px 0}
     .faq-item summary{
       cursor:pointer;font-weight:800;color:var(--accent-2);
@@ -283,7 +303,7 @@
     .faq-item p{margin:10px 0 0 0;line-height:1.6}
 
     /* Countries */
-    .countries-section{margin:16px 0;line-height:1.6}
+    .countries-section{line-height:1.6}
     .countries-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -298,9 +318,9 @@
     .country-card p{margin:0 0 8px 0;font-size:.9rem}
 
     /* Ads wrappers */
-    .ad-block{margin:18px 0}
+    .ad-block{margin-top:18px;}
 
-    /* ✅ MOBILE FIX ONLY */
+    /* ✅ MOBILE */
     @media(max-width:980px){
       .layout{grid-template-columns:1fr}
       #map{height:260px}
@@ -324,11 +344,17 @@
       .site-title{display:none;}
     }
 
+    /* ✅ Footer: make everything black & readable */
+    footer, footer *{
+      color:#000 !important;
+      opacity:1 !important;
+    }
+    footer a:hover{
+      text-decoration:underline;
+    }
     footer{
       padding:18px 0 30px 0;
     }
-    footer a{color:inherit;text-decoration:none}
-    footer a:hover{text-decoration:underline}
   </style>
 </head>
 
@@ -507,7 +533,6 @@
 
     </main>
 
-    <!-- ✅ Quick FAQ on start page -->
     <section class="card faq-section" aria-label="Quick FAQ">
       <h2>Quick FAQ</h2>
 
@@ -570,7 +595,6 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- ✅ Correct footer placement -->
     <footer class="small">
       Internet required for maps/geocoding. Prices can optionally be loaded via your own HTTPS endpoint.
       <span style="opacity:.75;margin-left:10px">|</span>
@@ -748,7 +772,6 @@
         return null;
       }
 
-      // ✅ Reverse geocode country code (works also for villages)
       async function reverseCountryCode(lat, lon){
         try{
           const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
@@ -769,7 +792,6 @@
       };
 
       async function estimateTollsSimple(ccA, ccB, distKm){
-        // basic: if same country use its rate; if different, average 2
         const a = tollPer100km[ccA] ?? 5;
         const b = tollPer100km[ccB] ?? a;
         const rate = (ccA === ccB) ? a : (a + b) / 2;
@@ -779,7 +801,7 @@
 
       let estimatedTollPer100 = 0;
 
-      // Detect & apply defaults from just typing (optional): use geocode+reverse on blur
+      // Detect defaults while typing (optional)
       let detectTimer = null;
       placeFromEl.addEventListener('input', () => {
         clearTimeout(detectTimer);
@@ -812,7 +834,6 @@
             return;
           }
 
-          // ✅ country detection via reverse geocode (villages supported)
           const ccA = await reverseCountryCode(a.lat, a.lon);
           if(ccA) applyCountryDefaults(ccA);
 
