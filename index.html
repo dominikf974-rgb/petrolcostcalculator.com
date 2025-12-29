@@ -80,12 +80,17 @@
 }
 
    rder-box}
-    html,body{height:100%;width:100%;overflow-x:hidden}
+    html,body{height:100%;width:100%;}
     body{margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       background:linear-gradient(180deg,var(--bg) 0%, #e9eef5 100%);color:var(--text);
       padding:16px;display:flex;align-items:flex-start;justify-content:center;min-height:100vh;}
     .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 8px}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px;flex-wrap:wrap}
+   header{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+}
     h1{margin:0;font-size:1.25rem}
     h2{font-size:1.1rem;margin:16px 0 12px 0}
     .tabs button{background:transparent;border:1px solid transparent;color:var(--muted);
