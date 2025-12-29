@@ -67,8 +67,17 @@
   </script>
   <style>
    .page-container{
-  max-width: 980px;
+  max-width: 970px;
   margin: 0 auto;
+  padding: 0 12px;
+}
+
+.intro-section,
+.container,
+.faq-section,
+.countries-section{
+  width: 100%;
+  max-width: 100%;
 }
    .site-header{
   width:100%;
@@ -215,16 +224,6 @@
   display:flex;
   gap:8px;
 }
-   main.wrap > .intro-section{
-    margin-bottom: 28px;
-
-    main.wrap,
-.faq-section,
-.countries-section{
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
-}
   </style>
 </head>
 <body>
@@ -256,6 +255,8 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </div>
+
+ <div class="page-container">
 
     <section class="intro-section" aria-label="Fuel cost calculator introduction">
       <h2>Free Fuel Cost Calculator - Plan Your Road Trip Budget</h2>
@@ -389,6 +390,7 @@
         <p style="margin-top:12px" class="small">Result: <strong id="result">–</strong></p>
       </section>
     </main>
+    </div>
 
     <section class="faq-section" aria-label="Frequently asked questions about fuel costs">
       <h2>Fuel Cost Calculator - FAQ</h2>
