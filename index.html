@@ -170,26 +170,60 @@
       input[type="number"], input[type="text"], select{margin-top:.3rem}
       .countries-grid{grid-template-columns:1fr}
     }
+   .site-header{
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  width:100%;
+}
+
+.header-inner{
+  max-width:970px;
+  margin:0 auto;
+  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-title img{
+  height:42px;
+}
+
+.site-title{
+  font-weight:700;
+  font-size:18px;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+}
   </style>
 </head>
 <body>
 
 <header class="site-header">
-  <div class="wrap">
-     
-     <div style="display:flex;align-items:center;gap:16px;padding:6px 0">
-       <img src="/logo.png" alt="Fuel Cost Calculator Logo" style="height:60px;width:auto">
-     <h1 style="font-weight:700;font-size:24px;margin:0">
-    Fuel Cost Calculator – Petrol Cost & Trip Cost Calculator
-    </h1>
+  <div class="header-inner">
+    <div class="logo-title">
+      <img src="/logo.png" alt="Fuel Cost Calculator Logo">
+      <span class="site-title">Fuel Cost Calculator</span>
+    </div>
 
-     </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-target="fuel" aria-selected="true">Fuel Costs</button>
+      <button role="tab" data-target="calc">Calculator</button>
+    </nav>
+  </div>
+</header>
 
-      <nav class="tabs" role="tablist">
-        <button role="tab" data-target="fuel" aria-selected="true">Fuel Costs</button>
-        <button role="tab" data-target="calc">Calculator</button>
-      </nav>
-    </header>
 </div>
 <main class="wrap">
 <div style="margin:20px 0;">
