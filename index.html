@@ -25,7 +25,7 @@
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  <!-- Google Font for header -->
+  <!-- Header Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
@@ -61,11 +61,11 @@
       --accent-2:#4f46e5;
       --button-h:48px;
 
-      /* ✅ wider like DE (responsive) */
+      /* ✅ wider / auto responsive like DE */
       --maxw:1400px;
     }
 
-    /* ✅ clean background */
+    /* ✅ Clean background without seams */
     html{
       min-height:100%;
       background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
@@ -80,7 +80,7 @@
       background:transparent;
     }
 
-    /* ✅ FULL WIDTH HEADER */
+    /* ✅ Header full width */
     .site-header{
       position:sticky;
       top:0;
@@ -166,15 +166,15 @@
       z-index:2147483647;
     }
 
-    /* ✅ centered content + header spacing */
+    /* ✅ Main container: wider + spacing below header */
     .page-container{
       width:100%;
       max-width:min(var(--maxw), 94vw);
       margin:0 auto;
-      padding:24px 12px 0 12px; /* ✅ space below header */
+      padding:24px 12px 0 12px; /* ✅ spacing header -> first block */
       display:flex;
       flex-direction:column;
-      gap:18px; /* ✅ consistent spacing */
+      gap:18px;
     }
     @media (min-width: 992px){
       .page-container{
@@ -197,7 +197,7 @@
       overflow:hidden;
     }
 
-    .intro-section{line-height:1.65;}
+    .intro-section{ line-height:1.65; }
     .intro-section p{margin:0 0 12px 0;}
     .intro-section ul{margin:8px 0;padding-left:20px}
     .intro-section li{margin:6px 0}
@@ -273,7 +273,7 @@
     /* ✅ FIX: reset button never shifts */
     .price-input-group{
       display:grid;
-      grid-template-columns:1fr auto;
+      grid-template-columns: 1fr auto;
       gap:10px;
       align-items:end;
       margin-top:8px;
@@ -306,13 +306,17 @@
     .result-key{color:var(--muted);font-size:.95rem}
     .result-val{font-weight:900;color:var(--accent-2)}
 
+    /* ✅ MAP: Bigger on desktop, mobile stays good */
     #map{
       width:100%;
-      height:360px;
-      min-height:280px;
-      border-radius:8px;
+      height:520px;        /* ⬅ desktop bigger */
+      min-height:320px;
+      border-radius:10px;
       border:1px solid rgba(15,23,42,0.10);
       background:#fff;
+    }
+    @media(max-width:980px){
+      #map{height:260px;}  /* ⬅ mobile same/comfortable */
     }
 
     .faq-item{margin:10px 0}
@@ -336,13 +340,9 @@
     .country-card h3{margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)}
     .country-card p{margin:0 0 8px 0;font-size:.9rem}
 
-    .ad-block{ margin:0; }
-
-    @media(max-width:980px){
-      .layout{grid-template-columns:1fr}
-      #map{height:260px}
-      .spinner button{width:38px;height:38px}
-    }
+    /* ✅ two SEO mini cards inside a section */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:980px){.layout{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}}
     @media(max-width:720px){
       .header-inner{padding:10px 12px}
       .site-title{max-width:160px;}
@@ -350,13 +350,10 @@
       .lang-link{height:42px;padding:.5rem .7rem}
       .big-action{flex-direction:column}
       .btn{width:100%}
-
       .price-input-group{grid-template-columns:1fr;}
       .reset-price-btn{width:100%;}
     }
-    @media(max-width:420px){
-      .site-title{display:none;}
-    }
+    @media(max-width:420px){.site-title{display:none;}}
 
     /* ✅ Footer readable */
     footer, footer *{ color:#000 !important; opacity:1 !important; }
@@ -411,6 +408,7 @@
     </section>
 
     <main aria-label="Main content">
+
       <section id="fuel" class="card" aria-hidden="false">
 
         <!-- Ad middle -->
@@ -536,7 +534,57 @@
 
         <p style="margin-top:12px" class="small">Result: <strong id="result">–</strong></p>
       </section>
+
     </main>
+
+    <!-- ✅ CARD 1 (missing): How it works -->
+    <section class="card" aria-label="How fuel cost is calculated">
+      <h2>How to calculate fuel costs (simple)</h2>
+      <p class="small" style="margin-top:0">
+        For a quick estimate, you only need three values: <strong>distance</strong>, <strong>fuel consumption</strong> and <strong>fuel price</strong>.
+        This calculator also shows <strong>cost per 100 km</strong> and <strong>cost per person</strong>.
+      </p>
+
+      <div class="two-col">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Quick formulas</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.7">
+            <li><strong>Litres</strong> = distance × consumption ÷ 100</li>
+            <li><strong>Fuel cost</strong> = litres × price</li>
+            <li><strong>Per person</strong> = total cost ÷ passengers</li>
+          </ul>
+        </div>
+
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Good to know</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.7">
+            <li>Tolls are a rough regional estimate.</li>
+            <li>“Running costs” are a simplified approximation.</li>
+            <li>For best accuracy, use real consumption + current price.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ CARD 2 (missing): Tips + CTA -->
+    <section class="card" aria-label="Fuel saving tips and trip cost tips">
+      <h2>Tips to save fuel & reduce trip costs</h2>
+      <p class="small" style="margin-top:0">
+        Small changes can reduce your trip cost fast: correct tyre pressure, steady speed, and realistic consumption values.
+        If you travel with friends, splitting costs fairly avoids arguments and makes planning easier.
+      </p>
+
+      <ul style="margin:0;padding-left:18px;line-height:1.7">
+        <li><strong>Drive smoother:</strong> avoid hard acceleration and braking.</li>
+        <li><strong>Check tyre pressure:</strong> low pressure increases consumption.</li>
+        <li><strong>Remove heavy load:</strong> weight increases fuel usage.</li>
+        <li><strong>Split costs:</strong> use “Passengers” to calculate per-person cost.</li>
+      </ul>
+
+      <div style="margin-top:14px;display:flex;justify-content:center">
+        <a class="btn large" href="/guide.html" style="max-width:340px">Read the full guide</a>
+      </div>
+    </section>
 
     <!-- ✅ Guide card (simple) -->
     <section class="card" aria-label="Guide">
@@ -547,7 +595,7 @@
       <a class="btn large" href="/guide.html" style="max-width:320px">Open Guide</a>
     </section>
 
-    <!-- ✅ Start page FAQ: only 4 -->
+    <!-- ✅ Start page FAQ: only 4 + button -->
     <section class="card faq-section" aria-label="Quick FAQ">
       <h2>Quick FAQ</h2>
 
@@ -558,7 +606,7 @@
 
       <details class="faq-item">
         <summary>Should I enter one-way or round trip distance?</summary>
-        <p>Either is fine. Enter the kilometres you will actually drive (one-way or round trip).</p>
+        <p>Either works. Enter the kilometres you will actually drive (one-way or round trip).</p>
       </details>
 
       <details class="faq-item">
@@ -616,7 +664,7 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- Footer (keep full) -->
+    <!-- Footer -->
     <footer class="small">
       Internet required for maps/geocoding. Prices can optionally be loaded via your own HTTPS endpoint.
       <span style="opacity:.75;margin-left:10px">|</span>
@@ -649,15 +697,15 @@
         btn.addEventListener('click', () => {
           tabButtons.forEach(b => b.setAttribute('aria-selected','false'));
           btn.setAttribute('aria-selected','true');
-          const target = btn.dataset.target;
 
+          const target = btn.dataset.target;
           document.querySelectorAll('main > section').forEach(s => {
             const active = (s.id === target);
             s.style.display = active ? '' : 'none';
             s.setAttribute('aria-hidden', active ? 'false' : 'true');
           });
 
-          // ✅ FIX: Leaflet needs resize after hidden/show
+          // ✅ Leaflet resize fix after show/hide
           if(target === 'fuel'){
             setTimeout(() => { try{ map.invalidateSize(); }catch(e){} }, 60);
           }
@@ -690,7 +738,7 @@
       const placeFromEl = document.getElementById('place-from');
       const placeToEl = document.getElementById('place-to');
 
-      // Default prices (USD/L) — keep your list (extended)
+      // Default prices (USD/L)
       const countryDefaultPriceUSD = {
         AU: { unleaded91:1.30, unleaded95:1.40, diesel:1.35, name:'Australia' },
         NZ: { unleaded91:1.80, unleaded95:1.90, diesel:1.70, name:'New Zealand' },
@@ -1005,7 +1053,7 @@
       );
 
       // initial resize safety
-      setTimeout(() => { try{ map.invalidateSize(); }catch(e){} }, 80);
+      setTimeout(() => { try{ map.invalidateSize(); }catch(e){} }, 120);
     });
   </script>
 </body>
