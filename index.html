@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <title>Fuel Cost Calculator – Petrol, Diesel & Road Trip Cost Estimator</title>
-  <meta name="description" content="Free fuel cost calculator for road trips. Estimate fuel costs, running costs and tolls with an interactive map. Works worldwide with country detection." />
+  <meta name="description" content="Free fuel cost calculator with map. Estimate petrol/diesel cost, total trip cost, cost per person and toll estimate worldwide with country detection." />
   <meta name="robots" content="index, follow" />
 
   <!-- ✅ EN ↔ DE Connection (SEO) -->
@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Google Ads (optional) -->
+  <!-- Google Ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
     crossorigin="anonymous"></script>
 
@@ -60,10 +60,12 @@
       --accent:#0ea5a3;
       --accent-2:#4f46e5;
       --button-h:48px;
-      --maxw:1000px;
+
+      /* ✅ wider like DE (responsive) */
+      --maxw:1400px;
     }
 
-    /* ✅ FIX: clean background without seams/lines */
+    /* ✅ clean background */
     html{
       min-height:100%;
       background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
@@ -75,27 +77,14 @@
       font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       color:var(--text);
       min-height:100vh;
-      background:transparent; /* important: html holds the gradient */
+      background:transparent;
     }
 
-    /* ✅ CENTERED CONTENT WRAPPER (only for content) */
-    .page-container{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:0 12px;
-    }
-
-    /* ✅ CONSISTENT SPACING between all blocks */
-    .page-container > *{ margin-top:18px; }
-    .page-container > *:first-child{ margin-top:14px; }
-    main > section{ margin-top:18px; }
-    main > section:first-child{ margin-top:0; } /* first section inside main */
-
-    /* ✅ FULL WIDTH HEADER (screen edges) */
+    /* ✅ FULL WIDTH HEADER */
     .site-header{
       position:sticky;
       top:0;
-      z-index:1000;
+      z-index:2147483647;
       width:100%;
       background:#fff;
       border-bottom:1px solid rgba(15,23,42,0.06);
@@ -109,6 +98,8 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
+      position:relative;
+      z-index:2147483647;
     }
 
     .logo-title{
@@ -117,23 +108,21 @@
       gap:12px;
       text-decoration:none;
       color:inherit;
-      flex:0 0 auto;
+      flex:1 1 auto;
       min-width:0;
     }
     .logo-title:hover{opacity:.88;}
-    .logo-title img{
-      height:54px;
-      width:auto;
-      display:block;
-    }
+    .logo-title img{height:54px;width:auto;display:block;}
 
-    /* ✅ Header title font/style */
     .site-title{
       font-family:'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       font-weight:700;
       font-size:18px;
       white-space:nowrap;
-      letter-spacing:0.2px;
+      letter-spacing:.2px;
+      max-width:560px;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .tabs{
@@ -142,6 +131,8 @@
       margin-left:auto;
       flex:0 0 auto;
       align-items:center;
+      position:relative;
+      z-index:2147483647;
     }
     .tabs button{
       background:transparent;
@@ -160,7 +151,6 @@
       color:#fff;
     }
 
-    /* language link in header (right side) */
     .lang-link{
       font-weight:800;
       text-decoration:none;
@@ -172,6 +162,26 @@
       height:var(--button-h);
       display:inline-flex;
       align-items:center;
+      position:relative;
+      z-index:2147483647;
+    }
+
+    /* ✅ centered content + header spacing */
+    .page-container{
+      width:100%;
+      max-width:min(var(--maxw), 94vw);
+      margin:0 auto;
+      padding:24px 12px 0 12px; /* ✅ space below header */
+      display:flex;
+      flex-direction:column;
+      gap:18px; /* ✅ consistent spacing */
+    }
+    @media (min-width: 992px){
+      .page-container{
+        padding-left:24px;
+        padding-right:24px;
+        padding-top:24px;
+      }
     }
 
     h1{margin:0;font-size:1.25rem}
@@ -187,9 +197,7 @@
       overflow:hidden;
     }
 
-    .intro-section{
-      line-height:1.65;
-    }
+    .intro-section{line-height:1.65;}
     .intro-section p{margin:0 0 12px 0;}
     .intro-section ul{margin:8px 0;padding-left:20px}
     .intro-section li{margin:6px 0}
@@ -243,7 +251,12 @@
       background:linear-gradient(90deg,var(--accent),var(--accent-2));
       color:#fff;
       font-size:1rem;
-      min-width:140px
+      min-width:140px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 14px;
     }
     .btn.secondary{
       background:#eef2ff;
@@ -257,9 +270,19 @@
     .hint.error{color:#e53e3e}
     .error{color:#e53e3e}
 
-    .price-input-group{display:flex;gap:8px;align-items:flex-start;margin-top:8px}
-    .price-input-group > div:first-child{flex:1}
-    .price-input-group .btn.secondary{width:160px;flex-shrink:0}
+    /* ✅ FIX: reset button never shifts */
+    .price-input-group{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+      align-items:end;
+      margin-top:8px;
+    }
+    .reset-price-btn{
+      height:44px;
+      padding:0 14px;
+      white-space:nowrap;
+    }
 
     .price-table{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
     .price-card{
@@ -292,8 +315,6 @@
       background:#fff;
     }
 
-    /* FAQ */
-    .faq-section{line-height:1.6}
     .faq-item{margin:10px 0}
     .faq-item summary{
       cursor:pointer;font-weight:800;color:var(--accent-2);
@@ -302,8 +323,6 @@
     .faq-item summary:hover{background:rgba(79,70,229,0.12)}
     .faq-item p{margin:10px 0 0 0;line-height:1.6}
 
-    /* Countries */
-    .countries-section{line-height:1.6}
     .countries-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -317,10 +336,8 @@
     .country-card h3{margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)}
     .country-card p{margin:0 0 8px 0;font-size:.9rem}
 
-    /* Ads wrappers */
-    .ad-block{margin-top:18px;}
+    .ad-block{ margin:0; }
 
-    /* ✅ MOBILE */
     @media(max-width:980px){
       .layout{grid-template-columns:1fr}
       #map{height:260px}
@@ -328,39 +345,28 @@
     }
     @media(max-width:720px){
       .header-inner{padding:10px 12px}
-      .site-title{
-        max-width:160px;
-        overflow:hidden;
-        text-overflow:ellipsis;
-      }
+      .site-title{max-width:160px;}
       .tabs button{padding:.5rem .7rem;height:42px;font-size:.9rem}
       .lang-link{height:42px;padding:.5rem .7rem}
       .big-action{flex-direction:column}
       .btn{width:100%}
-      .price-input-group{flex-wrap:wrap}
-      .price-input-group .btn.secondary{width:100%}
+
+      .price-input-group{grid-template-columns:1fr;}
+      .reset-price-btn{width:100%;}
     }
     @media(max-width:420px){
       .site-title{display:none;}
     }
 
-    /* ✅ Footer: make everything black & readable */
-    footer, footer *{
-      color:#000 !important;
-      opacity:1 !important;
-    }
-    footer a:hover{
-      text-decoration:underline;
-    }
-    footer{
-      padding:18px 0 30px 0;
-    }
+    /* ✅ Footer readable */
+    footer, footer *{ color:#000 !important; opacity:1 !important; }
+    footer a{ text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+    footer{ padding:18px 0 30px 0; }
   </style>
 </head>
 
 <body>
-
-  <!-- ✅ FULL WIDTH HEADER -->
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="logo-title">
@@ -368,7 +374,7 @@
         <span class="site-title">Fuel Cost Calculator – Petrol & Trip Cost Calculator</span>
       </a>
 
-      <nav class="tabs" role="tablist" aria-label="Main tabs">
+      <nav class="tabs" role="tablist" aria-label="Main navigation">
         <button role="tab" data-target="fuel" aria-selected="true">Fuel Costs</button>
         <button role="tab" data-target="calc" aria-selected="false">Calculator</button>
         <a class="lang-link" href="https://spritkosten-check.de/" hreflang="de" lang="de" title="Deutsch">DE</a>
@@ -376,9 +382,9 @@
     </div>
   </header>
 
-  <!-- ✅ CENTERED CONTENT -->
   <div class="page-container">
 
+    <!-- Ad top -->
     <div class="ad-block">
       <ins class="adsbygoogle"
         style="display:block"
@@ -389,23 +395,25 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
+    <!-- Intro -->
     <section class="card intro-section" aria-label="Fuel cost calculator introduction">
-      <h2>Free Fuel Cost Calculator - Plan Your Road Trip Budget</h2>
+      <h2>Free Fuel Cost Calculator – Plan Your Road Trip Budget</h2>
       <p>
         Our <strong>fuel cost calculator</strong> helps you estimate the total cost of your trip.
-        Enter distance, fuel consumption and fuel price to get a full breakdown of fuel, running costs and toll estimates.
+        Enter distance, fuel consumption and fuel price to get a breakdown of fuel, running costs and toll estimates.
       </p>
       <ul>
-        <li><strong>Works Everywhere:</strong> country detection + default fuel prices</li>
-        <li><strong>Accurate Distance:</strong> map + start/destination geocoding</li>
-        <li><strong>Tolls:</strong> region-based estimate (budget-friendly)</li>
-        <li><strong>Split Costs:</strong> per passenger calculation</li>
+        <li><strong>Works worldwide:</strong> country detection + default fuel prices</li>
+        <li><strong>Distance calculation:</strong> map + start/destination geocoding</li>
+        <li><strong>Tolls:</strong> simple region-based estimate</li>
+        <li><strong>Split costs:</strong> per passenger calculation</li>
       </ul>
     </section>
 
     <main aria-label="Main content">
-
       <section id="fuel" class="card" aria-hidden="false">
+
+        <!-- Ad middle -->
         <div class="ad-block">
           <ins class="adsbygoogle"
             style="display:block"
@@ -461,9 +469,7 @@
                   placeholder="e.g. 1.95" aria-label="Fuel price per litre" />
                 <span id="price-info" class="hint"></span>
               </div>
-              <button id="btn-reset-price" class="btn secondary" style="height:auto;padding:8px 12px;margin-top:28px;font-size:0.9rem">
-                Reset to default
-              </button>
+              <button id="btn-reset-price" class="btn secondary reset-price-btn">Reset to default</button>
             </div>
 
             <div class="price-table" aria-hidden="false">
@@ -530,33 +536,47 @@
 
         <p style="margin-top:12px" class="small">Result: <strong id="result">–</strong></p>
       </section>
-
     </main>
 
+    <!-- ✅ Guide card (simple) -->
+    <section class="card" aria-label="Guide">
+      <h2>Guide: Save fuel & plan trip costs</h2>
+      <p class="small" style="margin-top:0">
+        Quick tips on fuel consumption, cost per 100 km, splitting trip costs fairly, and common mistakes.
+      </p>
+      <a class="btn large" href="/guide.html" style="max-width:320px">Open Guide</a>
+    </section>
+
+    <!-- ✅ Start page FAQ: only 4 -->
     <section class="card faq-section" aria-label="Quick FAQ">
       <h2>Quick FAQ</h2>
 
       <details class="faq-item">
-        <summary>Does this work for villages and small towns?</summary>
-        <p>Yes. We use OpenStreetMap geocoding and reverse-geocoding, so small towns and villages are detected as well.</p>
+        <summary>How do I calculate fuel cost per 100 km?</summary>
+        <p>The calculator shows $/100 km automatically. Formula: total cost ÷ distance × 100.</p>
       </details>
 
       <details class="faq-item">
-        <summary>Can I enter my own fuel price?</summary>
-        <p>Yes. Type your price anytime. Click “Reset to default” to restore the detected country defaults.</p>
+        <summary>Should I enter one-way or round trip distance?</summary>
+        <p>Either is fine. Enter the kilometres you will actually drive (one-way or round trip).</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What is included in “running costs”?</summary>
+        <p>A simple estimate (maintenance, tyres, depreciation, insurance) plus the toll estimate per 100 km.</p>
       </details>
 
       <details class="faq-item">
         <summary>How accurate are toll estimates?</summary>
-        <p>Tolls are an estimate based on region sampling. Actual costs depend on route, vehicle class and local rules.</p>
+        <p>Tolls are a rough estimate by region. Actual tolls depend on route, vehicle class and local rules.</p>
       </details>
 
-      <details class="faq-item">
-        <summary>How is running cost calculated?</summary>
-        <p>Running costs include a simple estimate for maintenance/depreciation plus the toll estimate per 100 km.</p>
-      </details>
+      <div style="margin-top:14px;display:flex;justify-content:center">
+        <a class="btn large" href="/faq.html" style="max-width:360px">More FAQ</a>
+      </div>
     </section>
 
+    <!-- Countries -->
     <section class="card countries-section" aria-label="Fuel calculator by country">
       <h2>Fuel Cost Calculator by Country</h2>
       <p class="small" style="margin:0 0 10px 0">Works worldwide with country detection. Popular regions:</p>
@@ -564,11 +584,11 @@
       <div class="countries-grid">
         <div class="country-card">
           <h3>Australia</h3>
-          <p>Includes road trip planning + toll estimates.</p>
+          <p>Road trip planning + toll estimates.</p>
         </div>
         <div class="country-card">
-          <h3>USA</h3>
-          <p>Great for interstate trips. Enter MPG or L/100km.</p>
+          <h3>United States</h3>
+          <p>Perfect for long trips and cost splitting.</p>
         </div>
         <div class="country-card">
           <h3>United Kingdom</h3>
@@ -576,15 +596,16 @@
         </div>
         <div class="country-card">
           <h3>Canada</h3>
-          <p>Province-level trips, cost splitting for groups.</p>
+          <p>Great for group travel and budgeting.</p>
         </div>
         <div class="country-card">
           <h3>Europe</h3>
-          <p>Vignettes & motorway tolls estimated by region.</p>
+          <p>Motorway tolls estimated by region.</p>
         </div>
       </div>
     </section>
 
+    <!-- Ad bottom -->
     <div class="ad-block">
       <ins class="adsbygoogle"
         style="display:block"
@@ -595,6 +616,7 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
+    <!-- Footer (keep full) -->
     <footer class="small">
       Internet required for maps/geocoding. Prices can optionally be loaded via your own HTTPS endpoint.
       <span style="opacity:.75;margin-left:10px">|</span>
@@ -622,15 +644,23 @@
       const MAPBOX_API_KEY = ''; // optional
 
       // Tabs
-      document.querySelectorAll('.tabs [role="tab"]').forEach(btn => {
+      const tabButtons = document.querySelectorAll('.tabs [role="tab"]');
+      tabButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.tabs [role="tab"]').forEach(b => b.setAttribute('aria-selected','false'));
+          tabButtons.forEach(b => b.setAttribute('aria-selected','false'));
           btn.setAttribute('aria-selected','true');
           const target = btn.dataset.target;
+
           document.querySelectorAll('main > section').forEach(s => {
-            s.style.display = (s.id === target) ? '' : 'none';
-            s.setAttribute('aria-hidden', s.id === target ? 'false' : 'true');
+            const active = (s.id === target);
+            s.style.display = active ? '' : 'none';
+            s.setAttribute('aria-hidden', active ? 'false' : 'true');
           });
+
+          // ✅ FIX: Leaflet needs resize after hidden/show
+          if(target === 'fuel'){
+            setTimeout(() => { try{ map.invalidateSize(); }catch(e){} }, 60);
+          }
         });
       });
 
@@ -660,7 +690,7 @@
       const placeFromEl = document.getElementById('place-from');
       const placeToEl = document.getElementById('place-to');
 
-      // Default prices (USD/L) — add more anytime
+      // Default prices (USD/L) — keep your list (extended)
       const countryDefaultPriceUSD = {
         AU: { unleaded91:1.30, unleaded95:1.40, diesel:1.35, name:'Australia' },
         NZ: { unleaded91:1.80, unleaded95:1.90, diesel:1.70, name:'New Zealand' },
@@ -690,7 +720,6 @@
       };
 
       const fallbackPrices = { unleaded91:1.50, unleaded95:1.60, diesel:1.45 };
-
       let fuelPrices = { ...fallbackPrices };
       let userEditedPrice = false;
 
@@ -730,9 +759,20 @@
         priceInfoEl.classList.remove('error');
       });
 
+      document.getElementById('btn-reset-price').addEventListener('click', () => {
+        userEditedPrice = false;
+        const t = fuelTypeEl.value;
+        priceEl.value = fuelPrices[t] ?? '';
+        priceInfoEl.textContent = 'Reset to detected default price.';
+        priceInfoEl.classList.remove('error');
+      });
+
       // Map
       const map = L.map('map', { attributionControl:true }).setView([-25.2744, 133.7751], 4);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'&copy; OpenStreetMap contributors' }).addTo(map);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom:19,
+        attribution:'&copy; OpenStreetMap contributors'
+      }).addTo(map);
 
       let markers = [];
       function clearMarkers(){ markers.forEach(m=>map.removeLayer(m)); markers=[]; }
@@ -787,8 +827,8 @@
 
       // Toll estimates
       const tollPer100km = {
-        AU:5, NZ:3, JP:12, KR:10, SG:15, MY:2, ID:1, TH:3, PH:2, VN:1, CN:4, IN:2,
-        DE:0, FR:12, IT:10, ES:15, US:3, GB:0, AE:5, CA:3
+        AU:5, NZ:3, JP:12, KR:10, SG:15, TH:3, IN:2, CN:4,
+        DE:0, FR:12, IT:10, ES:15, US:3, GB:0, CA:3
       };
 
       async function estimateTollsSimple(ccA, ccB, distKm){
@@ -801,7 +841,7 @@
 
       let estimatedTollPer100 = 0;
 
-      // Detect defaults while typing (optional)
+      // Detect defaults while typing
       let detectTimer = null;
       placeFromEl.addEventListener('input', () => {
         clearTimeout(detectTimer);
@@ -868,6 +908,7 @@
         tollInfoEl.textContent = '';
         tollInfoEl.classList.remove('error');
         estimatedTollPer100 = 0;
+        setTimeout(() => { try{ map.invalidateSize(); }catch(e){} }, 60);
       });
 
       document.getElementById('km-inc').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.round((cur+1)*10)/10; });
@@ -941,6 +982,7 @@
 
         clearMarkers();
         map.setView([-25.2744, 133.7751],4);
+        setTimeout(() => { try{ map.invalidateSize(); }catch(e){} }, 60);
       });
 
       // Calculator
@@ -961,6 +1003,9 @@
           result.textContent = (typeof res === 'number') ? fmt(res) : res;
         })
       );
+
+      // initial resize safety
+      setTimeout(() => { try{ map.invalidateSize(); }catch(e){} }, 80);
     });
   </script>
 </body>
