@@ -206,7 +206,7 @@
       display:grid;
       grid-template-columns:minmax(0,420px) minmax(0,1fr);
       gap:16px;
-      align-items:start;
+      align-items:stretch; /* ✅ CHANGED: stretch so right side can fill height */
       width:100%;
     }
 
@@ -306,17 +306,22 @@
     .result-key{color:var(--muted);font-size:.95rem}
     .result-val{font-weight:900;color:var(--accent-2)}
 
-    /* ✅ MAP: Bigger on desktop, mobile stays good */
+    /* ✅ NEW: right column becomes flex so map can fill full white area */
+    .layout > div:last-child{
+      display:flex;
+      flex-direction:column;
+      min-height:0;
+    }
+
+    /* ✅ MAP: fill full available white area on desktop */
     #map{
       width:100%;
-      height:520px;        /* ⬅ desktop bigger */
-      min-height:320px;
+      flex:1 1 auto;
+      height:auto;          /* ✅ changed from fixed height */
+      min-height:520px;     /* keep desktop minimum */
       border-radius:10px;
       border:1px solid rgba(15,23,42,0.10);
       background:#fff;
-    }
-    @media(max-width:980px){
-      #map{height:260px;}  /* ⬅ mobile same/comfortable */
     }
 
     .faq-item{margin:10px 0}
@@ -342,7 +347,13 @@
 
     /* ✅ two SEO mini cards inside a section */
     .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media(max-width:980px){.layout{grid-template-columns:1fr}.two-col{grid-template-columns:1fr}}
+
+    @media(max-width:980px){
+      .layout{grid-template-columns:1fr; align-items:start;} /* ✅ keep mobile normal */
+      .two-col{grid-template-columns:1fr;}
+      #map{height:260px; min-height:260px; flex:none;}       /* ✅ keep mobile height */
+    }
+
     @media(max-width:720px){
       .header-inner{padding:10px 12px}
       .site-title{max-width:160px;}
