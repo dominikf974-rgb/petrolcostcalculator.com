@@ -30,8 +30,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <!-- ✅ Your CSS -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- ✅ External CSS (dein ausgelagerter Style) -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
 
   <!-- Google Ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
@@ -54,7 +54,7 @@
 
 <body>
 
-  <!-- ✅ injected header -->
+  <!-- ✅ Header aus /partials/header.html -->
   <div id="site-header"></div>
 
   <div class="page-container">
@@ -86,26 +86,272 @@
     </section>
 
     <main aria-label="Main content">
-      <!-- (Dein kompletter Main-Inhalt bleibt exakt gleich) -->
-      <!-- ... ich habe hier nichts geändert, nur Header/Footer/Style/JS ausgelagert ... -->
 
-      <!-- ⬇️ HIER: du lässt einfach deinen bisherigen <main> Inhalt 1:1 drin -->
-      <!-- START: Dein Inhalt -->
-      <!-- (Ich kürze hier im Chat, weil es sonst endlos wird – du kopierst einfach alles aus deinem bisherigen main+sections hier rein) -->
-      <!-- END: Dein Inhalt -->
+      <section id="fuel" class="card" aria-hidden="false">
+
+        <!-- Ad middle -->
+        <div class="ad-block">
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-4852698472752437"
+            data-ad-slot="4520853372"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="layout">
+          <div>
+            <h2 style="margin:0 0 8px 0;font-size:1rem">Inputs</h2>
+
+            <label for="km">Distance (km) — or calculate from / to</label>
+            <div class="km-row">
+              <input id="km" class="km-input" type="number" inputmode="decimal" min="0" step="0.1"
+                placeholder="e.g. 120.5" aria-label="Distance in kilometres" />
+              <div class="spinner" title="Increase / decrease distance">
+                <button id="km-inc" aria-label="Increase distance">▲</button>
+                <button id="km-dec" aria-label="Decrease distance">▼</button>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <label for="place-from">Or: Start (City, Country)</label>
+              <input id="place-from" type="text" placeholder="e.g. Sydney, Australia" aria-label="Starting location" />
+              <label for="place-to" style="margin-top:10px">Destination (City, Country)</label>
+              <input id="place-to" type="text" placeholder="e.g. Melbourne, Australia" aria-label="Destination location" />
+
+              <div class="map-controls" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+                <button id="btn-geocode" class="btn secondary">Calculate Distance</button>
+                <button id="btn-clearmap" class="btn secondary">Reset Map</button>
+              </div>
+              <div class="small">Distance via Nominatim (OpenStreetMap). Map tiles: OpenStreetMap.</div>
+            </div>
+
+            <label for="fuel-type" style="margin-top:12px">Fuel Type</label>
+            <select id="fuel-type" aria-label="Fuel Type">
+              <option value="unleaded91">Unleaded 91</option>
+              <option value="unleaded95">Unleaded 95</option>
+              <option value="diesel">Diesel</option>
+            </select>
+
+            <label for="consumption" style="margin-top:12px">Consumption (L/100 km)</label>
+            <input id="consumption" type="number" inputmode="decimal" min="0" step="0.1"
+              value="7.5" placeholder="e.g. 7.5" aria-label="Fuel consumption" />
+
+            <div class="price-input-group">
+              <div>
+                <label for="price">Price per Litre ($)</label>
+                <input id="price" type="number" inputmode="decimal" min="0" step="0.01"
+                  placeholder="e.g. 1.95" aria-label="Fuel price per litre" />
+                <span id="price-info" class="hint"></span>
+              </div>
+              <button id="btn-reset-price" class="btn secondary reset-price-btn">Reset to default</button>
+            </div>
+
+            <div class="price-table" aria-hidden="false">
+              <div class="price-card">
+                <div class="small">Avg Unleaded 91</div>
+                <strong id="avg-unleaded91">—</strong>
+              </div>
+              <div class="price-card">
+                <div class="small">Avg Unleaded 95</div>
+                <strong id="avg-unleaded95">—</strong>
+              </div>
+              <div class="price-card">
+                <div class="small">Avg Diesel</div>
+                <strong id="avg-diesel">—</strong>
+              </div>
+            </div>
+
+            <label for="passengers" style="margin-top:12px">Passengers (incl. driver)</label>
+            <input id="passengers" type="number" min="1" step="1" value="1" aria-label="Passengers" />
+
+            <div class="big-action">
+              <button id="calc-fuel" class="btn large">Calculate</button>
+              <button id="reset-fuel" class="btn secondary large">Reset</button>
+            </div>
+
+            <div class="resultbox" aria-live="polite" aria-label="Results">
+              <div class="result-row"><div class="result-key">Fuel Costs</div><div class="result-val" id="cost-fuel">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Running Costs incl. Tolls (estimated)</div><div class="result-val" id="cost-running">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Total Costs</div><div class="result-val" id="cost-total">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Per Person</div><div class="result-val" id="cost-person">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Litres Required</div><div class="result-val" id="liters">0.00 L</div></div>
+              <div class="result-row"><div class="result-key">Average ($/100 km)</div><div class="result-val" id="avg100">$0.00 /100km</div></div>
+              <div class="result-row"><div class="result-key small">Estimated running costs /100 km (incl. tolls)</div><div class="result-val small" id="running-est">—</div></div>
+              <div style="margin-top:8px;color:var(--muted);font-size:.85rem">
+                Running costs include: maintenance, tyres, depreciation, insurance + toll estimate.
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 style="margin:0 0 8px 0;font-size:1rem">Map & Distance</h2>
+            <div id="map"></div>
+            <div style="margin-top:8px" class="small">
+              Click “Calculate Distance” to locate start/destination. Tolls are estimated by region.
+            </div>
+            <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calc" class="card" aria-hidden="true" style="display:none">
+        <h2>Calculator</h2>
+        <label for="num1">Number 1</label>
+        <input id="num1" type="number" inputmode="decimal" placeholder="Number 1" />
+        <label for="num2">Number 2</label>
+        <input id="num2" type="number" inputmode="decimal" placeholder="Number 2" />
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;max-width:240px">
+          <button data-op="+" class="btn" style="height:44px;font-size:1.1rem">+</button>
+          <button data-op="-" class="btn" style="height:44px;font-size:1.1rem">−</button>
+          <button data-op="*" class="btn" style="height:44px;font-size:1.1rem">×</button>
+          <button data-op="/" class="btn" style="height:44px;font-size:1.1rem">÷</button>
+        </div>
+
+        <p style="margin-top:12px" class="small">Result: <strong id="result">–</strong></p>
+      </section>
 
     </main>
 
-    <!-- ✅ injected footer -->
-    <div id="site-footer"></div>
+    <!-- ✅ CARD 1 -->
+    <section class="card" aria-label="How fuel cost is calculated">
+      <h2>How to calculate fuel costs (simple)</h2>
+      <p class="small" style="margin-top:0">
+        For a quick estimate, you only need three values: <strong>distance</strong>, <strong>fuel consumption</strong> and <strong>fuel price</strong>.
+        This calculator also shows <strong>cost per 100 km</strong> and <strong>cost per person</strong>.
+      </p>
 
-    <!-- ✅ injected cookie (optional) -->
-    <div id="site-cookie"></div>
+      <div class="two-col">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Quick formulas</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.7">
+            <li><strong>Litres</strong> = distance × consumption ÷ 100</li>
+            <li><strong>Fuel cost</strong> = litres × price</li>
+            <li><strong>Per person</strong> = total cost ÷ passengers</li>
+          </ul>
+        </div>
+
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Good to know</h3>
+          <ul style="margin:0;padding-left:18px;line-height:1.7">
+            <li>Tolls are a rough regional estimate.</li>
+            <li>“Running costs” are a simplified approximation.</li>
+            <li>For best accuracy, use real consumption + current price.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ CARD 2 -->
+    <section class="card" aria-label="Fuel saving tips and trip cost tips">
+      <h2>Tips to save fuel & reduce trip costs</h2>
+      <p class="small" style="margin-top:0">
+        Small changes can reduce your trip cost fast: correct tyre pressure, steady speed, and realistic consumption values.
+        If you travel with friends, splitting costs fairly avoids arguments and makes planning easier.
+      </p>
+
+      <ul style="margin:0;padding-left:18px;line-height:1.7">
+        <li><strong>Drive smoother:</strong> avoid hard acceleration and braking.</li>
+        <li><strong>Check tyre pressure:</strong> low pressure increases consumption.</li>
+        <li><strong>Remove heavy load:</strong> weight increases fuel usage.</li>
+        <li><strong>Split costs:</strong> use “Passengers” to calculate per-person cost.</li>
+      </ul>
+
+      <div style="margin-top:14px;display:flex;justify-content:center">
+        <a class="btn large" href="/guide.html" style="max-width:340px">Read the full guide</a>
+      </div>
+    </section>
+
+    <!-- ✅ Guide card -->
+    <section class="card" aria-label="Guide">
+      <h2>Guide: Save fuel & plan trip costs</h2>
+      <p class="small" style="margin-top:0">
+        Quick tips on fuel consumption, cost per 100 km, splitting trip costs fairly, and common mistakes.
+      </p>
+      <a class="btn large" href="/guide.html" style="max-width:320px">Open Guide</a>
+    </section>
+
+    <!-- ✅ Quick FAQ -->
+    <section class="card faq-section" aria-label="Quick FAQ">
+      <h2>Quick FAQ</h2>
+
+      <details class="faq-item">
+        <summary>How do I calculate fuel cost per 100 km?</summary>
+        <p>The calculator shows $/100 km automatically. Formula: total cost ÷ distance × 100.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Should I enter one-way or round trip distance?</summary>
+        <p>Either works. Enter the kilometres you will actually drive (one-way or round trip).</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What is included in “running costs”?</summary>
+        <p>A simple estimate (maintenance, tyres, depreciation, insurance) plus the toll estimate per 100 km.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How accurate are toll estimates?</summary>
+        <p>Tolls are a rough estimate by region. Actual tolls depend on route, vehicle class and local rules.</p>
+      </details>
+
+      <div style="margin-top:14px;display:flex;justify-content:center">
+        <a class="btn large" href="/faq.html" style="max-width:360px">More FAQ</a>
+      </div>
+    </section>
+
+    <!-- Countries -->
+    <section class="card countries-section" aria-label="Fuel calculator by country">
+      <h2>Fuel Cost Calculator by Country</h2>
+      <p class="small" style="margin:0 0 10px 0">Works worldwide with country detection. Popular regions:</p>
+
+      <div class="countries-grid">
+        <div class="country-card">
+          <h3>Australia</h3>
+          <p>Road trip planning + toll estimates.</p>
+        </div>
+        <div class="country-card">
+          <h3>United States</h3>
+          <p>Perfect for long trips and cost splitting.</p>
+        </div>
+        <div class="country-card">
+          <h3>United Kingdom</h3>
+          <p>Petrol & diesel planning with map distance.</p>
+        </div>
+        <div class="country-card">
+          <h3>Canada</h3>
+          <p>Great for group travel and budgeting.</p>
+        </div>
+        <div class="country-card">
+          <h3>Europe</h3>
+          <p>Motorway tolls estimated by region.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad bottom -->
+    <div class="ad-block">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3702789249"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- ✅ Footer aus /partials/footer.html -->
+    <div id="site-footer"></div>
 
   </div><!-- /.page-container -->
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="assets/js/loader.js"></script>
+  <!-- ✅ Cookie (optional) -->
+  <div id="site-cookie"></div>
 
+  <!-- Leaflet + dein Loader/JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/assets/js/loader.js"></script>
 </body>
 </html>
