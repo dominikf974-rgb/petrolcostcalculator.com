@@ -1,0 +1,12 @@
+/* FINAL OVERRIDE: Header darf niemals sticky/fixed sein */
+#site-header,
+#site-header * ,
+.site-header,
+.site-header *,
+.header-inner{
+  position: static !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+}
