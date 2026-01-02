@@ -1,300 +1,378 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Fuel Cost Calculator Guide: Formula, Examples & Tips | PetrolCostCalculator.com</title>
-  <meta name="description" content="Learn how to calculate fuel cost: formula, examples (100/300/600 miles), cost per mile, toll estimate basics & money-saving tips. Includes a direct link back to the calculator." />
+  <title>Guide – Save fuel, reduce consumption & plan trip costs</title>
+  <meta name="description" content="A practical driver’s guide: save fuel, reduce consumption, plan road trips, understand tolls, and put CO₂ into context. Tips, checklists, formulas and a mini FAQ." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://petrolcostcalculator.com/guide.html" />
+  <link rel="canonical" href="https://spritkosten-check.de/ratgeber.html" />
+  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/ratgeber.html" />
+  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
 
-  <!-- AdSense global loader (keep if you monetize EN too) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
-    crossorigin="anonymous"></script>
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-02" />
+
+  <!-- Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Guide: Save fuel, reduce consumption & plan trip costs",
+    "description":"Practical tips, checklists and formulas for fuel costs, consumption, tolls and CO₂.",
+    "author":{"@type":"Organization","name":"Fuel Cost Check"},
+    "publisher":{"@type":"Organization","name":"Fuel Cost Check"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://spritkosten-check.de/ratgeber.html"}
+  }
+  </script>
 
   <style>
-    :root{
-      --bg:#f6f8fa; --card:#ffffff; --muted:#4b5563; --text:#0b1220;
-      --accent:#0ea5a3; --accent-2:#4f46e5; --button-h:48px;
-      --max-width:970px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;width:100%;overflow-x:hidden}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      background:linear-gradient(180deg,var(--bg) 0%, #e9eef5 100%);
-      color:var(--text);
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-    }
-    header{
-      position:sticky;top:0;z-index:1000;background:white;
-      box-shadow:0 2px 8px rgba(15,23,42,0.08);
-      padding:12px 20px;
-      display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap
-    }
-    .logo-title{display:flex;align-items:center;gap:12px}
-    .logo-title img{height:48px;width:auto}
-    .brand-text h1{margin:0;font-size:1.3rem;line-height:1.2;color:var(--text)}
-    .brand-text .subtitle{font-size:0.75rem;color:var(--muted);margin:0}
-    .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:20px 16px}
-    h1{font-size:1.8rem;margin:0 0 12px 0}
-    h2{font-size:1.3rem;margin:24px 0 12px 0;color:var(--accent-2)}
-    h3{font-size:1.05rem;margin:18px 0 10px 0}
-    p{line-height:1.7;margin:12px 0}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .card{
-      background:var(--card);border-radius:10px;padding:24px;
-      box-shadow:0 8px 24px rgba(15,23,42,0.06);
-      border:1px solid rgba(15,23,42,0.04);
-      margin-bottom:20px
-    }
+    /* Guide: small content styles */
+    .toc{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .toc a{ text-decoration:none; }
     .note{
-      background:#f9fafb;padding:14px;border-radius:8px;margin:16px 0;
-      border-left:4px solid var(--accent)
+      border:1px solid rgba(15,23,42,0.08);
+      background:#fbfdff;
+      border-radius:14px;
+      padding:12px 12px;
     }
-    .toc{
-      background:#f9fafb;border:1px solid rgba(15,23,42,0.06);
-      border-radius:10px;padding:14px;margin:14px 0
+    .checklist{ margin:0; padding-left:18px; line-height:1.85; }
+    .mini-faq{ display:flex; flex-direction:column; gap:10px; }
+    .mini-faq details{
+      border:1px solid rgba(15,23,42,0.10);
+      border-radius:14px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
     }
-    .toc ul{margin:8px 0 0 18px}
-    .toc li{margin:6px 0}
-    .btn-back{
-      display:inline-block;
-      background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:white;padding:12px 24px;border-radius:8px;
-      text-decoration:none;font-weight:700
-    }
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
+    .mini-faq summary{
+      cursor:pointer;
+      list-style:none;
+      padding:14px 14px;
+      font-weight:900;
+      color:var(--accent-2);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
       gap:12px;
-      margin:12px 0;
     }
-    .mini{
-      background:#f9fafb;border:1px solid rgba(15,23,42,0.06);
-      border-radius:10px;padding:14px;
-    }
-    .mini strong{color:var(--accent-2)}
-    .ad-block{margin:16px 0}
-    details{margin:10px 0}
-    summary{cursor:pointer;font-weight:700;color:var(--accent-2)}
-    footer{
-      margin-top:auto;padding:20px 16px;text-align:center;
-      font-size:0.85rem;color:var(--muted)
-    }
-    footer a{color:inherit;text-decoration:none;margin:0 8px}
-    footer a:hover{text-decoration:underline}
-    @media(max-width:720px){
-      header{padding:10px 12px;flex-direction:column;align-items:flex-start}
-      .logo-title img{height:40px}
-      .brand-text h1{font-size:1.1rem}
-      .brand-text .subtitle{font-size:0.7rem}
-      h1{font-size:1.4rem}
-      h2{font-size:1.1rem}
-      .card{padding:16px}
-      .grid{grid-template-columns:1fr}
+    .mini-faq summary::-webkit-details-marker{ display:none; }
+    .mini-faq .answer{ padding:0 14px 14px 14px; line-height:1.65; }
+    .mini-faq .chev{ opacity:.7; transition:transform .18s ease; user-select:none; }
+    .mini-faq details[open] .chev{ transform:rotate(180deg); }
+
+    /* TOC buttons on mobile */
+    @media (max-width: 720px){
+      .toc{
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:10px;
+      }
+      .toc a{ width:100%; }
+      /* last button full width, centred */
+      .toc a:last-child{
+        grid-column: 1 / -1;
+        justify-self:center;
+        max-width: 320px;
+        width: 100%;
+      }
     }
   </style>
 </head>
 
-<body>
-  <header>
-    <div class="logo-title">
-      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none">
-        <img src="/logo.png" alt="PetrolCostCalculator logo" />
-        <div class="brand-text">
-          <h1>Fuel Cost Calculator</h1>
-          <p class="subtitle">PetrolCostCalculator.com</p>
-        </div>
-      </a>
-    </div>
-  </header>
+<body data-page="ratgeber">
 
-  <div class="wrap">
-    <div class="card">
-      <h1>Fuel Cost Calculator Guide: How to Estimate Your Real Trip Cost</h1>
+  <!-- Header via loader -->
+  <div id="site-header"></div>
 
-      <p style="margin:12px 0 20px 0;text-align:center">
-        <a href="index.html" class="btn-back">← Back to the calculator</a>
-      </p>
+  <main class="page-container" aria-label="Page content">
 
+    <!-- Intro -->
+    <section class="card intro-section" aria-label="Guide intro">
+      <h2>Guide: Save fuel & plan your costs realistically</h2>
       <p>
-        Most people only calculate the fuel price — but the real cost of driving can be higher when you include
-        <strong>maintenance, depreciation, tyres, insurance</strong> and (in many countries) <strong>tolls</strong>.
-        This guide shows you the simple formula, real examples, and how to compare “cost per mile”.
+        Here you’ll find practical tips to <strong>reduce fuel consumption</strong>, plan trips better,
+        and avoid common cost traps (e.g. roof box, speed, short trips).
+        If you want to calculate right away: <a href="/" class="small"><b>go to the fuel cost calculator</b></a>.
       </p>
 
       <div class="toc" aria-label="Table of contents">
-        <strong>Contents</strong>
-        <ul>
-          <li><a href="#formula">1) Fuel cost formula (simple)</a></li>
-          <li><a href="#examples">2) Examples: 100 / 300 / 600 miles</a></li>
-          <li><a href="#permile">3) Cost per mile</a></li>
-          <li><a href="#beyondfuel">4) Why “real driving cost” is higher</a></li>
-          <li><a href="#tolls">5) Tolls & road charges (basic estimate)</a></li>
-          <li><a href="#saving">6) Easy ways to save fuel</a></li>
-          <li><a href="#faq">7) Quick FAQ</a></li>
-        </ul>
+        <a class="btn secondary" href="#sparen">Save fuel</a>
+        <a class="btn secondary" href="#verbrauch">Consumption</a>
+        <a class="btn secondary" href="#kostenformeln">Cost formulas</a>
+        <a class="btn secondary" href="#roadtrip">Road trip checklist</a>
+        <a class="btn secondary" href="#maut">Tolls</a>
+        <a class="btn secondary" href="#co2">CO₂ & comparisons</a>
+        <a class="btn secondary" href="#faq-mini">Mini FAQ</a>
       </div>
+    </section>
 
-      <!-- Ad Slot TOP (replace slots if EN has different IDs; otherwise keep) -->
-      <div class="ad-block" aria-label="Advertisement">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-4852698472752437"
-          data-ad-slot="7158625008"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
-      <h2 id="formula">1) Fuel cost formula (simple)</h2>
-      <p>The basic fuel-only calculation is:</p>
-      <div class="note">
-        <strong>Formula:</strong><br/>
-        <strong>(Distance × Consumption ÷ 100) × Fuel price</strong>
-      </div>
-
-      <h3>Quick example</h3>
-      <p>
-        300 km, 7.0 L/100km, fuel price €1.90:<br/>
-        <strong>(300 × 7.0 ÷ 100) × 1.90 = €39.90</strong>
-      </p>
-
-      <p style="text-align:center;margin:18px 0;">
-        <a href="index.html" class="btn-back">Calculate your fuel cost now</a>
-      </p>
-
-      <h2 id="examples">2) Examples: 100 / 300 / 600 miles</h2>
-      <p>
-        Here are common distances. For simplicity, we’ll use 7.5 L/100km and €1.90/L.
-        (If you use MPG + price per gallon, the calculator handles that too if your EN version supports it.)
-      </p>
-
-      <div class="grid">
-        <div class="mini">
-          <strong>100 miles (~161 km)</strong><br/>
-          Litres: 161 × 7.5 ÷ 100 = 12.1 L<br/>
-          Fuel cost: 12.1 × 1.90 = <strong>€23.0</strong> (approx.)
-        </div>
-        <div class="mini">
-          <strong>300 miles (~483 km)</strong><br/>
-          Litres: 483 × 7.5 ÷ 100 = 36.2 L<br/>
-          Fuel cost: 36.2 × 1.90 = <strong>€68.8</strong> (approx.)
-        </div>
-        <div class="mini">
-          <strong>600 miles (~966 km)</strong><br/>
-          Litres: 966 × 7.5 ÷ 100 = 72.5 L<br/>
-          Fuel cost: 72.5 × 1.90 = <strong>€137.8</strong> (approx.)
-        </div>
-        <div class="mini">
-          <strong>Tip</strong><br/>
-          Enter your real consumption and today’s fuel price for the most accurate estimate.
-        </div>
-      </div>
-
-      <h2 id="permile">3) Cost per mile</h2>
-      <p>
-        “Cost per mile” is perfect for comparing options (driving vs train, taking a different car, carpooling, etc.).
-        Use: <strong>Total trip cost ÷ distance</strong>.
-      </p>
-      <div class="note">
-        <strong>Example:</strong> $120 total for 600 miles → 120 ÷ 600 = <strong>$0.20 per mile</strong>
-      </div>
-
-      <!-- Ad Slot MID -->
-      <div class="ad-block" aria-label="Advertisement">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-4852698472752437"
-          data-ad-slot="3355111369"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
-      <h2 id="beyondfuel">4) Why “real driving cost” is higher</h2>
-      <p>Fuel is only one part. The biggest hidden costs are:</p>
-      <ul>
-        <li><strong>Depreciation:</strong> cars lose value with every mile</li>
-        <li><strong>Maintenance & repairs:</strong> servicing, brakes, oil, inspections</li>
-        <li><strong>Tyres:</strong> wear depends on driving style and vehicle</li>
-        <li><strong>Insurance & taxes:</strong> fixed yearly costs</li>
-        <li><strong>Parking/tolls:</strong> common in cities and highways</li>
-      </ul>
-
-      <div class="note">
-        <strong>Practical tip:</strong> If your calculator includes “running cost” estimation, use it to get a closer real-world figure.
-      </div>
-
-      <h2 id="tolls">5) Tolls & road charges (basic estimate)</h2>
-      <p>
-        Tolls depend on route, country/state, and vehicle class. Even a rough estimate helps avoid surprises.
-        If your calculator supports route-based toll estimation, enter start and destination and compare.
-      </p>
-
-      <h2 id="saving">6) Easy ways to save fuel</h2>
-      <ul>
-        <li><strong>Tyre pressure:</strong> low pressure increases consumption</li>
-        <li><strong>Smooth driving:</strong> hard acceleration burns fuel</li>
-        <li><strong>Remove weight:</strong> don’t carry unnecessary items</li>
-        <li><strong>Shop fuel prices:</strong> stations can vary a lot</li>
-        <li><strong>Carpool:</strong> lower cost per person immediately</li>
-      </ul>
-
-      <p style="text-align:center;margin:18px 0;">
-        <a href="index.html" class="btn-back">Back to the calculator</a>
-      </p>
-
-      <h2 id="faq">7) Quick FAQ</h2>
-      <details>
-        <summary>Why does my result differ from other calculators?</summary>
-        <p>Because fuel price, real consumption, route, and extra costs vary. Your true average consumption is the key input.</p>
-      </details>
-      <details>
-        <summary>Which consumption number should I use?</summary>
-        <p>Use your real average from your car or app. Manufacturer ratings are often optimistic.</p>
-      </details>
-      <details>
-        <summary>Can I calculate electric car charging cost?</summary>
-        <p>This guide focuses on fuel. An EV charging calculator is a great next tool (and often ranks well).</p>
-      </details>
-
-      <!-- Ad Slot BOTTOM -->
-      <div class="ad-block" aria-label="Advertisement">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-4852698472752437"
-          data-ad-slot="3048839661"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
-      <p style="margin-top:18px;font-size:0.9rem;color:var(--muted)">
-        Updated: December 2025. All figures are estimates and may differ from real-world costs.
-      </p>
+    <!-- Ad #1 -->
+    <div class="ad-block" aria-label="Advertising">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="7158625008"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
     </div>
-  </div>
 
-  <footer>
-    <a href="guide.html">Guide</a> |
-    <a href="faq.html">FAQ</a> |
-    <a href="contact.html">Contact</a> |
-    <a href="legal.html">Legal</a> |
-    <a href="privacy.html">Privacy</a>
-    <div style="margin-top:20px;font-size:0.7rem;opacity:0.4;color:var(--muted)">PetrolCostCalculator.com</div>
-  </footer>
+    <!-- Save fuel -->
+    <section id="sparen" class="card" aria-label="Save fuel">
+      <h2>Saving fuel: the biggest levers</h2>
+      <ul class="checklist">
+        <li><strong>Reduce speed:</strong> At highway speeds, air resistance rises sharply — often the biggest lever.</li>
+        <li><strong>Drive smoothly:</strong> Less braking and accelerating saves fuel (and stress).</li>
+        <li><strong>Check tyre pressure:</strong> Low pressure = more rolling resistance.</li>
+        <li><strong>Remove extra weight:</strong> Unnecessary load + roof racks/roof box only when needed.</li>
+        <li><strong>Avoid short trips:</strong> Cold starts push your average consumption up a lot.</li>
+      </ul>
+
+      <div class="two-col" style="margin-top:14px">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Quick tip: refuelling strategy</h3>
+          <p class="small" style="margin:0">
+            If you’re flexible: avoid filling up right on major highways. Compare prices and refuel in towns/suburbs when possible.
+          </p>
+        </div>
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Quick tip: carpool</h3>
+          <p class="small" style="margin:0">
+            Cost and CO₂ per person drop a lot when you travel with 2–4 people (in the calculator: “People”).
+          </p>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:14px">
+        <b>Keep in mind:</b> Small changes add up: even a 0.3–0.8 L/100 km difference is noticeable on long drives.
+      </div>
+    </section>
+
+    <!-- Consumption -->
+    <section id="verbrauch" class="card" aria-label="Understand consumption">
+      <h2>Understanding consumption: why is it sometimes higher?</h2>
+      <div class="two-col">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Common reasons</h3>
+          <ul class="checklist">
+            <li>Cold weather (more cold starts, heating/AC load, higher friction)</li>
+            <li>City driving (stop-start traffic)</li>
+            <li>Roof box/roof rack (more drag)</li>
+            <li>Low tyre pressure</li>
+            <li>Heavy load / towing</li>
+          </ul>
+        </div>
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">How to find your real consumption</h3>
+          <ul class="checklist">
+            <li>Track several full tanks</li>
+            <li>Use an average, not a single trip</li>
+            <li>Trip computer is OK — the fill-to-fill method is more accurate</li>
+            <li>Think separately about “city” and “highway” driving</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:14px">
+        <b>In practice:</b> In the calculator, it’s better to use your <b>real long-term average</b> than brochure figures.
+      </div>
+    </section>
+
+    <!-- Cost formulas -->
+    <section id="kostenformeln" class="card" aria-label="Cost formulas">
+      <h2>Cost formulas: quick estimates</h2>
+      <div class="two-col">
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Basics</h3>
+          <ul class="checklist">
+            <li><b>Litres</b> = km × consumption ÷ 100</li>
+            <li><b>Fuel cost</b> = litres × price per litre</li>
+            <li><b>Per person</b> = total cost ÷ people</li>
+          </ul>
+        </div>
+        <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Mini example</h3>
+          <p class="small" style="margin:0;line-height:1.7">
+            450 km, 7.0 L/100 km → <b>31.5 L</b><br>
+            At $1.85/L → <b>$58.28</b> fuel cost<br>
+            Three people → <b>$19.43 per person</b> (fuel only)
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;display:flex;justify-content:center">
+        <a class="btn large" href="/">Calculate now</a>
+      </div>
+    </section>
+
+    <!-- Ad #2 -->
+    <div class="ad-block" aria-label="Advertising">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3355111369"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Road trip -->
+    <section id="roadtrip" class="card" aria-label="Road trip checklist">
+      <h2>Road trip checklist (10 minutes that pay off)</h2>
+      <ol class="checklist">
+        <li>Check tyre pressure (cold)</li>
+        <li>Check oil and washer fluid</li>
+        <li>Only fit a roof box if you really need it</li>
+        <li>Check route + alternatives (avoid traffic / tolls?)</li>
+        <li>Check toll rules for your route</li>
+        <li>Enter a realistic consumption figure (not brochure)</li>
+        <li>Use a current fuel price or a planning average</li>
+        <li>Agree a fair cost split per person</li>
+        <li>Emergency kit: warning triangle, hi-vis vest, first-aid kit</li>
+        <li>Plan breaks (steady driving saves fuel)</li>
+      </ol>
+
+      <div class="note" style="margin-top:14px">
+        <b>Tip:</b> Enter start & destination as <b>“City, State”</b> (e.g. “Sydney, NSW”) for the most reliable results.
+      </div>
+    </section>
+
+    <!-- Tolls -->
+    <section id="maut" class="card" aria-label="Tolls">
+      <h2>Tolls: quick explanation</h2>
+      <p class="small" style="margin-top:0;line-height:1.7">
+        Toll systems vary by region: some roads charge per section or distance, others use fixed fees.
+        The calculator shows a rough estimate — for exact amounts, the route and the current rules matter.
+      </p>
+      <ul class="checklist">
+        <li><strong>Toll roads:</strong> charges may depend on route/section</li>
+        <li><strong>Tip:</strong> check tolls ahead of time to avoid surprises</li>
+      </ul>
+    </section>
+
+    <!-- CO2 -->
+    <section id="co2" class="card" aria-label="CO2 context">
+      <h2>CO₂: what do the numbers mean?</h2>
+      <p class="small" style="margin-top:0;line-height:1.7">
+        CO₂ is an approximation. CO₂ per person drops significantly when you share the ride.
+      </p>
+      <ul class="checklist">
+        <li>CO₂ increases with consumption and distance</li>
+        <li>Carpooling reduces CO₂ per person</li>
+        <li>Comparisons between car/train/plane are indicative only</li>
+      </ul>
+    </section>
+
+    <!-- Mini FAQ -->
+    <section id="faq-mini" class="card" aria-label="Mini FAQ">
+      <h2>Mini FAQ (short & useful)</h2>
+      <div class="mini-faq">
+        <details>
+          <summary>How accurate are the results? <span class="chev">▼</span></summary>
+          <div class="answer">It’s most accurate with your real consumption and a current price. Toll estimates are intentionally approximate.</div>
+        </details>
+
+        <details>
+          <summary>Can I calculate a return trip? <span class="chev">▼</span></summary>
+          <div class="answer">Yes — either double the kilometres or calculate the route separately for each direction.</div>
+        </details>
+
+        <details>
+          <summary>Why “City, State” for start/destination? <span class="chev">▼</span></summary>
+          <div class="answer">It makes geocoding much more reliable. Entering only a country/state can lead to ambiguous matches or errors.</div>
+        </details>
+      </div>
+
+      <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <a class="btn large" href="/">Go to calculator</a>
+        <a class="btn secondary large" href="/faq.html">Go to FAQ</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer via loader (IMPORTANT: outside the container → no white border) -->
+  <div id="site-footer"></div>
+
+  <!-- Active Tab -->
+  <script src="/assets/js/active-nav.js" defer></script>
+
+  <!-- Header/Footer Loader + Mobile Nav + Cookies -->
+  <script>
+    async function loadPart(id, url){
+      const el = document.getElementById(id);
+      if(!el) return false;
+      try{
+        const r = await fetch(url, { cache: 'no-cache' });
+        el.innerHTML = await r.text();
+        return true;
+      }catch(e){
+        console.warn('Could not load:', url);
+        return false;
+      }
+    }
+
+    function initMobileNav(){
+      const header = document.querySelector('.site-header');
+      const btn = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if(!header || !btn || !nav) return;
+
+      const close = () => {
+        header.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+      };
+
+      const open = () => {
+        header.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Close menu');
+      };
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        header.classList.contains('is-open') ? close() : open();
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!header.classList.contains('is-open')) return;
+        if(header.contains(e.target)) return;
+        close();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') close();
+      });
+
+      window.addEventListener('resize', () => {
+        if(window.innerWidth > 720) close();
+      });
+    }
+
+    function loadCookiesAfterFooter(){
+      const s = document.createElement('script');
+      s.src = '/assets/js/cookies.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadPart('site-header', '/partials/header.html');
+      initMobileNav();
+
+      await loadPart('site-footer', '/partials/footer.html');
+      loadCookiesAfterFooter();
+    });
+  </script>
+
 </body>
 </html>
