@@ -4,7 +4,7 @@
     <!-- Long description text -->
     <div class="footer-text">
       <p>
-       <strong>PetrolCostCalculator.com</strong> is a free fuel cost calculator for Germany and worldwide trips.
+        <strong>PetrolCostCalculator.com</strong> is a free fuel cost calculator for Australia and worldwide trips.
       </p>
     </div>
 
@@ -12,28 +12,27 @@
     <div class="footer-line"></div>
 
     <!-- Footer Navigation -->
-    <nav class="footer-nav">
-      <a href="/en-au/faq.html">FAQ</a>
-      <span>|</span>
-      <a href="/en-au/privacy.html">Privacy Policy</a>
-      <span>|</span>
-      <a href="/en-au/legal.html">Legal Notice</a>
-      <span>|</span>
-      <a href="/en-au/guide.html">Guide</a>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="/faq.html">FAQ</a>
+      <span aria-hidden="true">|</span>
+      <a href="/privacy.html">Privacy Policy</a>
+      <span aria-hidden="true">|</span>
+      <a href="/legal.html">Legal Notice</a>
+      <span aria-hidden="true">|</span>
+      <a href="/guide.html">Guide</a>
     </nav>
 
     <!-- Divider -->
     <div class="footer-line"></div>
 
-    <!-- Language / Country Links -->
-    <div class="footer-lang">
-      <a href="https://spritkosten-check.de">DE: Spritkosten-Check.de</a>
-      <a href="https://petrolcostcalculator.com">EN-AU: PetrolCostCalculator.com</a>
+    <!-- Language / Country Links (EN only) -->
+    <div class="footer-lang" aria-label="Language">
+      <a href="https://petrolcostcalculator.com/en-au/">EN-AU: PetrolCostCalculator.com</a>
     </div>
 
     <!-- Seal -->
     <div class="footer-seal">
-      <span class="seal">🛡️</span>
+      <span class="seal" aria-hidden="true">🛡️</span>
       <span>Verified 2026</span>
     </div>
 
@@ -41,11 +40,11 @@
 </footer>
 
 <!-- COOKIE BANNER (global, visible on all pages) -->
-<div id="cookieBanner" class="is-hidden">
+<div id="cookieBanner" class="is-hidden" role="dialog" aria-live="polite" aria-label="Cookie banner">
   <div class="row">
     <div class="txt">
       We use cookies to operate the website and display advertising.
-      <a href="/en-au/privacy-policy.html">Learn more</a>.
+      <a href="/privacy.html">Learn more</a>.
     </div>
     <div class="actions">
       <button id="cookieReject" class="reject" type="button">Decline</button>
