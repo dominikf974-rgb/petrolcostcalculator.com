@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Fuel Cost Calculator – Petrol, Diesel & Road Trip Cost Estimator</title>
-  <meta name="description" content="Free fuel cost calculator with map. Estimate petrol/diesel cost, total trip cost, cost per person and toll estimate worldwide with country detection." />
+  <title>Fuel Cost Calculator – Calculate Petrol, Diesel & Trip Costs</title>
+  <meta name="description" content="Free fuel cost calculator for trips & road trips. Calculate fuel costs, total costs and an estimated toll/vignette cost with map and worldwide distance routing." />
   <meta name="robots" content="index, follow" />
 
-  <!-- ✅ EN ↔ DE Connection (SEO) -->
   <link rel="canonical" href="https://petrolcostcalculator.com/" />
   <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/" />
   <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/" />
@@ -22,21 +21,11 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" href="/favicon.ico">
 
+  <!-- ✅ Global CSS -->
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-02" />
+
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-  <!-- Header Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <!-- ✅ External CSS (dein ausgelagerter Style) -->
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <link rel="stylesheet" href="/assets/css/override.css" />
-
-  <!-- Google Ads -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
-    crossorigin="anonymous"></script>
 
   <!-- Schema -->
   <script type="application/ld+json">
@@ -44,7 +33,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Fuel Cost Calculator",
-    "description": "Free online calculator to estimate fuel costs, petrol prices, tolls and road trip expenses",
+    "description": "Free online calculator for fuel costs, fuel prices, toll/vignette estimates and trip costs",
     "url": "https://petrolcostcalculator.com",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Web",
@@ -53,85 +42,106 @@
   </script>
 </head>
 
-<body>
+<body data-page="home">
 
-  <!-- ✅ Header aus /partials/header.html -->
+  <!-- ✅ Header loaded externally -->
   <div id="site-header"></div>
 
-  <div class="page-container">
+  <!-- ✅ Only ONE main on the page -->
+  <main class="page-container" aria-label="Page content">
 
-    <!-- Ad top -->
+    <!-- Ad: Top -->
     <div class="ad-block">
       <ins class="adsbygoogle"
         style="display:block"
         data-ad-client="ca-pub-4852698472752437"
-        data-ad-slot="2526095486"
+        data-ad-slot="7158625008"
         data-ad-format="auto"
         data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <!-- Intro -->
     <section class="card intro-section" aria-label="Fuel cost calculator introduction">
-      <h2>Free Fuel Cost Calculator – Plan Your Road Trip Budget</h2>
+      <h2>Free Fuel Cost Calculator – Plan Your Trip Costs</h2>
       <p>
         Our <strong>fuel cost calculator</strong> helps you estimate the total cost of your trip.
-        Enter distance, fuel consumption and fuel price to get a breakdown of fuel, running costs and toll estimates.
+        <strong>Free – no registration required.</strong>
+        Enter distance, consumption and fuel price to get a breakdown of fuel cost, running costs and an estimated toll/vignette cost.
       </p>
       <ul>
-        <li><strong>Works worldwide:</strong> country detection + default fuel prices</li>
-        <li><strong>Distance calculation:</strong> map + start/destination geocoding</li>
-        <li><strong>Tolls:</strong> simple region-based estimate</li>
-        <li><strong>Split costs:</strong> per passenger calculation</li>
+        <li><strong>Worldwide:</strong> places via OpenStreetMap</li>
+        <li><strong>Distance:</strong> real road route + map</li>
+        <li><strong>Tolls/Vignette:</strong> quick estimate by country</li>
+        <li><strong>Split costs:</strong> calculate per person</li>
       </ul>
     </section>
 
-    <main aria-label="Main content">
+    <!-- Calculator -->
+    <section aria-label="Main content">
+      <section id="fuel" class="card">
 
-      <section id="fuel" class="card" aria-hidden="false">
-
-        <!-- Ad middle -->
+        <!-- Ad: Middle -->
         <div class="ad-block">
           <ins class="adsbygoogle"
             style="display:block"
             data-ad-client="ca-pub-4852698472752437"
-            data-ad-slot="4520853372"
+            data-ad-slot="3355111369"
             data-ad-format="auto"
             data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
 
         <div class="layout">
+
+          <!-- LEFT -->
           <div>
             <h2 style="margin:0 0 8px 0;font-size:1rem">Inputs</h2>
 
-            <label for="km">Distance (km) — or calculate from / to</label>
+            <label for="km">Distance (km) — or calculate from start/destination</label>
+
+            <!-- ✅ Spinner stays on KM -->
             <div class="km-row">
               <input id="km" class="km-input" type="number" inputmode="decimal" min="0" step="0.1"
-                placeholder="e.g. 120.5" aria-label="Distance in kilometres" />
+                placeholder="e.g. 120.5" aria-label="Distance in kilometers" />
               <div class="spinner" title="Increase / decrease distance">
-                <button id="km-inc" aria-label="Increase distance">▲</button>
-                <button id="km-dec" aria-label="Decrease distance">▼</button>
+                <button id="km-inc" aria-label="Increase distance" type="button">▲</button>
+                <button id="km-dec" aria-label="Decrease distance" type="button">▼</button>
               </div>
             </div>
 
             <div style="margin-top:12px">
-              <label for="place-from">Or: Start (City, Country)</label>
-              <input id="place-from" type="text" placeholder="e.g. Sydney, Australia" aria-label="Starting location" />
-              <label for="place-to" style="margin-top:10px">Destination (City, Country)</label>
-              <input id="place-to" type="text" placeholder="e.g. Melbourne, Australia" aria-label="Destination location" />
+              <label for="place-from">Or: Start (place, country)</label>
+              <input id="place-from" type="text" placeholder="e.g. Paris, France" aria-label="Start location" />
 
-              <div class="map-controls" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-                <button id="btn-geocode" class="btn secondary">Calculate Distance</button>
-                <button id="btn-clearmap" class="btn secondary">Reset Map</button>
+              <label for="place-to" style="margin-top:10px">Destination (place, country)</label>
+              <input id="place-to" type="text" placeholder="e.g. Berlin, Germany" aria-label="Destination location" />
+              <div class="small" style="margin-top:4px">
+                Example: <b>Paris, France</b> → <b>Berlin, Germany</b>
               </div>
-              <div class="small">Distance via Nominatim (OpenStreetMap). Map tiles: OpenStreetMap.</div>
+
+              <!-- ✅ Buttons: side by side, centered -->
+              <div class="route-actions">
+                <button id="btn-geocode" class="btn secondary" type="button">Calculate distance</button>
+                <button id="btn-clearmap" class="btn secondary" type="button">Reset map</button>
+              </div>
+
+              <div class="country-badge" id="country-badge"></div>
+
+              <div class="price-mode" id="price-mode">
+                <div class="small" style="margin-bottom:6px;">
+                  Start country and destination country are different. Which fuel price should be used?
+                </div>
+                <div class="row">
+                  <label class="pill"><input type="radio" name="priceMode" value="start"> Start country</label>
+                  <label class="pill"><input type="radio" name="priceMode" value="avg" checked> Average</label>
+                  <label class="pill"><input type="radio" name="priceMode" value="dest"> Destination country</label>
+                </div>
+              </div>
             </div>
 
-            <label for="fuel-type" style="margin-top:12px">Fuel Type</label>
-            <select id="fuel-type" aria-label="Fuel Type">
-              <option value="unleaded91">Unleaded 91</option>
-              <option value="unleaded95">Unleaded 95</option>
+            <label for="fuel-type" style="margin-top:12px">Fuel</label>
+            <select id="fuel-type" aria-label="Fuel type">
+              <option value="unleaded91">Petrol (E10/91)</option>
+              <option value="unleaded95">Premium (E5 / 95)</option>
               <option value="diesel">Diesel</option>
             </select>
 
@@ -139,23 +149,28 @@
             <input id="consumption" type="number" inputmode="decimal" min="0" step="0.1"
               value="7.5" placeholder="e.g. 7.5" aria-label="Fuel consumption" />
 
+            <!-- ✅ Price block -->
             <div class="price-input-group">
-              <div>
-                <label for="price">Price per Litre ($)</label>
+              <div class="price-field">
+                <label for="price">Price per litre ($)</label>
                 <input id="price" type="number" inputmode="decimal" min="0" step="0.01"
-                  placeholder="e.g. 1.95" aria-label="Fuel price per litre" />
-                <span id="price-info" class="hint"></span>
+                  placeholder="e.g. 1.89" aria-label="Fuel price per litre" />
               </div>
-              <button id="btn-reset-price" class="btn secondary reset-price-btn">Reset to default</button>
+
+              <button id="btn-reset-price" class="btn secondary reset-price-btn" type="button">
+                Reset to default
+              </button>
+
+              <span id="price-info" class="hint"></span>
             </div>
 
-            <div class="price-table" aria-hidden="false">
+            <div class="price-table">
               <div class="price-card">
-                <div class="small">Avg Unleaded 91</div>
+                <div class="small">Avg Petrol (E10)</div>
                 <strong id="avg-unleaded91">—</strong>
               </div>
               <div class="price-card">
-                <div class="small">Avg Unleaded 95</div>
+                <div class="small">Avg Premium (E5)</div>
                 <strong id="avg-unleaded95">—</strong>
               </div>
               <div class="price-card">
@@ -164,195 +179,816 @@
               </div>
             </div>
 
-            <label for="passengers" style="margin-top:12px">Passengers (incl. driver)</label>
-            <input id="passengers" type="number" min="1" step="1" value="1" aria-label="Passengers" />
+            <label for="passengers" style="margin-top:12px">People (including driver)</label>
+            <input id="passengers" type="number" min="1" step="1" value="1" aria-label="Number of people" />
 
             <div class="big-action">
-              <button id="calc-fuel" class="btn large">Calculate</button>
-              <button id="reset-fuel" class="btn secondary large">Reset</button>
+              <button id="calc-fuel" class="btn large" type="button">Calculate</button>
+              <button id="reset-fuel" class="btn secondary large" type="button">Reset</button>
             </div>
 
             <div class="resultbox" aria-live="polite" aria-label="Results">
-              <div class="result-row"><div class="result-key">Fuel Costs</div><div class="result-val" id="cost-fuel">$0.00</div></div>
-              <div class="result-row"><div class="result-key">Running Costs incl. Tolls (estimated)</div><div class="result-val" id="cost-running">$0.00</div></div>
-              <div class="result-row"><div class="result-key">Total Costs</div><div class="result-val" id="cost-total">$0.00</div></div>
-              <div class="result-row"><div class="result-key">Per Person</div><div class="result-val" id="cost-person">$0.00</div></div>
-              <div class="result-row"><div class="result-key">Litres Required</div><div class="result-val" id="liters">0.00 L</div></div>
+              <div class="result-row"><div class="result-key">Fuel cost</div><div class="result-val" id="cost-fuel">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Running costs incl. toll/vignette (estimate)</div><div class="result-val" id="cost-running">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Total cost</div><div class="result-val" id="cost-total">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Per person</div><div class="result-val" id="cost-person">$0.00</div></div>
+              <div class="result-row"><div class="result-key">Total litres</div><div class="result-val" id="liters">0.00 L</div></div>
               <div class="result-row"><div class="result-key">Average ($/100 km)</div><div class="result-val" id="avg100">$0.00 /100km</div></div>
-              <div class="result-row"><div class="result-key small">Estimated running costs /100 km (incl. tolls)</div><div class="result-val small" id="running-est">—</div></div>
+              <div class="result-row"><div class="result-key small">Estimated running costs /100 km (incl. toll/vignette)</div><div class="result-val small" id="running-est">—</div></div>
               <div style="margin-top:8px;color:var(--muted);font-size:.85rem">
-                Running costs include: maintenance, tyres, depreciation, insurance + toll estimate.
+                Running costs include: maintenance, tyres, depreciation, insurance + toll/vignette estimate.
               </div>
             </div>
           </div>
 
-          <div>
-            <h2 style="margin:0 0 8px 0;font-size:1rem">Map & Distance</h2>
+          <!-- RIGHT -->
+          <div class="map-col">
+            <h2 style="margin:0 0 2px 0;font-size:1rem">Map & Distance</h2>
             <div id="map"></div>
-            <div style="margin-top:8px" class="small">
-              Click “Calculate Distance” to locate start/destination. Tolls are estimated by region.
+            <div id="toll-info" class="small" style="color:var(--muted)"></div>
+
+            <div class="thinbox" aria-label="Toll and vignette details" style="padding:16px 12px">
+              <div class="title">Tolls & Vignette – Details</div>
+              <div class="line"><div>Total tolls</div><div class="mono" id="toll-total">—</div></div>
+              <div class="line"><div>Total vignettes</div><div class="mono" id="vignette-total">—</div></div>
+              <div class="line"><div>Sum tolls + vignettes</div><div class="mono" id="toll-vignette-sum">—</div></div>
+              <div style="margin-top:10px" class="small" id="toll-breakdown"></div>
             </div>
-            <div id="toll-info" class="small" style="margin-top:6px;color:var(--muted)"></div>
+
+            <div class="thinbox" aria-label="CO2 footprint">
+              <div class="title">🌱 CO₂ Footprint</div>
+              <div class="line"><div>Total CO₂</div><div class="mono" id="co2-total">—</div></div>
+              <div class="line"><div>CO₂ per person</div><div class="mono" id="co2-per-person">—</div></div>
+              <div class="small" style="margin-top:8px">Approximation based on your consumption (kg CO₂).</div>
+            </div>
+
+            <div class="thinbox" aria-label="Transport comparison">
+              <div class="title">🚗🚆✈️ Comparison (guidelines)</div>
+              <div class="line"><div>Car</div><div class="mono" id="cmp-car">—</div></div>
+              <div class="line"><div>Train</div><div class="mono" id="cmp-rail">—</div></div>
+              <div class="line"><div>Flight</div><div class="mono" id="cmp-flight">—</div></div>
+              <div class="small" style="margin-top:8px">
+                Values in kg CO₂ for the route (guidelines).<br>
+                Train &amp; flight: <b>per seat</b>. Car: <b>per vehicle</b>.
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
+    </section>
 
-      <section id="calc" class="card" aria-hidden="true" style="display:none">
-        <h2>Calculator</h2>
-        <label for="num1">Number 1</label>
-        <input id="num1" type="number" inputmode="decimal" placeholder="Number 1" />
-        <label for="num2">Number 2</label>
-        <input id="num2" type="number" inputmode="decimal" placeholder="Number 2" />
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;max-width:240px">
-          <button data-op="+" class="btn" style="height:44px;font-size:1.1rem">+</button>
-          <button data-op="-" class="btn" style="height:44px;font-size:1.1rem">−</button>
-          <button data-op="*" class="btn" style="height:44px;font-size:1.1rem">×</button>
-          <button data-op="/" class="btn" style="height:44px;font-size:1.1rem">÷</button>
-        </div>
-
-        <p style="margin-top:12px" class="small">Result: <strong id="result">–</strong></p>
-      </section>
-
-    </main>
-
-    <!-- ✅ CARD 1 -->
-    <section class="card" aria-label="How fuel cost is calculated">
-      <h2>How to calculate fuel costs (simple)</h2>
+    <!-- SEO Block -->
+    <section class="card" aria-label="Calculation explained">
+      <h2>How to calculate fuel costs & cost per person</h2>
       <p class="small" style="margin-top:0">
-        For a quick estimate, you only need three values: <strong>distance</strong>, <strong>fuel consumption</strong> and <strong>fuel price</strong>.
-        This calculator also shows <strong>cost per 100 km</strong> and <strong>cost per person</strong>.
+        For quick estimates, you only need distance (km), consumption (L/100 km) and fuel price ($/L).
+        The calculator also shows average costs per 100 km and the split per person.
       </p>
 
       <div class="two-col">
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
           <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Quick formulas</h3>
           <ul style="margin:0;padding-left:18px;line-height:1.7">
-            <li><strong>Litres</strong> = distance × consumption ÷ 100</li>
+            <li><strong>Litres</strong> = km × consumption ÷ 100</li>
             <li><strong>Fuel cost</strong> = litres × price</li>
-            <li><strong>Per person</strong> = total cost ÷ passengers</li>
+            <li><strong>Per person</strong> = total cost ÷ people</li>
           </ul>
         </div>
 
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
-          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Good to know</h3>
+          <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Notes</h3>
           <ul style="margin:0;padding-left:18px;line-height:1.7">
-            <li>Tolls are a rough regional estimate.</li>
-            <li>“Running costs” are a simplified approximation.</li>
-            <li>For best accuracy, use real consumption + current price.</li>
+            <li>Tolls/vignettes are estimates.</li>
+            <li>“Running costs” are a simple approximation.</li>
+            <li>For best accuracy: use real consumption + current price.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- ✅ CARD 2 -->
-    <section class="card" aria-label="Fuel saving tips and trip cost tips">
-      <h2>Tips to save fuel & reduce trip costs</h2>
+    <!-- Tips -->
+    <section class="card" aria-label="Tips to save fuel">
+      <h2>Tips: save fuel & reduce travel costs</h2>
       <p class="small" style="margin-top:0">
-        Small changes can reduce your trip cost fast: correct tyre pressure, steady speed, and realistic consumption values.
-        If you travel with friends, splitting costs fairly avoids arguments and makes planning easier.
+        Small changes can reduce costs quickly: correct tyre pressure, steady speed,
+        and realistic consumption values. If you travel together, split costs fairly per person.
       </p>
-
       <ul style="margin:0;padding-left:18px;line-height:1.7">
-        <li><strong>Drive smoother:</strong> avoid hard acceleration and braking.</li>
+        <li><strong>Drive smoothly:</strong> accelerate and brake less aggressively.</li>
         <li><strong>Check tyre pressure:</strong> low pressure increases consumption.</li>
-        <li><strong>Remove heavy load:</strong> weight increases fuel usage.</li>
-        <li><strong>Split costs:</strong> use “Passengers” to calculate per-person cost.</li>
+        <li><strong>Reduce weight:</strong> remove unnecessary load; use a roof box only if needed.</li>
+        <li><strong>Split costs:</strong> use “People” for a fair per-person amount.</li>
       </ul>
 
-      <div style="margin-top:14px;display:flex;justify-content:center">
-        <a class="btn large" href="/guide.html" style="max-width:340px">Read the full guide</a>
+      <div style="margin-top:18px;display:flex;justify-content:center">
+        <a class="btn large" href="/guide.html" style="max-width:320px">Open the guide</a>
       </div>
     </section>
 
-    <!-- ✅ Guide card -->
-    <section class="card" aria-label="Guide">
-      <h2>Guide: Save fuel & plan trip costs</h2>
-      <p class="small" style="margin-top:0">
-        Quick tips on fuel consumption, cost per 100 km, splitting trip costs fairly, and common mistakes.
-      </p>
-      <a class="btn large" href="/guide.html" style="max-width:320px">Open Guide</a>
-    </section>
-
-    <!-- ✅ Quick FAQ -->
-    <section class="card faq-section" aria-label="Quick FAQ">
+    <!-- FAQ Short -->
+    <section class="card faq-section" aria-label="FAQ">
       <h2>Quick FAQ</h2>
 
       <details class="faq-item">
-        <summary>How do I calculate fuel cost per 100 km?</summary>
-        <p>The calculator shows $/100 km automatically. Formula: total cost ÷ distance × 100.</p>
+        <summary>How do I calculate fuel costs per 100 km?</summary>
+        <p>The calculator shows “$/100 km” automatically. It’s based on: total cost ÷ distance × 100.</p>
       </details>
 
       <details class="faq-item">
-        <summary>Should I enter one-way or round trip distance?</summary>
-        <p>Either works. Enter the kilometres you will actually drive (one-way or round trip).</p>
+        <summary>Does it count a round trip or one-way only?</summary>
+        <p>You can do both. Simply enter the kilometers you actually drive (one-way or round trip).</p>
       </details>
 
       <details class="faq-item">
-        <summary>What is included in “running costs”?</summary>
-        <p>A simple estimate (maintenance, tyres, depreciation, insurance) plus the toll estimate per 100 km.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>How accurate are toll estimates?</summary>
-        <p>Tolls are a rough estimate by region. Actual tolls depend on route, vehicle class and local rules.</p>
+        <summary>How accurate are tolls/vignettes?</summary>
+        <p>Only roughly by country. Real costs depend on route, vehicle class and local rules.</p>
       </details>
 
       <div style="margin-top:14px;display:flex;justify-content:center">
-        <a class="btn large" href="/faq.html" style="max-width:360px">More FAQ</a>
+        <a class="btn large" href="/faq.html" style="max-width:360px">View more FAQs</a>
       </div>
     </section>
 
     <!-- Countries -->
-    <section class="card countries-section" aria-label="Fuel calculator by country">
-      <h2>Fuel Cost Calculator by Country</h2>
+    <section class="card countries-section" aria-label="Fuel cost calculator by country">
+      <h2>Fuel cost calculator by country</h2>
       <p class="small" style="margin:0 0 10px 0">Works worldwide with country detection. Popular regions:</p>
 
       <div class="countries-grid">
         <div class="country-card">
-          <h3>Australia</h3>
-          <p>Road trip planning + toll estimates.</p>
+          <h3>Germany</h3>
+          <p>Plan trip costs, fuel costs, running costs and split fairly per person.</p>
         </div>
         <div class="country-card">
-          <h3>United States</h3>
-          <p>Perfect for long trips and cost splitting.</p>
+          <h3>Austria</h3>
+          <p>Great for motorways &amp; Alpine routes — incl. rough toll/vignette estimate.</p>
         </div>
         <div class="country-card">
-          <h3>United Kingdom</h3>
-          <p>Petrol & diesel planning with map distance.</p>
-        </div>
-        <div class="country-card">
-          <h3>Canada</h3>
-          <p>Great for group travel and budgeting.</p>
+          <h3>Switzerland</h3>
+          <p>Perfect for alpine passes and motorways — incl. vignette estimate.</p>
         </div>
         <div class="country-card">
           <h3>Europe</h3>
-          <p>Motorway tolls estimated by region.</p>
+          <p>For cross-border trips with a quick toll/cost approximation.</p>
+        </div>
+        <div class="country-card">
+          <h3>Worldwide</h3>
+          <p>For road trips and holidays in almost all countries &amp; regions.</p>
         </div>
       </div>
     </section>
 
-    <!-- Ad bottom -->
+    <!-- Ad: Bottom -->
     <div class="ad-block">
       <ins class="adsbygoogle"
         style="display:block"
         data-ad-client="ca-pub-4852698472752437"
-        data-ad-slot="3702789249"
+        data-ad-slot="3048839661"
         data-ad-format="auto"
         data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- ✅ Footer aus /partials/footer.html -->
-    <div id="site-footer"></div>
+  </main>
 
-  </div><!-- /.page-container -->
+  <!-- ✅ Footer loaded externally -->
+  <div id="site-footer"></div>
 
-  <!-- ✅ Cookie (optional) -->
-  <div id="site-cookie"></div>
+  <!-- ✅ Cookie Banner HTML -->
+  <div id="cookieBanner" class="is-hidden">
+    <div class="row">
+      <div class="txt">
+        We use cookies to operate the website and display advertising.
+        <a href="/privacy-policy.html">Learn more</a>.
+      </div>
+      <div class="actions">
+        <button id="cookieReject" class="reject" type="button">Decline</button>
+        <button id="cookieAccept" class="accept" type="button">Accept</button>
+      </div>
+    </div>
+  </div>
 
-  <!-- Leaflet + dein Loader/JS -->
+  <!-- Leaflet + Prices -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="/assets/js/loader.js"></script>
+  <script src="/prices/country-prices-usd.js"></script>
+
+  <!-- ✅ Calculator + Map Script (your original, translated) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const API_BASE = "https://soft-pine-874.dominikf974.workers.dev";
+
+      const CURRENCY_SYMBOL = '$';
+      // accepts "1.23" and also "1,23"
+      const parse = v => (v === '' || v == null) ? NaN : Number(String(v).replace(',', '.'));
+      const fmt = n => (Number.isFinite(n) ? Number.parseFloat(n.toFixed(2)).toFixed(2) : '0.00');
+      const fmtMoney = n => CURRENCY_SYMBOL + fmt(n);
+      const fmtL = n => (Number.isFinite(n) ? Number.parseFloat(n.toFixed(1)).toFixed(1) : '0.0');
+
+      function fetchWithTimeout(url, ms=12000){
+        const controller = new AbortController();
+        const t = setTimeout(() => controller.abort(), ms);
+        return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(t));
+      }
+
+      let isRouting = false;
+      let lastRouteClick = 0;
+
+      const geoCache = new Map();
+      const revCache = new Map();
+      const routeCache = new Map();
+
+      const cacheKeyLL = (lat,lon) => `${lat.toFixed(5)},${lon.toFixed(5)}`;
+      const cacheKeyRoute = (a,b) => `${cacheKeyLL(a.lat,a.lon)}|${cacheKeyLL(b.lat,b.lon)}`;
+
+      const kmEl = document.getElementById('km');
+      const consumptionEl = document.getElementById('consumption');
+      const priceEl = document.getElementById('price');
+      const passengersEl = document.getElementById('passengers');
+      const fuelTypeEl = document.getElementById('fuel-type');
+
+      const litersEl = document.getElementById('liters');
+      const costFuelEl = document.getElementById('cost-fuel');
+      const costRunningEl = document.getElementById('cost-running');
+      const costTotalEl = document.getElementById('cost-total');
+      const costPersonEl = document.getElementById('cost-person');
+      const avg100El = document.getElementById('avg100');
+      const runningEstEl = document.getElementById('running-est');
+
+      const avgUnleaded91El = document.getElementById('avg-unleaded91');
+      const avgUnleaded95El = document.getElementById('avg-unleaded95');
+      const avgDieselEl = document.getElementById('avg-diesel');
+
+      const tollInfoEl = document.getElementById('toll-info');
+      const priceInfoEl = document.getElementById('price-info');
+
+      const placeFromEl = document.getElementById('place-from');
+      const placeToEl = document.getElementById('place-to');
+
+      const badgeEl = document.getElementById('country-badge');
+      const priceModeWrap = document.getElementById('price-mode');
+
+      const tollTotalEl = document.getElementById('toll-total');
+      const vignetteTotalEl = document.getElementById('vignette-total');
+      const tollVignetteSumEl = document.getElementById('toll-vignette-sum');
+      const tollBreakdownEl = document.getElementById('toll-breakdown');
+
+      const co2TotalEl = document.getElementById('co2-total');
+      const co2PerPersonEl = document.getElementById('co2-per-person');
+      const cmpCarEl = document.getElementById('cmp-car');
+      const cmpRailEl = document.getElementById('cmp-rail');
+      const cmpFlightEl = document.getElementById('cmp-flight');
+
+      const countryPrices = window.COUNTRY_FUEL_PRICES_USD || null;
+      const priceStand = window.COUNTRY_FUEL_PRICES_STAND || '';
+      const fallbackPrices = { unleaded91: 1.50, unleaded95: 1.60, diesel: 1.45, name:'Fallback' };
+      let fuelPrices = { ...fallbackPrices };
+      let userEditedPrice = false;
+
+      let startCC = null, destCC = null;
+      let routeKm = 0;
+      let lastTollTotal = 0;
+      let lastVignetteTotal = 0;
+
+      function renderAvgPrices(){
+        avgUnleaded91El.textContent = fmtMoney(fuelPrices.unleaded91);
+        avgUnleaded95El.textContent = fmtMoney(fuelPrices.unleaded95);
+        avgDieselEl.textContent = fmtMoney(fuelPrices.diesel);
+      }
+      renderAvgPrices();
+
+      function getMode(){
+        const el = document.querySelector('input[name="priceMode"]:checked');
+        return el ? el.value : 'avg';
+      }
+
+      function getCountryName(cc){
+        if(!cc) return '—';
+        const e = countryPrices && countryPrices[cc];
+        return (e && e.name) ? e.name : cc;
+      }
+
+      async function pricesForCountryStatic(cc, lat=null, lon=null){
+        cc = (cc || "").toUpperCase();
+
+        // Optional: Germany live source via Tankerkoenig proxy (if available)
+        if(cc === "DE" && lat != null && lon != null){
+          try{
+            const r = await fetchWithTimeout(`${API_BASE}/api/tank?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&rad=6&type=all`, 12000);
+            if(r.ok){
+              const j = await r.json();
+              if(j && j.ok && Array.isArray(j.stations) && j.stations.length){
+                let e10=null, e5=null, diesel=null;
+                j.stations.forEach(s=>{
+                  if(typeof s.e10==="number")   e10   = (e10==null)   ? s.e10   : Math.min(e10, s.e10);
+                  if(typeof s.e5==="number")    e5    = (e5==null)    ? s.e5    : Math.min(e5, s.e5);
+                  if(typeof s.diesel==="number")diesel= (diesel==null)? s.diesel: Math.min(diesel, s.diesel);
+                });
+
+                const stat = (countryPrices && countryPrices[cc]) ? countryPrices[cc] : fallbackPrices;
+                return {
+                  unleaded91: (e10   != null ? e10   : stat.unleaded91),
+                  unleaded95: (e5    != null ? e5    : stat.unleaded95),
+                  diesel:     (diesel!= null ? diesel: stat.diesel),
+                  name: "Germany (Live)"
+                };
+              }
+            }
+          }catch(e){}
+        }
+
+        const e = countryPrices && countryPrices[cc];
+        if(e) return { ...e };
+        return { ...fallbackPrices };
+      }
+
+      function mixPrices(a, b){
+        return {
+          unleaded91: (a.unleaded91 + b.unleaded91) / 2,
+          unleaded95: (a.unleaded95 + b.unleaded95) / 2,
+          diesel:     (a.diesel + b.diesel) / 2,
+          name: `${a.name} / ${b.name}`
+        };
+      }
+
+      async function applyDetectedPrices(latA=null, lonA=null, latB=null, lonB=null){
+        const isCross = (startCC && destCC && startCC !== destCC);
+        const mode = isCross ? getMode() : 'start';
+
+        const startP = await pricesForCountryStatic(startCC, latA, lonA);
+        const destP  = await pricesForCountryStatic(destCC,  latB, lonB);
+
+        let chosen, note;
+        if(isCross){
+          if(mode === 'start'){ chosen = startP; note = `Start country (${startP.name})`; }
+          else if(mode === 'dest'){ chosen = destP; note = `Destination country (${destP.name})`; }
+          else { chosen = mixPrices(startP, destP); note = `Average (${startP.name} ↔ ${destP.name})`; }
+        }else{
+          chosen = startP;
+          note = startCC ? `Country: ${chosen.name}` : 'Country: —';
+        }
+
+        fuelPrices = { unleaded91: chosen.unleaded91, unleaded95: chosen.unleaded95, diesel: chosen.diesel };
+        renderAvgPrices();
+
+        if(!userEditedPrice){
+          priceEl.value = fuelPrices[fuelTypeEl.value] ?? '';
+          const standTxt = priceStand ? ` (as of: ${priceStand})` : '';
+          const sourceTxt = (startCC === "DE" && chosen.name.includes("Live"))
+            ? "Source: Tankerkönig (live, DE) – otherwise country averages (static)"
+            : "Source: Country averages (static)";
+          priceInfoEl.textContent = `${note}. ${sourceTxt}${standTxt}. You can change the price.`;
+          priceInfoEl.classList.remove('error');
+        }
+      }
+
+      fuelTypeEl.addEventListener('change', () => {
+        if(!userEditedPrice){
+          priceEl.value = fuelPrices[fuelTypeEl.value] ?? '';
+        }
+      });
+
+      priceEl.addEventListener('input', () => {
+        userEditedPrice = true;
+        priceInfoEl.textContent = '';
+        priceInfoEl.classList.remove('error');
+      });
+
+      document.getElementById('btn-reset-price').addEventListener('click', async () => {
+        userEditedPrice = false;
+        await applyDetectedPrices();
+      });
+
+      document.querySelectorAll('input[name="priceMode"]').forEach(r => {
+        r.addEventListener('change', async () => {
+          if(!userEditedPrice && startCC && destCC) await applyDetectedPrices();
+          renderTollBreakdown();
+        });
+      });
+
+      const map = L.map('map', { attributionControl:true }).setView([51.1657, 10.4515], 5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom:19,
+        attribution:'&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      function safeInvalidate(){ try { map.invalidateSize(); } catch(e){} }
+      setTimeout(safeInvalidate, 80);
+      setTimeout(safeInvalidate, 200);
+      setTimeout(safeInvalidate, 650);
+      window.addEventListener('resize', () => setTimeout(safeInvalidate, 180));
+      window.addEventListener('orientationchange', () => setTimeout(safeInvalidate, 260));
+
+      const mapEl = document.getElementById('map');
+      if (window.ResizeObserver && mapEl) {
+        const ro = new ResizeObserver(() => safeInvalidate());
+        ro.observe(mapEl);
+      }
+
+      let markers = [];
+      let routeLayer = null;
+
+      function clearMarkers(){ markers.forEach(m=>map.removeLayer(m)); markers=[]; }
+      function clearRoute(){ if(routeLayer){ map.removeLayer(routeLayer); routeLayer=null; } }
+      function addMarker(lat, lon, label){
+        const m = L.marker([lat, lon]).addTo(map).bindPopup(label || '');
+        markers.push(m);
+        return m;
+      }
+
+      async function geocode(q){
+        const key = q.trim().toLowerCase();
+        if(geoCache.has(key)) return geoCache.get(key);
+
+        const url = API_BASE + '/api/geocode?q=' + encodeURIComponent(q);
+        const res = await fetchWithTimeout(url, 12000);
+        if(!res.ok) throw new Error('Geocoding failed');
+
+        const data = await res.json();
+        if(!Array.isArray(data) || !data.length) return null;
+
+        // Prefer: anything except pure country results
+        const pick =
+          data.find(x => x?.addresstype && x.addresstype !== "country") ||
+          data.find(x => x?.type && x.type !== "country") ||
+          data[0];
+
+        const isCountry = (pick?.addresstype === "country" || pick?.type === "country");
+        if(isCountry) return null; // handled as "place not found"
+
+        const out = { lat:+pick.lat, lon:+pick.lon, name:pick.display_name };
+        geoCache.set(key, out);
+        return out;
+      }
+
+      async function reverseCountryCode(lat, lon){
+        const k = cacheKeyLL(lat,lon);
+        if(revCache.has(k)) return revCache.get(k);
+
+        const url = API_BASE + `/api/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
+        const res = await fetchWithTimeout(url, 12000);
+        if(!res.ok) return null;
+        const j = await res.json();
+        const cc = j?.address?.country_code ? String(j.address.country_code).toUpperCase() : null;
+        revCache.set(k, cc);
+        return cc;
+      }
+
+      async function getRouteOSRM(lat1, lon1, lat2, lon2){
+        const a = {lat:lat1, lon:lon1}, b = {lat:lat2, lon:lon2};
+        const ck = cacheKeyRoute(a,b);
+        if(routeCache.has(ck)) return routeCache.get(ck);
+
+        const url =
+          API_BASE + `/api/route?lat1=${encodeURIComponent(lat1)}&lon1=${encodeURIComponent(lon1)}` +
+          `&lat2=${encodeURIComponent(lat2)}&lon2=${encodeURIComponent(lon2)}`;
+
+        const res = await fetchWithTimeout(url, 15000);
+        if(!res.ok) throw new Error('OSRM request failed');
+        const j = await res.json();
+        if(!j || j.code !== 'Ok' || !j.routes || !j.routes.length) throw new Error('OSRM no route');
+
+        const r = j.routes[0];
+        const distKm = (r.distance || 0) / 1000;
+
+        clearRoute();
+        routeLayer = L.geoJSON(r.geometry, { style: { weight: 5, opacity: 0.9 } }).addTo(map);
+        map.fitBounds(routeLayer.getBounds(), { padding:[60,60] });
+
+        setTimeout(safeInvalidate, 60);
+        setTimeout(safeInvalidate, 220);
+
+        routeCache.set(ck, distKm);
+        return distKm;
+      }
+
+      // Note: values are still "per 100km" in the chosen currency (USD here)
+      const tollPer100km = {
+        DE:0, AT:6, CH:4, FR:10, IT:9, ES:10, NL:0, BE:0,
+        PL:6, CZ:4, SK:4, HU:5, SI:5, HR:5, RO:3, BG:3,
+        US:3, CA:2, GB:0, AU:5, RU:1
+      };
+      const vignetteFlat = {
+        AT: 11.50, CH: 40.00, CZ: 12.00, SK: 12.00, HU: 16.00, SI: 16.00, RO: 3.50, BG: 7.50
+      };
+
+      function estimateTollForCountry(cc, km){
+        const rate = (tollPer100km[cc] ?? 5);
+        return Math.round(((km / 100) * rate) * 100) / 100;
+      }
+      function estimateVignetteForCountry(cc){
+        const v = vignetteFlat[cc];
+        return Number.isFinite(v) ? v : 0;
+      }
+
+      function renderTollBreakdown(){
+        if(!routeKm || !startCC){
+          tollTotalEl.textContent = '—';
+          vignetteTotalEl.textContent = '—';
+          tollVignetteSumEl.textContent = '—';
+          tollBreakdownEl.textContent = 'Enter start/destination and calculate the distance.';
+          return;
+        }
+
+        const isCross = (startCC && destCC && startCC !== destCC);
+        const parts = [];
+        if(!isCross){
+          parts.push({ cc: startCC, km: routeKm });
+        } else {
+          const half = routeKm / 2;
+          parts.push({ cc: startCC, km: half });
+          parts.push({ cc: destCC, km: routeKm - half });
+        }
+
+        let tollSum = 0;
+        let vignetteSum = 0;
+        const seen = new Set();
+
+        const lines = parts.map(p => {
+          const name = getCountryName(p.cc);
+          const toll = estimateTollForCountry(p.cc, p.km);
+          tollSum += toll;
+
+          if(!seen.has(p.cc)){
+            vignetteSum += estimateVignetteForCountry(p.cc);
+            seen.add(p.cc);
+          }
+
+          const rate = (tollPer100km[p.cc] ?? 5);
+          return `• ${name} (${p.cc}): ${fmtL(p.km)} km × ${fmt(rate)} $/100 km ≈ <b>${fmtMoney(toll)}</b>`;
+        });
+
+        lastTollTotal = tollSum;
+        lastVignetteTotal = vignetteSum;
+
+        tollTotalEl.textContent = fmtMoney(tollSum);
+        vignetteTotalEl.textContent = fmtMoney(vignetteSum);
+        tollVignetteSumEl.textContent = fmtMoney(tollSum + vignetteSum);
+
+        tollBreakdownEl.innerHTML =
+          lines.join('<br>') +
+          (vignetteSum > 0 ? `<br><br><span class="small">Vignettes (fixed, once per country): ${fmtMoney(vignetteSum)}</span>` : '') +
+          `<br><span class="small">Note: country split is a quick estimate (50/50 when countries differ).</span>`;
+      }
+
+      const btnGeocode = document.getElementById('btn-geocode');
+
+      btnGeocode.addEventListener('click', async () => {
+        const now = Date.now();
+        if(isRouting) return;
+        if(now - lastRouteClick < 900) return;
+        lastRouteClick = now;
+
+        const from = placeFromEl.value.trim();
+        const to = placeToEl.value.trim();
+
+        if(!from || !to){
+          tollInfoEl.textContent = 'Please enter start and destination.';
+          tollInfoEl.classList.add('error');
+          return;
+        }
+
+        try{
+          isRouting = true;
+          btnGeocode.disabled = true;
+
+          tollInfoEl.textContent = 'Calculating route…';
+          tollInfoEl.classList.remove('error');
+
+          const a = await geocode(from);
+          const b = await geocode(to);
+          if(!a || !b){
+            tollInfoEl.textContent = 'Please enter city/place + country (e.g. "Paris, France"), not only the country.';
+            tollInfoEl.classList.add('error');
+            return;
+          }
+
+          startCC = await reverseCountryCode(a.lat, a.lon);
+          destCC  = await reverseCountryCode(b.lat, b.lon);
+
+          const startName = getCountryName(startCC);
+          const destName  = getCountryName(destCC);
+
+          badgeEl.innerHTML =
+            `Detected: <b>Start</b> ${startName} (${startCC||'—'}), <b>Destination</b> ${destName} (${destCC||'—'})` +
+            (!countryPrices ? `<br><span class="error">⚠ Missing price file: /prices/country-prices-usd.js</span>` : '');
+
+          if(startCC && destCC && startCC !== destCC) priceModeWrap.style.display = 'block';
+          else priceModeWrap.style.display = 'none';
+
+          clearMarkers();
+          addMarker(a.lat,a.lon,'Start: ' + a.name);
+          addMarker(b.lat,b.lon,'Destination: ' + b.name);
+
+          routeKm = await getRouteOSRM(a.lat, a.lon, b.lat, b.lon);
+          kmEl.value = Math.round(routeKm*10)/10;
+
+          await applyDetectedPrices(a.lat, a.lon, b.lat, b.lon);
+          renderTollBreakdown();
+
+          tollInfoEl.textContent = `Distance: ${fmtL(routeKm)} km.`;
+          setTimeout(safeInvalidate, 120);
+
+        }catch(e){
+          tollInfoEl.textContent = 'Error routing/geocoding. Please check your connection or try a different place.';
+          tollInfoEl.classList.add('error');
+        }finally{
+          isRouting = false;
+          btnGeocode.disabled = false;
+        }
+      });
+
+      document.getElementById('btn-clearmap').addEventListener('click', () => {
+        clearMarkers(); clearRoute();
+        map.setView([51.1657, 10.4515], 5);
+
+        placeFromEl.value = '';
+        placeToEl.value = '';
+        badgeEl.textContent = '';
+        priceModeWrap.style.display = 'none';
+
+        startCC = null; destCC = null;
+        routeKm = 0;
+
+        tollInfoEl.textContent = '';
+        tollInfoEl.classList.remove('error');
+
+        lastTollTotal = 0;
+        lastVignetteTotal = 0;
+        renderTollBreakdown();
+
+        setTimeout(safeInvalidate, 120);
+      });
+
+      document.getElementById('km-inc').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.round((cur+1)*10)/10; });
+      document.getElementById('km-dec').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.max(0, Math.round((cur-1)*10)/10); });
+
+      function estimateRunningPer100(consumptionL100){
+        if(!Number.isFinite(consumptionL100) || consumptionL100 <= 0) return 12.0;
+        const est = 1.2 * consumptionL100 + 3.5;
+        return Math.max(5, Math.min(30, Math.round(est * 10) / 10));
+      }
+
+      document.getElementById('calc-fuel').addEventListener('click', () => {
+        const km = parse(kmEl.value);
+        const v  = parse(consumptionEl.value);
+        let p    = parse(priceEl.value);
+        const passengers = Math.max(1, Math.floor(parse(passengersEl.value) || 1));
+
+        if(!Number.isFinite(p)){
+          p = (fuelPrices[fuelTypeEl.value] ?? NaN);
+        }
+        if(Number.isNaN(km) || km <= 0 || Number.isNaN(v) || Number.isNaN(p)){
+          priceInfoEl.textContent = 'Please enter distance, consumption and price correctly.';
+          priceInfoEl.classList.add('error');
+          return;
+        }
+        priceInfoEl.textContent = '';
+        priceInfoEl.classList.remove('error');
+
+        const liters = (km * v) / 100;
+        const costFuel = liters * p;
+
+        const runningPer100Base = estimateRunningPer100(v);
+        const tollPer100 = (km > 0) ? ((lastTollTotal + lastVignetteTotal) / km * 100) : 0;
+        const runningPer100Total = runningPer100Base + (tollPer100 || 0);
+
+        const costRunning = (km * runningPer100Total) / 100;
+        const total = costFuel + costRunning;
+        const perPerson = total / passengers;
+        const avgPer100 = (total / km) * 100;
+
+        litersEl.textContent = fmt(liters) + ' L';
+        costFuelEl.textContent = fmtMoney(costFuel);
+        costRunningEl.textContent = fmtMoney(costRunning);
+        costTotalEl.textContent = fmtMoney(total);
+        costPersonEl.textContent = fmtMoney(perPerson);
+        avg100El.textContent = fmtMoney(avgPer100) + ' /100km';
+        runningEstEl.textContent = fmtMoney(runningPer100Total) + ' /100km';
+
+        const isDiesel = (fuelTypeEl.value === 'diesel');
+        const co2FactorKgPerL = isDiesel ? 2.65 : 2.33;
+        const co2Kg = liters * co2FactorKgPerL;
+        const co2PerPersonKg = co2Kg / passengers;
+
+        co2TotalEl.textContent = fmt(co2Kg) + ' kg';
+        co2PerPersonEl.textContent = fmt(co2PerPersonKg) + ' kg';
+
+        const gPerKmCar = 164;
+        const gPerPkmRail = 26;
+        const gPerPkmFlight = 290;
+
+        const cmpCarKg = (km * gPerKmCar) / 1000;
+        const cmpRailKg = (km * passengers * gPerPkmRail) / 1000;
+        const cmpFlightKg = (km * passengers * gPerPkmFlight) / 1000;
+
+        cmpCarEl.textContent = fmt(cmpCarKg) + ' kg';
+        cmpRailEl.textContent = fmt(cmpRailKg) + ' kg';
+        cmpFlightEl.textContent = fmt(cmpFlightKg) + ' kg';
+      });
+
+      document.getElementById('reset-fuel').addEventListener('click', () => {
+        kmEl.value = '';
+        consumptionEl.value = '7.5';
+        priceEl.value = '';
+        passengersEl.value = 1;
+
+        litersEl.textContent='0.00 L';
+        costFuelEl.textContent='$0.00';
+        costRunningEl.textContent='$0.00';
+        costTotalEl.textContent='$0.00';
+        costPersonEl.textContent='$0.00';
+        avg100El.textContent='$0.00 /100km';
+        runningEstEl.textContent='—';
+
+        co2TotalEl.textContent='—';
+        co2PerPersonEl.textContent='—';
+        cmpCarEl.textContent='—';
+        cmpRailEl.textContent='—';
+        cmpFlightEl.textContent='—';
+
+        userEditedPrice = false;
+        fuelPrices = { ...fallbackPrices };
+        renderAvgPrices();
+
+        lastTollTotal = 0;
+        lastVignetteTotal = 0;
+        renderTollBreakdown();
+
+        clearMarkers();
+        clearRoute();
+        map.setView([51.1657, 10.4515],5);
+        setTimeout(safeInvalidate, 120);
+      });
+
+      renderTollBreakdown();
+    });
+  </script>
+
+  <!-- ✅ Active Nav -->
+  <script src="/assets/js/active-nav.js" defer></script>
+
+  <!-- ✅ Cookies -->
+  <script src="/assets/js/cookies.js" defer></script>
+
+  <!-- ✅ Header/Footer Loader + Mobile Nav init -->
+  <script>
+    async function loadPart(id, url){
+      const el = document.getElementById(id);
+      if(!el) return false;
+      try{
+        const r = await fetch(url, { cache: 'no-cache' });
+        el.innerHTML = await r.text();
+        return true;
+      }catch(e){
+        console.warn('Could not load:', url);
+        return false;
+      }
+    }
+
+    function initMobileNav(){
+      const header = document.querySelector('.site-header');
+      const btn = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if(!header || !btn || !nav) return;
+
+      const close = () => {
+        header.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+      };
+
+      const open = () => {
+        header.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Close menu');
+      };
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        header.classList.contains('is-open') ? close() : open();
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!header.classList.contains('is-open')) return;
+        if(header.contains(e.target)) return;
+        close();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') close();
+      });
+
+      window.addEventListener('resize', () => {
+        if(window.innerWidth > 720) close();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadPart('site-header', '/practice/header.html');
+      await loadPart('site-footer', '/practice/footer.html');
+      initMobileNav();
+    });
+  </script>
+
 </body>
 </html>
