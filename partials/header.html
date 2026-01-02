@@ -1,23 +1,25 @@
-<header class="site-header" style="position:static !important; top:auto !important;">
-  <div class="header-inner" style="position:static !important; top:auto !important;">
-<div style="background:red;color:white;padding:6px;font-weight:900;">
-  DEBUG HEADER LOADED
-</div>
-    
-  <div style="height:1200px;background:rgba(0,0,0,0.06);margin:10px 0;">
-  SCROLL TEST (kannst du später löschen)
-  </div>
-    
+<header class="site-header">
   <div class="header-inner">
     <a href="/" class="logo-title">
-      <img src="/logo.png" alt="Fuel Cost Calculator Logo">
-      <span class="site-title">Fuel Cost Calculator – Petrol & Trip Cost Calculator</span>
+      <img src="/logo.png" alt="PetrolCostCalculator Logo">
+      <span class="mobile-site-title">Fuel Cost Calculator</span>
+      <span class="site-title">Fuel Cost Calculator – Calculate Petrol & Travel Costs</span>
     </a>
 
-    <nav class="tabs" role="tablist" aria-label="Main navigation">
-      <button role="tab" data-target="fuel" aria-selected="true">Fuel Costs</button>
-      <button role="tab" data-target="calc" aria-selected="false">Calculator</button>
-      <a class="lang-link" href="https://spritkosten-check.de/" hreflang="de" lang="de" title="Deutsch">DE</a>
+    <!-- Hamburger: only visible on mobile (via CSS) -->
+    <button class="nav-toggle" type="button"
+      aria-label="Open menu"
+      aria-controls="site-nav"
+      aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="tabs" id="site-nav" aria-label="Navigation">
+      <a class="tablink" href="/">Fuel Cost</a>
+      <a class="tablink" href="/calculator.html">Calculator</a>
+      <a class="tablink" href="/guide.html">Guide</a>
+      <a class="tablink" href="/faq.html">FAQ</a>
+      <a class="lang-link" href="https://spritkosten-check.de/" hreflang="de" lang="de">DE</a>
     </nav>
   </div>
 </header>
