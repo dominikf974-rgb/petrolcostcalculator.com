@@ -4,7 +4,7 @@
     if(!u) return '';
     try{ if(u.startsWith('http')) u = new URL(u).pathname; }catch(e){}
     if(!u.startsWith('/')) u = '/' + u;
-    if(u === '/en-au/index.html') u = '/';
+    if(u === '/index.html') u = '/';
     if(u.length > 1 && u.endsWith('/')) u = u.slice(0,-1);
     return u;
   }
