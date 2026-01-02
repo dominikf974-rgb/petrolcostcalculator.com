@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Calculator – Quick maths (Add, subtract, multiply, divide)</title>
+  <meta name="description" content="Simple calculator in the same design: calculate directly as an expression (e.g. 8 × 12 or (15.5 + 2) / 3) – mobile friendly." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://spritkosten-check.de/taschenrechner.html" />
+  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/taschenrechner.html" />
+  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-02" />
+
+  <style>
+    /* Calculator page-only */
+    .calc-grid{
+      display:grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,360px);
+      gap:14px;
+      align-items:start;
+    }
+    @media(max-width:980px){
+      .calc-grid{ grid-template-columns:1fr; }
+    }
+
+    .expr-input{
+      font-size:1.15rem;
+      padding:.8rem .9rem;
+    }
+
+    .big-result{
+      margin-top:12px;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,0.10);
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+    }
+    .big-result .label{
+      color:var(--muted);
+      font-weight:800;
+      font-size:.9rem;
+      margin-bottom:6px;
+    }
+    .big-result .value{
+      font-weight:900;
+      color:var(--accent-2);
+      font-size:1.6rem;
+      line-height:1.15;
+      word-break:break-word;
+    }
+    .big-result .meta{
+      margin-top:10px;
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .keypad{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    /* Desktop: full keypad */
+    .keypad-full{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap:10px;
+    }
+
+    /* Mobile: mini keypad (only + − × ÷ =) */
+    .keypad-mini{ display:none; }
+
+    .keypad .btn{
+      min-width:unset;
+      width:100%;
+      height:48px;
+      font-size:1.05rem;
+    }
+    .keypad .btn.secondary{
+      box-shadow:none;
+    }
+    .keypad .wide{
+      grid-column: span 2;
+    }
+
+    @media(max-width:720px){
+      .expr-input{ font-size:1.1rem; }
+      .big-result .value{ font-size:1.8rem; }
+      .keypad .btn{ height:54px; font-size:1.12rem; }
+    }
+
+    /* Mobile layout: show only mini keypad */
+    @media(max-width:980px){
+      .keypad-full{ display:none; }
+      .keypad-mini{
+        display:grid;
+        grid-template-columns: repeat(5, minmax(0,1fr));
+        gap:10px;
+      }
+    }
+
+    .calc-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    @media(max-width:720px){
+      .calc-actions{ flex-direction:column; }
+      .calc-actions .btn{ width:100%; }
+    }
+  </style>
+</head>
+
+<body data-page="calc">
+
+  <!-- Header via loader -->
+  <div id="site-header"></div>
+
+  <main class="page-container" aria-label="Page content">
+
+    <!-- Ad: Top -->
+    <div class="ad-block" aria-label="Advertising">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="7158625008"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
+
+    <section class="card" aria-label="Calculator">
+      <h2>Calculator</h2>
+      <p class="small" style="margin-top:0">
+        Calculate directly as an expression — e.g. <b>8 × 12</b>, <b>15.5 + 2</b> or <b>(120 ÷ 3) + 7</b>.
+        A comma also works (it will be treated as a decimal point).
+      </p>
+
+      <div class="calc-grid">
+        <!-- Left: Input + Result -->
+        <div>
+          <label for="expr">Expression</label>
+          <input id="expr" class="expr-input" type="text" inputmode="text" autocomplete="off"
+                 placeholder="e.g. 8 × 12 or (15.5 + 2) ÷ 3" aria-label="Enter expression" />
+
+          <div class="big-result" aria-live="polite">
+            <div class="label">Result</div>
+            <div class="value" id="result">–</div>
+            <div class="meta" id="hint">
+              Tip: You can use <b>x</b> or <b>×</b> for multiply and <b>/</b> or <b>÷</b> for divide.
+            </div>
+          </div>
+
+          <!-- Keep these buttons -->
+          <div class="calc-actions">
+            <button id="btn-eq" class="btn large" type="button">Calculate</button>
+            <button id="btn-clear" class="btn secondary large" type="button">Reset</button>
+          </div>
+
+          <!-- IMPORTANT: The 3 link buttons (FAQ/Guide/Fuel costs) are intentionally removed here -->
+        </div>
+
+        <!-- Right: Keypad -->
+        <div aria-label="Keypad">
+          <div class="keypad">
+
+            <!-- Desktop full keypad -->
+            <div class="keypad-full">
+              <button class="btn secondary" data-k="(" type="button">(</button>
+              <button class="btn secondary" data-k=")" type="button">)</button>
+              <button class="btn secondary" id="btn-back" type="button">⌫</button>
+              <button class="btn secondary" data-k=" ÷ " type="button">÷</button>
+
+              <button class="btn" data-k="7" type="button">7</button>
+              <button class="btn" data-k="8" type="button">8</button>
+              <button class="btn" data-k="9" type="button">9</button>
+              <button class="btn secondary" data-k=" × " type="button">×</button>
+
+              <button class="btn" data-k="4" type="button">4</button>
+              <button class="btn" data-k="5" type="button">5</button>
+              <button class="btn" data-k="6" type="button">6</button>
+              <button class="btn secondary" data-k=" − " type="button">−</button>
+
+              <button class="btn" data-k="1" type="button">1</button>
+              <button class="btn" data-k="2" type="button">2</button>
+              <button class="btn" data-k="3" type="button">3</button>
+              <button class="btn secondary" data-k=" + " type="button">+</button>
+
+              <button class="btn wide" data-k="0" type="button">0</button>
+              <button class="btn" data-k="," type="button">,</button>
+              <button class="btn wide" id="btn-eq-2" type="button">=</button>
+            </div>
+
+            <!-- Mobile mini keypad (operators + =) -->
+            <div class="keypad-mini">
+              <button class="btn secondary" data-k=" + " type="button">+</button>
+              <button class="btn secondary" data-k=" − " type="button">−</button>
+              <button class="btn secondary" data-k=" × " type="button">×</button>
+              <button class="btn secondary" data-k=" ÷ " type="button">÷</button>
+              <button class="btn" id="btn-eq-mini" type="button">=</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad: Middle -->
+    <div class="ad-block" aria-label="Advertising">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3355111369"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
+
+    <!-- Tips block -->
+    <section class="card" aria-label="Tips to save fuel">
+      <h2>Tips: Save fuel & reduce trip costs</h2>
+      <p class="small" style="margin-top:0">
+        Small changes can cut costs quickly: correct tyre pressure, steady speeds,
+        and realistic consumption figures. If you’re travelling together, split costs fairly per person.
+      </p>
+      <ul style="margin:0;padding-left:18px;line-height:1.7">
+        <li><strong>Drive smoothly:</strong> avoid hard acceleration and braking.</li>
+        <li><strong>Check tyre pressure:</strong> low pressure increases consumption.</li>
+        <li><strong>Reduce weight:</strong> remove unnecessary load, use a roof box only when needed.</li>
+        <li><strong>Split costs:</strong> use “People” for a fair per-person amount.</li>
+      </ul>
+
+      <div style="margin-top:18px;display:flex;justify-content:center">
+        <a class="btn large" href="/ratgeber.html" style="max-width:320px">Go to the guide</a>
+      </div>
+    </section>
+
+    <!-- Countries block (AU localised) -->
+    <section class="card countries-section" aria-label="Fuel cost calculator by region">
+      <h2>Fuel cost calculator by region</h2>
+      <p class="small" style="margin:0 0 10px 0">Works across Australia and worldwide. Popular picks:</p>
+
+      <div class="countries-grid">
+        <div class="country-card">
+          <h3>Australia</h3>
+          <p>Estimate fuel costs, total trip costs and split expenses fairly — ideal for long Aussie drives.</p>
+        </div>
+        <div class="country-card">
+          <h3>New South Wales</h3>
+          <p>Great for Sydney trips, coastal routes and motorway drives — quick fuel and cost estimates.</p>
+        </div>
+        <div class="country-card">
+          <h3>Queensland</h3>
+          <p>Perfect for Sunshine Coast, Gold Coast and inland routes — plan distance and fuel with confidence.</p>
+        </div>
+        <div class="country-card">
+          <h3>Victoria</h3>
+          <p>Ideal for Melbourne travel, regional touring and iconic scenic drives like the Great Ocean Road.</p>
+        </div>
+        <div class="country-card">
+          <h3>Western Australia</h3>
+          <p>Built for very long distances, remote fuel stops and realistic cost planning across WA.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad: Bottom -->
+    <div class="ad-block" aria-label="Advertising">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3048839661"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+    </div>
+
+  </main>
+
+  <!-- Footer via loader -->
+  <div id="site-footer"></div>
+
+  <!-- Calculator Script -->
+  <script>
+    (function(){
+      const exprEl = document.getElementById('expr');
+      const resEl = document.getElementById('result');
+      const hintEl = document.getElementById('hint');
+
+      function normalize(input){
+        let s = String(input ?? '');
+        s = s.replace(/,/g, '.');            // comma -> dot
+        s = s.replace(/[x×]/gi, '*');        // x/× -> *
+        s = s.replace(/[÷]/g, '/');          // ÷ -> /
+        s = s.replace(/[−–]/g, '-');         // minus variants -> -
+        // allowed chars: digits, dot, ops, parentheses, spaces
+        if(!/^[0-9+\-*/().\s]*$/.test(s)) return null;
+        return s;
+      }
+
+      function formatNumber(n){
+        if(!Number.isFinite(n)) return '–';
+        const s = Number.parseFloat(n.toFixed(8)).toString();
+        return s; // AU: decimal point
+      }
+
+      function evaluate(){
+        const raw = exprEl.value.trim();
+        if(!raw){
+          resEl.textContent = '–';
+          hintEl.textContent = 'Tip: e.g. 8 × 12 or (15.5 + 2) ÷ 3';
+          return;
+        }
+
+        const s = normalize(raw);
+        if(s == null){
+          resEl.textContent = '–';
+          hintEl.textContent = 'Invalid characters. Allowed: numbers, + − × ÷, brackets, comma/dot.';
+          return;
+        }
+
+        try{
+          const out = Function('"use strict"; return (' + s + ');')();
+          if(typeof out !== 'number' || !Number.isFinite(out)){
+            resEl.textContent = String(out) === 'Infinity' ? '∞' : '–';
+            hintEl.textContent = (String(out) === 'Infinity') ? 'Division by zero results in ∞.' : 'Please check the expression.';
+            return;
+          }
+          resEl.textContent = formatNumber(out);
+          hintEl.textContent = 'OK. You can keep calculating or adjust the expression.';
+        }catch(e){
+          resEl.textContent = '–';
+          hintEl.textContent = 'Expression error. Example: (12 + 3) × 4';
+        }
+      }
+
+      function insertText(t){
+        const el = exprEl;
+        const start = el.selectionStart ?? el.value.length;
+        const end = el.selectionEnd ?? el.value.length;
+        const before = el.value.slice(0, start);
+        const after = el.value.slice(end);
+        el.value = before + t + after;
+        const pos = start + t.length;
+        el.setSelectionRange(pos, pos);
+        el.focus();
+      }
+
+      function backspace(){
+        const el = exprEl;
+        const start = el.selectionStart ?? 0;
+        const end = el.selectionEnd ?? 0;
+        if(start !== end){
+          const before = el.value.slice(0, start);
+          const after = el.value.slice(end);
+          el.value = before + after;
+          el.setSelectionRange(start, start);
+          el.focus();
+          return;
+        }
+        if(start <= 0) return;
+        el.value = el.value.slice(0, start - 1) + el.value.slice(end);
+        el.setSelectionRange(start - 1, start - 1);
+        el.focus();
+      }
+
+      // Buttons
+      document.getElementById('btn-eq').addEventListener('click', evaluate);
+      document.getElementById('btn-eq-2').addEventListener('click', evaluate);
+
+      const eqMini = document.getElementById('btn-eq-mini');
+      if(eqMini) eqMini.addEventListener('click', evaluate);
+
+      document.getElementById('btn-clear').addEventListener('click', () => {
+        exprEl.value = '';
+        resEl.textContent = '–';
+        hintEl.textContent = 'Tip: e.g. 8 × 12 or (15.5 + 2) ÷ 3';
+        exprEl.focus();
+      });
+
+      const backBtn = document.getElementById('btn-back');
+      if(backBtn) backBtn.addEventListener('click', backspace);
+
+      // Keypad input
+      document.querySelectorAll('[data-k]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const k = btn.getAttribute('data-k') || '';
+          insertText(k);
+        });
+      });
+
+      // Enter = calculate
+      exprEl.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter'){
+          e.preventDefault();
+          evaluate();
+        }
+      });
+
+      setTimeout(() => exprEl.focus(), 50);
+    })();
+  </script>
+
+  <!-- Active Tab -->
+  <script src="/assets/js/active-nav.js" defer></script>
+
+  <!-- Header/Footer Loader + Mobile Nav + Cookies -->
+  <script>
+    async function loadPart(id, url){
+      const el = document.getElementById(id);
+      if(!el) return false;
+      try{
+        const r = await fetch(url, { cache: 'no-cache' });
+        el.innerHTML = await r.text();
+        return true;
+      }catch(e){
+        console.warn('Could not load:', url);
+        return false;
+      }
+    }
+
+    function initMobileNav(){
+      const header = document.querySelector('.site-header');
+      const btn = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if(!header || !btn || !nav) return;
+
+      const close = () => {
+        header.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+      };
+
+      const open = () => {
+        header.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Close menu');
+      };
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        header.classList.contains('is-open') ? close() : open();
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!header.classList.contains('is-open')) return;
+        if(header.contains(e.target)) return;
+        close();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') close();
+      });
+
+      window.addEventListener('resize', () => {
+        if(window.innerWidth > 720) close();
+      });
+    }
+
+    function loadCookiesAfterFooter(){
+      const s = document.createElement('script');
+      s.src = '/assets/js/cookies.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadPart('site-header', '/partials/header.html');
+      initMobileNav();
+
+      await loadPart('site-footer', '/partials/footer.html');
+      loadCookiesAfterFooter();
+    });
+  </script>
+
+</body>
+</html>
