@@ -5,145 +5,348 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>FAQ | Fuel Cost Calculator</title>
-  <meta name="description" content="FAQ for Fuel Cost Calculator: fuel cost formula, MPG vs L/100km, toll estimates, and tips for accurate results." />
+  <title>FAQ – Fuel Cost Calculator | PetrolCostCalculator.com</title>
+  <meta name="description" content="FAQ for the fuel cost calculator: fuel costs, consumption, route, tolls/vignettes, CO₂ and cost per person. Answers to the most important questions." />
   <meta name="robots" content="index, follow" />
+
   <link rel="canonical" href="https://petrolcostcalculator.com/faq.html" />
+  <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/faq.html" />
+  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/faq.html" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
-    crossorigin="anonymous"></script>
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="assets/css/style.css?v=2026-02" />
+
+  <!-- FAQ Schema (20 questions) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"How do I calculate fuel costs?","acceptedAnswer":{"@type":"Answer","text":"Fuel cost = (Distance (km) × Consumption (L/100 km) ÷ 100) × Price per litre."}},
+      {"@type":"Question","name":"What does consumption in L/100 km mean?","acceptedAnswer":{"@type":"Answer","text":"This is your car’s fuel consumption per 100 km. You can find it in the onboard computer or the vehicle specifications."}},
+      {"@type":"Question","name":"Can I calculate the cost per person?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the number of people (including the driver) and the calculator will split the total cost per person."}},
+      {"@type":"Question","name":"Can I enter start and destination instead of kilometers?","acceptedAnswer":{"@type":"Answer","text":"Yes. With start/destination a road route is calculated and the distance is filled in automatically."}},
+      {"@type":"Question","name":"How accurate is the toll and vignette estimate?","acceptedAnswer":{"@type":"Answer","text":"It is an approximation by country. Real costs depend on the route, vehicle class and local rules."}},
+      {"@type":"Question","name":"Which fuel types are supported?","acceptedAnswer":{"@type":"Answer","text":"Petrol (E10/91), Premium (E5/95) and Diesel."}},
+      {"@type":"Question","name":"Can I change the fuel price manually?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can override the price at any time or reset it to the default value."}},
+      {"@type":"Question","name":"Where do the fuel prices come from?","acceptedAnswer":{"@type":"Answer","text":"Depending on the country, average values are used. For Germany, an additional live source can be used (if available)."}},
+      {"@type":"Question","name":"Why do real costs differ from the calculation?","acceptedAnswer":{"@type":"Answer","text":"Driving style, traffic, weather, load, tyres, actual prices and toll details affect real-world costs."}},
+      {"@type":"Question","name":"What are “running costs”?","acceptedAnswer":{"@type":"Answer","text":"An approximation for maintenance, wear, depreciation and insurance, plus a toll/vignette estimate."}},
+      {"@type":"Question","name":"Can I calculate a round trip?","acceptedAnswer":{"@type":"Answer","text":"Yes. Either double the kilometers or calculate the route separately for outbound and return."}},
+      {"@type":"Question","name":"How is the CO₂ balance calculated?","acceptedAnswer":{"@type":"Answer","text":"CO₂ is estimated based on consumption (kg CO₂ per litre), depending on petrol or diesel."}},
+      {"@type":"Question","name":"What do the CO₂ comparison values (car/train/flight) mean?","acceptedAnswer":{"@type":"Answer","text":"These are guideline values for orientation. Train/flight are typically per seat, car is per vehicle."}},
+      {"@type":"Question","name":"Does the calculator work worldwide?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can select places worldwide. Prices/tolls are stored as approximations depending on the country."}},
+      {"@type":"Question","name":"Why is it split 50/50 when changing countries?","acceptedAnswer":{"@type":"Answer","text":"It’s a quick estimate when the start and destination countries differ. Exact values would require the precise country-by-country route."}},
+      {"@type":"Question","name":"What to do if no route is found?","acceptedAnswer":{"@type":"Answer","text":"Enter the place more precisely (city + country), check spelling, or try a nearby location."}},
+      {"@type":"Question","name":"Why is the map sometimes white or loading oddly?","acceptedAnswer":{"@type":"Answer","text":"Usually a resize/viewport issue or a slow connection. Reloading or “Reset map” often helps."}},
+      {"@type":"Question","name":"Can I use the calculator without the map?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can simply enter kilometers, consumption and price—without start/destination."}},
+      {"@type":"Question","name":"Why are values like “$/100 km” useful?","acceptedAnswer":{"@type":"Answer","text":"They help you compare vehicles or trips more easily, independent of the trip distance."}},
+      {"@type":"Question","name":"Do you store my inputs?","acceptedAnswer":{"@type":"Answer","text":"The calculator works without registration. Inputs are generally not stored server-side; cookies only relate to consent/ads."}}
+    ]
+  }
+  </script>
 
   <style>
-    :root{--bg:#f6f8fa;--card:#fff;--muted:#4b5563;--text:#0b1220;--accent:#0ea5a3;--accent-2:#4f46e5;--max-width:970px}
-    *{box-sizing:border-box}
-    html,body{height:100%;width:100%;overflow-x:hidden}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:linear-gradient(180deg,var(--bg) 0%, #e9eef5 100%);
-      color:var(--text);display:flex;flex-direction:column;min-height:100vh}
-    header{position:sticky;top:0;z-index:1000;background:#fff;box-shadow:0 2px 8px rgba(15,23,42,0.08);
-      padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .logo-title{display:flex;align-items:center;gap:12px}
-    .logo-title img{height:48px;width:auto}
-    .brand-text h1{margin:0;font-size:1.3rem;line-height:1.2}
-    .brand-text .subtitle{font-size:.75rem;color:var(--muted);margin:0}
-    .wrap{width:100%;max-width:var(--max-width);margin:0 auto;padding:20px 16px}
-    .card{background:var(--card);border-radius:10px;padding:24px;box-shadow:0 8px 24px rgba(15,23,42,0.06);
-      border:1px solid rgba(15,23,42,0.04);margin-bottom:20px}
-    h1{font-size:1.8rem;margin:0 0 12px 0}
-    p{line-height:1.7;margin:12px 0}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .btn-back{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700}
-    details{margin:10px 0;background:#f9fafb;border:1px solid rgba(15,23,42,0.06);border-radius:10px;padding:12px}
-    summary{cursor:pointer;font-weight:800;color:var(--accent-2)}
-    .ad-block{margin:16px 0}
-    footer{margin-top:auto;padding:20px 16px;text-align:center;font-size:.85rem;color:var(--muted)}
-    footer a{color:inherit;text-decoration:none;margin:0 8px}
-    footer a:hover{text-decoration:underline}
+    /* FAQ specific: clean, fits your system */
+    .faq-wrap{ display:flex; flex-direction:column; gap:12px; }
+
+    .faq-item{
+      border:1px solid rgba(15,23,42,0.10);
+      border-radius:14px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+    }
+
+    .faq-item summary{
+      cursor:pointer;
+      list-style:none;
+      padding:14px 14px;
+      font-weight:900;
+      color:var(--accent-2);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .faq-item summary::-webkit-details-marker{ display:none; }
+
+    .faq-item summary .chev{
+      font-weight:900;
+      opacity:.7;
+      transform:rotate(0deg);
+      transition:transform .18s ease;
+      user-select:none;
+    }
+    .faq-item[open] summary .chev{ transform:rotate(180deg); }
+
+    .faq-item .answer{
+      padding:0 14px 14px 14px;
+      color:var(--text);
+      line-height:1.65;
+    }
+
+    .faq-cta{
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+    }
+    .faq-cta p{ margin:0; }
+    .faq-cta .btn{ min-width:260px; }
     @media(max-width:720px){
-      header{padding:10px 12px;flex-direction:column;align-items:flex-start}
-      .logo-title img{height:40px}
-      .brand-text h1{font-size:1.1rem}
-      .brand-text .subtitle{font-size:.7rem}
-      h1{font-size:1.4rem}
-      .card{padding:16px}
+      .faq-cta .btn{ width:100%; max-width:420px; }
     }
   </style>
 </head>
 
-<body>
-  <header>
-    <div class="logo-title">
-      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit">
-        <img src="/logo.png" alt="Fuel Cost Calculator logo" />
-        <div class="brand-text">
-          <h1>Fuel Cost Calculator</h1>
-          <p class="subtitle">PetrolCostCalculator.com</p>
-        </div>
-      </a>
-    </div>
-  </header>
+<body data-page="faq">
 
-  <div class="wrap">
-    <div class="card">
-      <h1>FAQ</h1>
+  <!-- Header via loader -->
+  <div id="site-header"></div>
 
-      <p style="margin:12px 0 20px 0;text-align:center">
-        <a href="index.html" class="btn-back">← Back to the calculator</a>
-      </p>
+  <main class="page-container" aria-label="Page content">
 
-      <p>Quick answers for the most common questions about fuel cost calculations.</p>
-
-      <div class="ad-block" aria-label="Advertisement">
+    <section class="card" aria-label="FAQ Intro">
+      <!-- Ad: FAQ Top -->
+      <div class="ad-block">
         <ins class="adsbygoogle"
           style="display:block"
           data-ad-client="ca-pub-4852698472752437"
           data-ad-slot="7158625008"
           data-ad-format="auto"
           data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
 
-      <details>
-        <summary>How do you calculate fuel cost?</summary>
-        <p><strong>(Distance × Consumption ÷ 100) × Fuel price</strong>. Use real consumption from your car/app for best accuracy.</p>
-      </details>
-
-      <details>
-        <summary>Why is my result different from other calculators?</summary>
-        <p>Different assumptions: fuel price, real consumption, route length, and whether “running costs” or toll estimates are included.</p>
-      </details>
-
-      <details>
-        <summary>Which consumption number should I use?</summary>
-        <p>Use your real average from the dashboard or tracking apps. Manufacturer values are often optimistic.</p>
-      </details>
-
-      <details>
-        <summary>Do you store my trip inputs?</summary>
-        <p>No account is required. Inputs are generally processed in your browser. If you use map search, your query is sent to the geocoding provider.</p>
-      </details>
-
-      <details>
-        <summary>Is the toll estimate accurate?</summary>
-        <p>Tolls vary by route, vehicle class and local rules. Any toll number is a rough estimate to help planning.</p>
-      </details>
-
-      <details>
-        <summary>How can I reduce fuel costs quickly?</summary>
-        <p>Keep tyre pressure correct, drive smoothly, reduce speed on highways, remove unnecessary weight, and compare local fuel prices.</p>
-      </details>
-
-      <div class="ad-block" aria-label="Advertisement">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-4852698472752437"
-          data-ad-slot="3048839661"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      </div>
-
-      <p style="text-align:center;margin:18px 0;">
-        <a href="guide.html" class="btn-back">Read the full guide</a>
+      <h2>FAQ – Frequently Asked Questions about the Fuel Cost Calculator</h2>
+      <p class="small" style="margin-top:0">
+        Click a question to expand the answer.
       </p>
-    </div>
-  </div>
+    </section>
 
-  <footer>
-    <a href="guide.html">Guide</a> |
-    <a href="faq.html">FAQ</a> |
-    <a href="contact.html">Contact</a> |
-    <a href="legal.html">Legal</a> |
-    <a href="privacy.html">Privacy</a>
-    <div style="margin-top:20px;font-size:0.7rem;opacity:0.4;color:var(--muted)">
-      PetrolCostCalculator.com · Dominik Fisher (Germany)
-    </div>
-  </footer>
+    <section class="card" aria-label="FAQ List">
+      <div class="faq-wrap">
+
+        <details class="faq-item">
+          <summary>How do I calculate fuel costs? <span class="chev">▼</span></summary>
+          <div class="answer">Fuel cost = (Distance (km) × Consumption (L/100 km) ÷ 100) × Price per litre.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What does consumption in L/100 km mean? <span class="chev">▼</span></summary>
+          <div class="answer">This is your car’s fuel consumption per 100 km—often shown in the onboard computer or in the vehicle specifications.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I calculate the cost per person? <span class="chev">▼</span></summary>
+          <div class="answer">Yes. Enter the number of people (including the driver) and the total cost will be calculated per person.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I enter start and destination instead of kilometers? <span class="chev">▼</span></summary>
+          <div class="answer">Yes. Start/destination are converted into a road route and the distance is filled in automatically.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How accurate is the toll and vignette estimate? <span class="chev">▼</span></summary>
+          <div class="answer">It is an approximation by country. Real costs depend on the route, vehicle class and local rules.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Which fuel types are supported? <span class="chev">▼</span></summary>
+          <div class="answer">Petrol (E10/91), Premium (E5/95) and Diesel.</div>
+        </details>
+
+        <!-- Ad: FAQ Mid -->
+        <div class="ad-block">
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-4852698472752437"
+            data-ad-slot="3355111369"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        </div>
+
+        <details class="faq-item">
+          <summary>Can I change the fuel price manually? <span class="chev">▼</span></summary>
+          <div class="answer">Yes. You can override the price at any time or reset it to the default.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Where do the fuel prices come from? <span class="chev">▼</span></summary>
+          <div class="answer">Depending on the country, average values are used. For Germany, an additional live source can be used (if available).</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why do real costs differ from the calculation? <span class="chev">▼</span></summary>
+          <div class="answer">Driving style, traffic, weather, load, tyres, actual prices and toll details affect real-world costs.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What are “running costs”? <span class="chev">▼</span></summary>
+          <div class="answer">An approximation for maintenance, wear, depreciation and insurance, plus a toll/vignette estimate.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I calculate a round trip? <span class="chev">▼</span></summary>
+          <div class="answer">Yes. Either double the kilometers or calculate the route separately for outbound and return.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How is the CO₂ balance calculated? <span class="chev">▼</span></summary>
+          <div class="answer">CO₂ is estimated from consumption (kg CO₂ per litre), depending on petrol or diesel.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What do the CO₂ comparison values (car/train/flight) mean? <span class="chev">▼</span></summary>
+          <div class="answer">These are guideline values for orientation. Train/flight are typically per seat, car per vehicle.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Does the calculator work worldwide? <span class="chev">▼</span></summary>
+          <div class="answer">Yes. You can select places worldwide. Prices and toll/vignette are stored as approximations depending on the country.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why is it split 50/50 when changing countries? <span class="chev">▼</span></summary>
+          <div class="answer">It’s a quick estimate when the start and destination countries differ. Exact values would require the precise country-by-country route.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What to do if no route is found? <span class="chev">▼</span></summary>
+          <div class="answer">Enter the location more precisely (city + country), check spelling, or try a nearby place.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why is the map sometimes white or loading oddly? <span class="chev">▼</span></summary>
+          <div class="answer">Usually a resize/viewport issue or a slow connection. A reload or “Reset map” often helps.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I use the calculator without the map? <span class="chev">▼</span></summary>
+          <div class="answer">Yes. You can simply enter kilometers, consumption and price—without start/destination.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why are values “$/100 km” useful? <span class="chev">▼</span></summary>
+          <div class="answer">They help you compare vehicles or trips more easily, independent of the route length.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do you store my inputs? <span class="chev">▼</span></summary>
+          <div class="answer">The calculator works without registration. Inputs are generally not stored server-side; cookies only relate to consent/ads.</div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Which data should I enter for the best accuracy? <span class="chev">▼</span></summary>
+          <div class="answer">Use your real consumption (e.g. long-term average) and your current fuel price for the most reliable results.</div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- CTA E-mail -->
+    <section class="card" aria-label="Contact">
+      <div class="faq-cta">
+        <h2 style="margin-bottom:0;">Do you still have questions?</h2>
+        <p class="small">
+          Just email us—we’re happy to help.
+        </p>
+
+        <a class="btn large" href="mailto:info@petrolcostcalculator.com?subject=Question%20about%20the%20Fuel%20Cost%20Calculator&body=Hello%20PetrolCostCalculator%20Team%2C%0D%0A%0D%0AI%20have%20a%20question%3A%0D%0A%0D%0A%0D%0AKind%20regards">
+          Send email
+        </a>
+
+        <div class="small" style="opacity:.9">
+          Email: <a href="mailto:info@petrolcostcalculator.com">info@petrolcostcalculator.com</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer via loader -->
+  <div id="site-footer"></div>
+
+  <!-- Active Tab -->
+  <script src="/assets/js/active-nav.js" defer></script>
+
+  <script>
+    async function loadPart(id, url){
+      const el = document.getElementById(id);
+      if(!el) return false;
+      try{
+        const r = await fetch(url, { cache: 'no-cache' });
+        el.innerHTML = await r.text();
+        return true;
+      }catch(e){
+        console.warn('Could not load:', url);
+        return false;
+      }
+    }
+
+    function initMobileNav(){
+      const header = document.querySelector('.site-header');
+      const btn = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if(!header || !btn || !nav) return;
+
+      const close = () => {
+        header.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+      };
+
+      const open = () => {
+        header.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Close menu');
+      };
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        header.classList.contains('is-open') ? close() : open();
+      });
+
+      document.addEventListener('click', (e) => {
+        if(!header.classList.contains('is-open')) return;
+        if(header.contains(e.target)) return;
+        close();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') close();
+      });
+
+      window.addEventListener('resize', () => {
+        if(window.innerWidth > 720) close();
+      });
+    }
+
+    function loadCookiesAfterFooter(){
+      const s = document.createElement('script');
+      s.src = '/assets/js/cookies.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadPart('site-header', '/practice/header.html');
+      initMobileNav(); // ✅ This was missing on subpages
+
+      await loadPart('site-footer', '/practice/footer.html');
+      loadCookiesAfterFooter(); // ✅ Cookie banner safely on all pages
+    });
+  </script>
+
 </body>
 </html>
