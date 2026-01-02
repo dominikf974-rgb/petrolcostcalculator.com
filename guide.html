@@ -33,7 +33,7 @@
     "description":"A practical driver’s guide with tips, checklists and formulas for fuel costs, consumption, tolls and CO₂.",
     "author":{"@type":"Organization","name":"Petrol Cost Calculator"},
     "publisher":{"@type":"Organization","name":"Petrol Cost Calculator"},
-    "mainEntityOfPage":{"@type":"WebPage","@id":"https://petrolcostcalculator.com/guide.html"}
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://petrolcostcalculator.com/guide."}
   }
   </script>
 
@@ -295,7 +295,7 @@
 
       <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
         <a class="btn large" href="https://petrolcostcalculator.com/">Go to calculator</a>
-        <a class="btn secondary large" href="https://petrolcostcalculator.com/faq.html">Go to FAQ</a>
+        <a class="btn secondary large" href="https://petrolcostcalculator.com/faq.">Go to FAQ</a>
       </div>
     </section>
 
@@ -314,7 +314,7 @@
       if(!el) return false;
       try{
         const r = await fetch(url, { cache: 'no-cache' });
-        el.innerHTML = await r.text();
+        el.inner = await r.text();
         return true;
       }catch(e){
         console.warn('Could not load:', url);
@@ -368,13 +368,13 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await loadPart('site-header', '/practice/header.html');
+      await loadPart('site-header', '/practice/header.');
       initMobileNav();
 
-      await loadPart('site-footer', '/practice/footer.html');
+      await loadPart('site-footer', '/practice/footer.');
       loadCookiesAfterFooter();
     });
   </script>
 
 </body>
-</html>
+</>
