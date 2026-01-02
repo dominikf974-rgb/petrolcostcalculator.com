@@ -8,10 +8,11 @@
   <title>Guide – Save fuel, reduce consumption & plan trip costs</title>
   <meta name="description" content="A practical driver’s guide: save fuel, reduce consumption, plan road trips, understand tolls, and put CO₂ into context. Tips, checklists, formulas and a mini FAQ." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://spritkosten-check.de/ratgeber.html" />
-  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/ratgeber.html" />
-  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/" />
-  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
+
+  <!-- Canonical + hreflang (EN only on EN domain) -->
+  <link rel="canonical" href="https://petrolcostcalculator.com/guide.html" />
+  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/guide.html" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/guide.html" />
 
   <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -21,7 +22,7 @@
   <link rel="icon" href="/favicon.ico">
 
   <!-- Global CSS -->
-  <link rel="stylesheet" href="assets/css/style.css?v=2026-02" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=2026-02" />
 
   <!-- Article Schema -->
   <script type="application/ld+json">
@@ -29,10 +30,10 @@
     "@context":"https://schema.org",
     "@type":"Article",
     "headline":"Guide: Save fuel, reduce consumption & plan trip costs",
-    "description":"Practical tips, checklists and formulas for fuel costs, consumption, tolls and CO₂.",
-    "author":{"@type":"Organization","name":"Fuel Cost Check"},
-    "publisher":{"@type":"Organization","name":"Fuel Cost Check"},
-    "mainEntityOfPage":{"@type":"WebPage","@id":"https://spritkosten-check.de/ratgeber.html"}
+    "description":"A practical driver’s guide with tips, checklists and formulas for fuel costs, consumption, tolls and CO₂.",
+    "author":{"@type":"Organization","name":"Petrol Cost Calculator"},
+    "publisher":{"@type":"Organization","name":"Petrol Cost Calculator"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://petrolcostcalculator.com/guide.html"}
   }
   </script>
 
@@ -89,7 +90,7 @@
   </style>
 </head>
 
-<body data-page="ratgeber">
+<body data-page="guide">
 
   <!-- Header via loader -->
   <div id="site-header"></div>
@@ -102,15 +103,16 @@
       <p>
         Here you’ll find practical tips to <strong>reduce fuel consumption</strong>, plan trips better,
         and avoid common cost traps (e.g. roof box, speed, short trips).
-        If you want to calculate right away: <a href="/" class="small"><b>go to the fuel cost calculator</b></a>.
+        If you want to calculate right away:
+        <a href="https://petrolcostcalculator.com/" class="small"><b>go to the fuel cost calculator</b></a>.
       </p>
 
       <div class="toc" aria-label="Table of contents">
-        <a class="btn secondary" href="#sparen">Save fuel</a>
-        <a class="btn secondary" href="#verbrauch">Consumption</a>
-        <a class="btn secondary" href="#kostenformeln">Cost formulas</a>
+        <a class="btn secondary" href="#save-fuel">Save fuel</a>
+        <a class="btn secondary" href="#consumption">Consumption</a>
+        <a class="btn secondary" href="#cost-formulas">Cost formulas</a>
         <a class="btn secondary" href="#roadtrip">Road trip checklist</a>
-        <a class="btn secondary" href="#maut">Tolls</a>
+        <a class="btn secondary" href="#tolls">Tolls</a>
         <a class="btn secondary" href="#co2">CO₂ & comparisons</a>
         <a class="btn secondary" href="#faq-mini">Mini FAQ</a>
       </div>
@@ -127,7 +129,7 @@
     </div>
 
     <!-- Save fuel -->
-    <section id="sparen" class="card" aria-label="Save fuel">
+    <section id="save-fuel" class="card" aria-label="Save fuel">
       <h2>Saving fuel: the biggest levers</h2>
       <ul class="checklist">
         <li><strong>Reduce speed:</strong> At highway speeds, air resistance rises sharply — often the biggest lever.</li>
@@ -158,7 +160,7 @@
     </section>
 
     <!-- Consumption -->
-    <section id="verbrauch" class="card" aria-label="Understand consumption">
+    <section id="consumption" class="card" aria-label="Understand consumption">
       <h2>Understanding consumption: why is it sometimes higher?</h2>
       <div class="two-col">
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
@@ -188,7 +190,7 @@
     </section>
 
     <!-- Cost formulas -->
-    <section id="kostenformeln" class="card" aria-label="Cost formulas">
+    <section id="cost-formulas" class="card" aria-label="Cost formulas">
       <h2>Cost formulas: quick estimates</h2>
       <div class="two-col">
         <div class="card" style="box-shadow:none;border:1px solid rgba(15,23,42,0.06);background:#fbfdff">
@@ -210,7 +212,7 @@
       </div>
 
       <div style="margin-top:16px;display:flex;justify-content:center">
-        <a class="btn large" href="/">Calculate now</a>
+        <a class="btn large" href="https://petrolcostcalculator.com/">Calculate now</a>
       </div>
     </section>
 
@@ -246,7 +248,7 @@
     </section>
 
     <!-- Tolls -->
-    <section id="maut" class="card" aria-label="Tolls">
+    <section id="tolls" class="card" aria-label="Tolls">
       <h2>Tolls: quick explanation</h2>
       <p class="small" style="margin-top:0;line-height:1.7">
         Toll systems vary by region: some roads charge per section or distance, others use fixed fees.
@@ -292,14 +294,14 @@
       </div>
 
       <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
-        <a class="btn large" href="/">Go to calculator</a>
-        <a class="btn secondary large" href="/faq.html">Go to FAQ</a>
+        <a class="btn large" href="https://petrolcostcalculator.com/">Go to calculator</a>
+        <a class="btn secondary large" href="https://petrolcostcalculator.com/faq.html">Go to FAQ</a>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer via loader (IMPORTANT: outside the container → no white border) -->
+  <!-- Footer via loader -->
   <div id="site-footer"></div>
 
   <!-- Active Tab -->
