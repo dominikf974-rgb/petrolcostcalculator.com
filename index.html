@@ -110,12 +110,12 @@
 
             <div style="margin-top:12px">
               <label for="place-from">Or: Start (place, country)</label>
-              <input id="place-from" type="text" placeholder="e.g. Paris, France" aria-label="Start location" />
+              <input id="place-from" type="text" placeholder="e.g. Brisbane, QLD" aria-label="Start location" />
 
               <label for="place-to" style="margin-top:10px">Destination (place, country)</label>
-              <input id="place-to" type="text" placeholder="e.g. Berlin, Germany" aria-label="Destination location" />
+              <input id="place-to" type="text" placeholder="e.g. Sydney, NSW" aria-label="Destination location" />
               <div class="small" style="margin-top:4px">
-                Example: <b>Paris, France</b> → <b>Berlin, Germany</b>
+                Example: <b>Sydney, NSW</b> → <b>Melbourne, VIC</b>
               </div>
 
               <!-- ✅ Buttons: side by side, centered -->
@@ -762,7 +762,7 @@
           const a = await geocode(from);
           const b = await geocode(to);
           if(!a || !b){
-            tollInfoEl.textContent = 'Please enter city/place + country (e.g. "Paris, France"), not only the country.';
+            tollInfoEl.textContent = 'Please enter city/place + country (e.g. "Sydney, NSW"), not only the country.';
             tollInfoEl.classList.add('error');
             return;
           }
