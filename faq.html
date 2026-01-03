@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
@@ -9,10 +9,11 @@
   <meta name="description" content="FAQ for the fuel cost calculator: fuel costs, consumption, route, tolls/vignettes, CO₂ and cost per person. Answers to the most important questions." />
   <meta name="robots" content="index, follow" />
 
-  <link rel="canonical" href="https://petrolcostcalculator.com/faq.html" />
-  <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/faq.html" />
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://petrolcostcalculator.com/en-au/faq.html" />
+  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/en-au/faq.html" />
   <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/faq.html" />
-  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/en-au/faq.html" />
 
   <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -24,7 +25,7 @@
   <!-- Global CSS -->
   <link rel="stylesheet" href="/assets/css/style.css?v=2026-02" />
 
-  <!-- FAQ Schema (20 questions) -->
+  <!-- FAQ Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,14 +38,14 @@
       {"@type":"Question","name":"How accurate is the toll and vignette estimate?","acceptedAnswer":{"@type":"Answer","text":"It is an approximation by country. Real costs depend on the route, vehicle class and local rules."}},
       {"@type":"Question","name":"Which fuel types are supported?","acceptedAnswer":{"@type":"Answer","text":"Petrol (E10/91), Premium (E5/95) and Diesel."}},
       {"@type":"Question","name":"Can I change the fuel price manually?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can override the price at any time or reset it to the default value."}},
-      {"@type":"Question","name":"Where do the fuel prices come from?","acceptedAnswer":{"@type":"Answer","text":"Depending on the country, average values are used. For Germany, an additional live source can be used (if available)."}},
-      {"@type":"Question","name":"Why do real costs differ from the calculation?","acceptedAnswer":{"@type":"Answer","text":"Driving , traffic, weather, load, tyres, actual prices and toll details affect real-world costs."}},
+      {"@type":"Question","name":"Where do the fuel prices come from?","acceptedAnswer":{"@type":"Answer","text":"Depending on the country, average values are used."}},
+      {"@type":"Question","name":"Why do real costs differ from the calculation?","acceptedAnswer":{"@type":"Answer","text":"Driving style, traffic, weather, load, tyres, actual prices and toll details affect real-world costs."}},
       {"@type":"Question","name":"What are “running costs”?","acceptedAnswer":{"@type":"Answer","text":"An approximation for maintenance, wear, depreciation and insurance, plus a toll/vignette estimate."}},
       {"@type":"Question","name":"Can I calculate a round trip?","acceptedAnswer":{"@type":"Answer","text":"Yes. Either double the kilometers or calculate the route separately for outbound and return."}},
       {"@type":"Question","name":"How is the CO₂ balance calculated?","acceptedAnswer":{"@type":"Answer","text":"CO₂ is estimated based on consumption (kg CO₂ per litre), depending on petrol or diesel."}},
       {"@type":"Question","name":"What do the CO₂ comparison values (car/train/flight) mean?","acceptedAnswer":{"@type":"Answer","text":"These are guideline values for orientation. Train/flight are typically per seat, car is per vehicle."}},
       {"@type":"Question","name":"Does the calculator work worldwide?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can select places worldwide. Prices/tolls are stored as approximations depending on the country."}},
-      {"@type":"Question","name":"Why is it split 50/50 when changing countries?","acceptedAnswer":{"@type":"Answer","text":"It’s a quick estimate when the start and destination countries differ. Exact values would require the precise country-by-country route."}},
+      {"@type":"Question","name":"Why is it split 50/50 when changing countries?","acceptedAnswer":{"@type":"Answer","text":"It’s a quick estimate when the start and destination countries differ. Exact values would require a precise route split by country."}},
       {"@type":"Question","name":"What to do if no route is found?","acceptedAnswer":{"@type":"Answer","text":"Enter the place more precisely (city + country), check spelling, or try a nearby location."}},
       {"@type":"Question","name":"Why is the map sometimes white or loading oddly?","acceptedAnswer":{"@type":"Answer","text":"Usually a resize/viewport issue or a slow connection. Reloading or “Reset map” often helps."}},
       {"@type":"Question","name":"Can I use the calculator without the map?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can simply enter kilometers, consumption and price—without start/destination."}},
@@ -54,7 +55,7 @@
   }
   </script>
 
-  <>
+  <style>
     /* FAQ specific: clean, fits your system */
     .faq-wrap{ display:flex; flex-direction:column; gap:12px; }
 
@@ -67,7 +68,7 @@
 
     .faq-item summary{
       cursor:pointer;
-      list-:none;
+      list-style:none;
       padding:14px 14px;
       font-weight:900;
       color:var(--accent-2);
@@ -106,7 +107,7 @@
     @media(max-width:720px){
       .faq-cta .btn{ width:100%; max-width:420px; }
     }
-  </>
+  </style>
 </head>
 
 <body data-page="faq">
@@ -118,9 +119,9 @@
 
     <section class="card" aria-label="FAQ Intro">
       <!-- Ad: FAQ Top -->
-      <div class="ad-block">
+      <div class="ad-block" aria-label="Advertising">
         <ins class="adsbygoogle"
-          ="display:block"
+          style="display:block"
           data-ad-client="ca-pub-4852698472752437"
           data-ad-slot="7158625008"
           data-ad-format="auto"
@@ -128,7 +129,7 @@
       </div>
 
       <h2>FAQ – Frequently Asked Questions about the Fuel Cost Calculator</h2>
-      <p class="small" ="margin-top:0">
+      <p class="small" style="margin-top:0">
         Click a question to expand the answer.
       </p>
     </section>
@@ -167,9 +168,9 @@
         </details>
 
         <!-- Ad: FAQ Mid -->
-        <div class="ad-block">
+        <div class="ad-block" aria-label="Advertising">
           <ins class="adsbygoogle"
-            ="display:block"
+            style="display:block"
             data-ad-client="ca-pub-4852698472752437"
             data-ad-slot="3355111369"
             data-ad-format="auto"
@@ -183,12 +184,12 @@
 
         <details class="faq-item">
           <summary>Where do the fuel prices come from? <span class="chev">▼</span></summary>
-          <div class="answer">Depending on the country, average values are used. For Germany, an additional live source can be used (if available).</div>
+          <div class="answer">Depending on the country, average values are used.</div>
         </details>
 
         <details class="faq-item">
           <summary>Why do real costs differ from the calculation? <span class="chev">▼</span></summary>
-          <div class="answer">Driving , traffic, weather, load, tyres, actual prices and toll details affect real-world costs.</div>
+          <div class="answer">Driving style, traffic, weather, load, tyres, actual prices and toll details affect real-world costs.</div>
         </details>
 
         <details class="faq-item">
@@ -218,7 +219,7 @@
 
         <details class="faq-item">
           <summary>Why is it split 50/50 when changing countries? <span class="chev">▼</span></summary>
-          <div class="answer">It’s a quick estimate when the start and destination countries differ. Exact values would require the precise country-by-country route.</div>
+          <div class="answer">It’s a quick estimate when the start and destination countries differ. Exact values would require a precise route split by country.</div>
         </details>
 
         <details class="faq-item">
@@ -267,7 +268,7 @@
         </a>
 
         <div class="small" style="opacity:.9">
-          Email: <a href="mailto:info@spritkosten-check.de">info@petrolcostcalculator.com</a>
+          Email: <a href="mailto:info@petrolcostcalculator.com">info@petrolcostcalculator.com</a>
         </div>
       </div>
     </section>
@@ -341,10 +342,10 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
       await loadPart('site-header', '/practice/header.html');
-      initMobileNav(); // ✅ This was missing on subpages
+      initMobileNav();
 
       await loadPart('site-footer', '/practice/footer.html');
-      loadCookiesAfterFooter(); // ✅ Cookie banner safely on all pages
+      loadCookiesAfterFooter();
     });
   </script>
 
