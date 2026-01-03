@@ -28,12 +28,12 @@
 
   <!-- Legal / Trust Pages -->
   <url>
-    <loc>https://petrolcostcalculator.com/legal.html</loc>
+    <loc>https://petrolcostcalculator.com/legal-notice.html</loc>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://petrolcostcalculator.com/privacy.html</loc>
+    <loc>https://petrolcostcalculator.com/privacy-policy.html</loc>
     <priority>0.3</priority>
   </url>
 
