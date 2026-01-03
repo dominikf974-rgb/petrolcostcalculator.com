@@ -9,10 +9,12 @@
   <meta name="description" content="A practical driver’s guide: save fuel, reduce consumption, plan road trips, understand tolls, and put CO₂ into context. Tips, checklists, formulas and a mini FAQ." />
   <meta name="robots" content="index, follow" />
 
-  <!-- Canonical + hreflang (EN only on EN domain) -->
-  <link rel="canonical" href="https://petrolcostcalculator.com/guide.html" />
-  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/guide.html" />
-  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/guide.html" />
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://petrolcostcalculator.com/en-au/guide.html" />
+  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/en-au/guide.html" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/en-au/guide.html" />
+  <!-- (optional but recommended if you keep the DE site) -->
+  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/ratgeber.html" />
 
   <!-- Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -21,7 +23,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" href="/favicon.ico">
 
-  <!-- Global CSS -->
+  <!-- Global CSS (IMPORTANT: leading slash) -->
   <link rel="stylesheet" href="/assets/css/style.css?v=2026-02" />
 
   <!-- Article Schema -->
@@ -33,7 +35,7 @@
     "description":"A practical driver’s guide with tips, checklists and formulas for fuel costs, consumption, tolls and CO₂.",
     "author":{"@type":"Organization","name":"Petrol Cost Calculator"},
     "publisher":{"@type":"Organization","name":"Petrol Cost Calculator"},
-    "mainEntityOfPage":{"@type":"WebPage","@id":"https://petrolcostcalculator.com/guide."}
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://petrolcostcalculator.com/en-au/guide.html"}
   }
   </script>
 
@@ -71,7 +73,6 @@
     .mini-faq .chev{ opacity:.7; transition:transform .18s ease; user-select:none; }
     .mini-faq details[open] .chev{ transform:rotate(180deg); }
 
-    /* TOC buttons on mobile */
     @media (max-width: 720px){
       .toc{
         display:grid;
@@ -79,7 +80,6 @@
         gap:10px;
       }
       .toc a{ width:100%; }
-      /* last button full width, centred */
       .toc a:last-child{
         grid-column: 1 / -1;
         justify-self:center;
@@ -104,7 +104,7 @@
         Here you’ll find practical tips to <strong>reduce fuel consumption</strong>, plan trips better,
         and avoid common cost traps (e.g. roof box, speed, short trips).
         If you want to calculate right away:
-        <a href="https://petrolcostcalculator.com/" class="small"><b>go to the fuel cost calculator</b></a>.
+        <a href="https://petrolcostcalculator.com/en-au/" class="small"><b>go to the fuel cost calculator</b></a>.
       </p>
 
       <div class="toc" aria-label="Table of contents">
@@ -212,7 +212,7 @@
       </div>
 
       <div style="margin-top:16px;display:flex;justify-content:center">
-        <a class="btn large" href="https://petrolcostcalculator.com/">Calculate now</a>
+        <a class="btn large" href="https://petrolcostcalculator.com/en-au/">Calculate now</a>
       </div>
     </section>
 
@@ -294,8 +294,8 @@
       </div>
 
       <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
-        <a class="btn large" href="https://petrolcostcalculator.com/">Go to calculator</a>
-        <a class="btn secondary large" href="https://petrolcostcalculator.com/faq.">Go to FAQ</a>
+        <a class="btn large" href="https://petrolcostcalculator.com/en-au/">Go to calculator</a>
+        <a class="btn secondary large" href="https://petrolcostcalculator.com/en-au/faq.html">Go to FAQ</a>
       </div>
     </section>
 
@@ -314,7 +314,7 @@
       if(!el) return false;
       try{
         const r = await fetch(url, { cache: 'no-cache' });
-        el.inner = await r.text();
+        el.innerHTML = await r.text();
         return true;
       }catch(e){
         console.warn('Could not load:', url);
@@ -368,13 +368,13 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await loadPart('site-header', '/practice/header.');
+      await loadPart('site-header', '/practice/header.html');
       initMobileNav();
 
-      await loadPart('site-footer', '/practice/footer.');
+      await loadPart('site-footer', '/practice/footer.html');
       loadCookiesAfterFooter();
     });
   </script>
 
 </body>
-</>
+</html>
