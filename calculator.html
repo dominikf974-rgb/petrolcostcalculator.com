@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>Calculator – Quick maths (Add, subtract, multiply, divide)</title>
-  <meta name="description" content="Simple calculator in the same design: calculate directly as an expression (e.g. 8 × 12 or (15.5 + 2) / 3) – mobile friendly." />
+  <title>Calculator – Quick calculations (Add, Subtract, Multiply, Divide)</title>
+  <meta name="description" content="Simple calculator in the same design: type an expression (e.g. 8 × 12 or (15.5 + 2) / 3) – mobile-friendly." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://spritkosten-check.de/taschenrechner.html" />
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="https://petrolcostcalculator.com/en-au/calculator.html" />
+  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/en-au/calculator.html" />
   <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/taschenrechner.html" />
-  <link rel="alternate" hreflang="en-au" href="https://petrolcostcalculator.com/" />
-  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/en-au/calculator.html" />
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -23,7 +25,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/style.css?v=2026-02" />
+  <!-- IMPORTANT: leading slash so it works in /en-au/ -->
+  <link rel="stylesheet" href="/assets/css/style.css?v=2026-02" />
 
   <style>
     /* Calculator page-only */
@@ -91,12 +94,8 @@
       height:48px;
       font-size:1.05rem;
     }
-    .keypad .btn.secondary{
-      box-shadow:none;
-    }
-    .keypad .wide{
-      grid-column: span 2;
-    }
+    .keypad .btn.secondary{ box-shadow:none; }
+    .keypad .wide{ grid-column: span 2; }
 
     @media(max-width:720px){
       .expr-input{ font-size:1.1rem; }
@@ -147,8 +146,8 @@
     <section class="card" aria-label="Calculator">
       <h2>Calculator</h2>
       <p class="small" style="margin-top:0">
-        Calculate directly as an expression — e.g. <b>8 × 12</b>, <b>15.5 + 2</b> or <b>(120 ÷ 3) + 7</b>.
-        A comma also works (it will be treated as a decimal point).
+        Type an expression directly — e.g. <b>8 × 12</b>, <b>15.5 + 2</b> or <b>(120 ÷ 3) + 7</b>.
+        You can use either dot or comma for decimals (comma is treated as a decimal point).
       </p>
 
       <div class="calc-grid">
@@ -156,7 +155,7 @@
         <div>
           <label for="expr">Expression</label>
           <input id="expr" class="expr-input" type="text" inputmode="text" autocomplete="off"
-                 placeholder="e.g. 8 × 12 or (15.5 + 2) ÷ 3" aria-label="Enter expression" />
+                 placeholder="e.g. 8 × 12 or (15.5 + 2) ÷ 3" aria-label="Enter an expression" />
 
           <div class="big-result" aria-live="polite">
             <div class="label">Result</div>
@@ -166,13 +165,10 @@
             </div>
           </div>
 
-          <!-- Keep these buttons -->
           <div class="calc-actions">
             <button id="btn-eq" class="btn large" type="button">Calculate</button>
             <button id="btn-clear" class="btn secondary large" type="button">Reset</button>
           </div>
-
-          <!-- IMPORTANT: The 3 link buttons (FAQ/Guide/Fuel costs) are intentionally removed here -->
         </div>
 
         <!-- Right: Keypad -->
@@ -183,7 +179,7 @@
             <div class="keypad-full">
               <button class="btn secondary" data-k="(" type="button">(</button>
               <button class="btn secondary" data-k=")" type="button">)</button>
-              <button class="btn secondary" id="btn-back" type="button">⌫</button>
+              <button class="btn secondary" id="btn-back" type="button" aria-label="Backspace">⌫</button>
               <button class="btn secondary" data-k=" ÷ " type="button">÷</button>
 
               <button class="btn" data-k="7" type="button">7</button>
@@ -202,7 +198,7 @@
               <button class="btn secondary" data-k=" + " type="button">+</button>
 
               <button class="btn wide" data-k="0" type="button">0</button>
-              <button class="btn" data-k="," type="button">,</button>
+              <button class="btn" data-k="." type="button">.</button>
               <button class="btn wide" id="btn-eq-2" type="button">=</button>
             </div>
 
@@ -234,46 +230,46 @@
     <section class="card" aria-label="Tips to save fuel">
       <h2>Tips: Save fuel & reduce trip costs</h2>
       <p class="small" style="margin-top:0">
-        Small changes can cut costs quickly: correct tyre pressure, steady speeds,
-        and realistic consumption figures. If you’re travelling together, split costs fairly per person.
+        Small changes reduce costs quickly: correct tyre pressure, steady speed, and realistic consumption figures.
+        If you travel together, split the cost fairly per person.
       </p>
       <ul style="margin:0;padding-left:18px;line-height:1.7">
-        <li><strong>Drive smoothly:</strong> avoid hard acceleration and braking.</li>
+        <li><strong>Drive smoothly:</strong> accelerate and brake gently.</li>
         <li><strong>Check tyre pressure:</strong> low pressure increases consumption.</li>
-        <li><strong>Reduce weight:</strong> remove unnecessary load, use a roof box only when needed.</li>
-        <li><strong>Split costs:</strong> use “People” for a fair per-person amount.</li>
+        <li><strong>Reduce weight:</strong> remove unnecessary load; use a roof box only when needed.</li>
+        <li><strong>Split costs:</strong> use “People” in the fuel calculator for a fair per-person amount.</li>
       </ul>
 
       <div style="margin-top:18px;display:flex;justify-content:center">
-        <a class="btn large" href="/guide.html" style="max-width:320px">Go to the guide</a>
+        <a class="btn large" href="/en-au/guide.html" style="max-width:320px">Go to the guide</a>
       </div>
     </section>
 
-    <!-- Countries block (AU localised) -->
+    <!-- Countries block -->
     <section class="card countries-section" aria-label="Fuel cost calculator by region">
       <h2>Fuel cost calculator by region</h2>
-      <p class="small" style="margin:0 0 10px 0">Works across Australia and worldwide. Popular picks:</p>
+      <p class="small" style="margin:0 0 10px 0">Works worldwide with country detection. Popular regions:</p>
 
       <div class="countries-grid">
         <div class="country-card">
           <h3>Australia</h3>
-          <p>Estimate fuel costs, total trip costs and split expenses fairly — ideal for long Aussie drives.</p>
+          <p>Plan fuel cost, total cost and split fairly per person.</p>
         </div>
         <div class="country-card">
-          <h3>New South Wales</h3>
-          <p>Great for Sydney trips, coastal routes and motorway drives — quick fuel and cost estimates.</p>
+          <h3>New Zealand</h3>
+          <p>Great for road trips—use realistic consumption and current prices.</p>
         </div>
         <div class="country-card">
-          <h3>Queensland</h3>
-          <p>Perfect for Sunshine Coast, Gold Coast and inland routes — plan distance and fuel with confidence.</p>
+          <h3>Europe</h3>
+          <p>For cross-border trips with quick cost estimates.</p>
         </div>
         <div class="country-card">
-          <h3>Victoria</h3>
-          <p>Ideal for Melbourne travel, regional touring and iconic scenic drives like the Great Ocean Road.</p>
+          <h3>United States</h3>
+          <p>Compare trip costs quickly—especially useful for long distances.</p>
         </div>
         <div class="country-card">
-          <h3>Western Australia</h3>
-          <p>Built for very long distances, remote fuel stops and realistic cost planning across WA.</p>
+          <h3>Worldwide</h3>
+          <p>Works for most countries and regions.</p>
         </div>
       </div>
     </section>
@@ -313,8 +309,7 @@
 
       function formatNumber(n){
         if(!Number.isFinite(n)) return '–';
-        const s = Number.parseFloat(n.toFixed(8)).toString();
-        return s; // AU: decimal point
+        return Number.parseFloat(n.toFixed(8)).toString();
       }
 
       function evaluate(){
@@ -328,7 +323,7 @@
         const s = normalize(raw);
         if(s == null){
           resEl.textContent = '–';
-          hintEl.textContent = 'Invalid characters. Allowed: numbers, + − × ÷, brackets, comma/dot.';
+          hintEl.textContent = 'Invalid characters. Allowed: numbers, + − × ÷, parentheses, comma/dot.';
           return;
         }
 
@@ -377,7 +372,6 @@
         el.focus();
       }
 
-      // Buttons
       document.getElementById('btn-eq').addEventListener('click', evaluate);
       document.getElementById('btn-eq-2').addEventListener('click', evaluate);
 
@@ -394,7 +388,6 @@
       const backBtn = document.getElementById('btn-back');
       if(backBtn) backBtn.addEventListener('click', backspace);
 
-      // Keypad input
       document.querySelectorAll('[data-k]').forEach(btn => {
         btn.addEventListener('click', () => {
           const k = btn.getAttribute('data-k') || '';
@@ -402,7 +395,6 @@
         });
       });
 
-      // Enter = calculate
       exprEl.addEventListener('keydown', (e) => {
         if(e.key === 'Enter'){
           e.preventDefault();
@@ -478,10 +470,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
-      await loadPart('site-header', '/partials/header.html');
+      await loadPart('site-header', '/practice/header.html');
       initMobileNav();
 
-      await loadPart('site-footer', '/partials/footer.html');
+      await loadPart('site-footer', '/practice/footer.html');
       loadCookiesAfterFooter();
     });
   </script>
