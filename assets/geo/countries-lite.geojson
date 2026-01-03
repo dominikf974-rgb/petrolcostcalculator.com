@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type":"Feature","properties":{"ISO_A2":"DE"},"geometry":{"type":"Polygon","coordinates":[[[5.866,47.270],[15.041,47.270],[15.041,55.058],[5.866,55.058],[5.866,47.270]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"FR"},"geometry":{"type":"Polygon","coordinates":[[[-5.14,41.36],[9.56,41.36],[9.56,51.09],[-5.14,51.09],[-5.14,41.36]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"AT"},"geometry":{"type":"Polygon","coordinates":[[[9.20,46.10],[17.40,46.10],[17.40,49.35],[9.20,49.35],[9.20,46.10]]]}}
+    {"type":"Feature","properties":{"ISO_A2":"CH"},"geometry":{"type":"Polygon","coordinates":[[[5.96,45.82],[10.49,45.82],[10.49,47.81],[5.96,47.81],[5.96,45.82]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"IT"},"geometry":{"type":"Polygon","coordinates":[[[6.63,36.62],[18.78,36.62],[18.78,47.10],[6.63,47.10],[6.63,36.62]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"ES"},"geometry":{"type":"Polygon","coordinates":[[[-9.40,35.80],[3.32,35.80],[3.32,43.79],[-9.40,43.79],[-9.40,35.80]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"NL"},"geometry":{"type":"Polygon","coordinates":[[[3.36,50.75],[7.22,50.75],[7.22,53.60],[3.36,53.60],[3.36,50.75]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"BE"},"geometry":{"type":"Polygon","coordinates":[[[2.54,49.50],[6.41,49.50],[6.41,51.50],[2.54,51.50],[2.54,49.50]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"PL"},"geometry":{"type":"Polygon","coordinates":[[[14.07,49.00],[24.15,49.00],[24.15,54.84],[14.07,54.84],[14.07,49.00]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"CZ"},"geometry":{"type":"Polygon","coordinates":[[[12.09,48.55],[18.86,48.55],[18.86,51.06],[12.09,51.06],[12.09,48.55]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"SK"},"geometry":{"type":"Polygon","coordinates":[[[16.85,47.73],[22.57,47.73],[22.57,49.60],[16.85,49.60],[16.85,47.73]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"HU"},"geometry":{"type":"Polygon","coordinates":[[[16.11,45.74],[22.90,45.74],[22.90,48.62],[16.11,48.62],[16.11,45.74]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"SI"},"geometry":{"type":"Polygon","coordinates":[[[13.38,45.42],[16.61,45.42],[16.61,46.88],[13.38,46.88],[13.38,45.42]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"HR"},"geometry":{"type":"Polygon","coordinates":[[[13.49,42.39],[19.39,42.39],[19.39,46.55],[13.49,46.55],[13.49,42.39]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"RO"},"geometry":{"type":"Polygon","coordinates":[[[20.26,43.62],[29.71,43.62],[29.71,48.27],[20.26,48.27],[20.26,43.62]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"BG"},"geometry":{"type":"Polygon","coordinates":[[[22.35,41.24],[28.61,41.24],[28.61,44.22],[22.35,44.22],[22.35,41.24]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"GB"},"geometry":{"type":"Polygon","coordinates":[[[-8.65,49.86],[1.77,49.86],[1.77,58.74],[-8.65,58.74],[-8.65,49.86]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"NO"},"geometry":{"type":"Polygon","coordinates":[[[4.09,57.96],[31.16,57.96],[31.16,71.19],[4.09,71.19],[4.09,57.96]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"SE"},"geometry":{"type":"Polygon","coordinates":[[[11.11,55.34],[24.17,55.34],[24.17,69.06],[11.11,69.06],[11.11,55.34]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"FI"},"geometry":{"type":"Polygon","coordinates":[[[20.55,59.45],[31.59,59.45],[31.59,70.09],[20.55,70.09],[20.55,59.45]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"DK"},"geometry":{"type":"Polygon","coordinates":[[[8.09,54.56],[15.16,54.56],[15.16,57.75],[8.09,57.75],[8.09,54.56]]]}},
+    {"type":"Feature","properties":{"ISO_A2":"RU"},"geometry":{"type":"Polygon","coordinates":[[[19.38,53.00],[40.00,53.00],[40.00,60.00],[19.38,60.00],[19.38,53.00]]]}}
+  ]
+}
