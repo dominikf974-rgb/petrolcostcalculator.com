@@ -447,7 +447,12 @@
       const cmpFlightEl = document.getElementById('cmp-flight');
 
       // ---------- Prices ----------
-      const countryPrices = window.COUNTRY_FUEL_PRICES_AUD || window.COUNTRY_FUEL_PRICES_USD || null;
+    const countryPrices =
+  window.COUNTRY_FUEL_PRICES_AUD ||
+  window.COUNTRY_FUEL_PRICES_EUR ||  // <-- wichtig
+  window.COUNTRY_FUEL_PRICES_USD ||
+  null;
+
       const priceStand = window.COUNTRY_FUEL_PRICES_STAND || '';
 
       const fallbackPrices = { unleaded91: 1.85, unleaded95: 2.05, diesel: 1.95, name:'Australia (fallback)' };
