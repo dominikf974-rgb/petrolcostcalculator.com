@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
- <title>Fuel Cost Calculator – Calculate Trip Costs, Split Per Person & Compare CO₂ | PetrolCostCalculator.com</title>
+  <title>Fuel Cost Calculator – Calculate Trip Costs, Split Per Person & Compare CO₂ | PetrolCostCalculator.com</title>
   <meta name="description" content="Free fuel cost calculator for Australia. Calculate fuel costs, total trip costs, cost per person and a rough toll estimate with map-based routing." />
   <meta name="robots" content="index, follow" />
 
@@ -108,10 +108,13 @@
 
           <div style="margin-top:12px">
             <label for="place-from">Or: Start (place, state)</label>
-            <input id="place-from" type="text" placeholder="e.g. Brisbane, QLD" aria-label="Start location" />
+            <input id="place-from" type="text" placeholder="e.g. Brisbane, QLD" aria-label="Start location"
+              autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
 
             <label for="place-to" style="margin-top:10px">Destination (place, state)</label>
-            <input id="place-to" type="text" placeholder="e.g. Sydney, NSW" aria-label="Destination location" />
+            <input id="place-to" type="text" placeholder="e.g. Sydney, NSW" aria-label="Destination location"
+              autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" />
+
             <div class="small" style="margin-top:4px">
               Example: <b>Sydney, NSW</b> → <b>Melbourne, VIC</b>
             </div>
@@ -203,16 +206,16 @@
           <div id="map"></div>
           <div id="toll-info" class="small" style="color:var(--muted)"></div>
 
-        <div class="thinbox" aria-label="Toll and vignette details" style="padding:16px 12px">
-  <div class="title">Tolls & Vignettes – Details</div>
+          <!-- ✅ FIXED: no duplicate IDs + includes vignette-total -->
+          <div class="thinbox" aria-label="Toll and vignette details" style="padding:16px 12px">
+            <div class="title">Tolls & Vignettes – Details</div>
 
-  <div class="line"><div>Total tolls</div><div class="mono" id="toll-total">—</div></div>
+            <div class="line"><div>Total tolls</div><div class="mono" id="toll-total">—</div></div>
+            <div class="line"><div>Total vignettes</div><div class="mono" id="vignette-total">—</div></div>
+            <div class="line"><div>Sum tolls + vignettes</div><div class="mono" id="toll-vignette-sum">—</div></div>
 
-  <div class="line"><div>Sum tolls + vignettes</div><div class="mono" id="toll-vignette-sum">—</div></div>
-  <div class="line"><div>Sum tolls + vignettes</div><div class="mono" id="toll-vignette-sum">—</div></div>
-  <div style="margin-top:10px" class="small" id="toll-breakdown"></div>
-</div>
-
+            <div style="margin-top:10px" class="small" id="toll-breakdown"></div>
+          </div>
 
           <div class="thinbox" aria-label="CO2 footprint">
             <div class="title">🌱 CO₂ Footprint</div>
@@ -308,7 +311,7 @@
       </div>
     </section>
 
-  <!-- Countries block -->
+    <!-- Countries block -->
     <section class="card countries-section" aria-label="Fuel cost calculator by region">
       <h2>Fuel cost calculator by region</h2>
       <p class="small" style="margin:0 0 10px 0">Works worldwide with country detection. Popular regions:</p>
@@ -370,11 +373,9 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Country prices -->
-  <!-- IMPORTANT:
-       If you don't have /prices/country-prices-aud.js yet, temporarily change this back to your existing file. -->
   <script src="/prices/country-prices-aud.js"></script>
 
-  <!-- Active Nav + Cookies (FIXED PATHS) -->
+  <!-- Active Nav + Cookies -->
   <script src="/assets/js/active-nav.js" defer></script>
   <script src="/assets/js/cookies.js" defer></script>
 
@@ -395,6 +396,7 @@
         return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(t));
       }
 
+      // ---------- State ----------
       let isRouting = false;
       let lastRouteClick = 0;
 
@@ -405,6 +407,7 @@
       const cacheKeyLL = (lat,lon) => `${lat.toFixed(5)},${lon.toFixed(5)}`;
       const cacheKeyRoute = (a,b) => `${cacheKeyLL(a.lat,a.lon)}|${cacheKeyLL(b.lat,b.lon)}`;
 
+      // ---------- UI refs ----------
       const kmEl = document.getElementById('km');
       const consumptionEl = document.getElementById('consumption');
       const priceEl = document.getElementById('price');
@@ -433,9 +436,9 @@
       const priceModeWrap = document.getElementById('price-mode');
 
       const tollTotalEl = document.getElementById('toll-total');
+      const vignetteTotalEl = document.getElementById('vignette-total');
       const tollVignetteSumEl = document.getElementById('toll-vignette-sum');
       const tollBreakdownEl = document.getElementById('toll-breakdown');
-      const vignetteTotalEl = document.getElementById('vignette-total');
 
       const co2TotalEl = document.getElementById('co2-total');
       const co2PerPersonEl = document.getElementById('co2-per-person');
@@ -443,17 +446,13 @@
       const cmpRailEl = document.getElementById('cmp-rail');
       const cmpFlightEl = document.getElementById('cmp-flight');
 
+      // ---------- Prices ----------
       const countryPrices = window.COUNTRY_FUEL_PRICES_AUD || window.COUNTRY_FUEL_PRICES_USD || null;
       const priceStand = window.COUNTRY_FUEL_PRICES_STAND || '';
 
-      // AU-ish fallback prices (AUD per litre)
       const fallbackPrices = { unleaded91: 1.85, unleaded95: 2.05, diesel: 1.95, name:'Australia (fallback)' };
       let fuelPrices = { ...fallbackPrices };
       let userEditedPrice = false;
-
-      let startCC = null, destCC = null;
-      let routeKm = 0;
-      let lastTollTotal = 0;
 
       function renderAvgPrices(){
         avgUnleaded91El.textContent = fmtMoney(fuelPrices.unleaded91);
@@ -488,6 +487,12 @@
           name: `${a.name} / ${b.name}`
         };
       }
+
+      let startCC = null, destCC = null;
+      let routeKm = 0;
+
+      // IMPORTANT: lastTollTotal is used in running-cost calculation (tolls + vignettes)
+      let lastTollTotal = 0;
 
       async function applyDetectedPrices(){
         const isCross = (startCC && destCC && startCC !== destCC);
@@ -542,7 +547,7 @@
         });
       });
 
-      // Map: Australia
+      // ---------- Leaflet / Map ----------
       const AU_CENTER = [-25.2744, 133.7751];
       const AU_ZOOM = 4;
 
@@ -576,6 +581,7 @@
         return m;
       }
 
+      // ---------- Geocoding / Routing ----------
       async function geocode(q){
         const key = q.trim().toLowerCase();
         if(geoCache.has(key)) return geoCache.get(key);
@@ -640,124 +646,117 @@
         routeCache.set(ck, distKm);
         return distKm;
       }
-const tollPer100km_AU = {
-  AU: 5,
-  NZ: 2,
-  US: 3,
-  CA: 2,
-  GB: 0
-};
-         const tollPer100km_EU = {
-  DE:0, AT:0, CH:0, FR:10, IT:9, ES:10, NL:0, BE:0,
-  PL:6, CZ:0, SK:0, HU:0, SI:0, HR:5, RO:0, BG:0,
-  GB:0
-};
+
+      // ---------- Toll / Vignette model ----------
+      const tollPer100km_AU = {
+        AU: 5,
+        NZ: 2,
+        US: 3,
+        CA: 2,
+        GB: 0
+      };
+
+      const tollPer100km_EU = {
+        DE:0, AT:0, CH:0, FR:10, IT:9, ES:10, NL:0, BE:0,
+        PL:6, CZ:0, SK:0, HU:0, SI:0, HR:5, RO:0, BG:0,
+        GB:0
+      };
 
       // EU VIGNETTES (flat – paid once per country)
-const vignetteFlat = {
-  AT: 11.50,   // Austria
-  CH: 40.00,   // Switzerland
-  CZ: 12.00,   // Czech Republic
-  SK: 12.00,   // Slovakia
-  HU: 16.00,   // Hungary
-  SI: 16.00,   // Slovenia
-  RO: 3.50,    // Romania
-  BG: 7.50     // Bulgaria
-};
+      const vignetteFlat = {
+        AT: 11.50,   // Austria
+        CH: 40.00,   // Switzerland
+        CZ: 12.00,   // Czech Republic
+        SK: 12.00,   // Slovakia
+        HU: 16.00,   // Hungary
+        SI: 16.00,   // Slovenia
+        RO: 3.50,    // Romania
+        BG: 7.50     // Bulgaria
+      };
 
-function estimateVignetteForCountry(cc){
-  const v = vignetteFlat[cc];
-  return Number.isFinite(v) ? v : 0;
-}
+      function estimateVignetteForCountry(cc){
+        const v = vignetteFlat[cc];
+        return Number.isFinite(v) ? v : 0;
+      }
 
-  function getTollTable(cc){
-  cc = (cc || "").toUpperCase();
-  // Wenn Start/Route in Europa: EU-Logik, sonst AU-Logik
-  // (simple Regel: wenn cc in EU-Tabelle existiert -> EU)
-  if (tollPer100km_EU[cc] !== undefined) return tollPer100km_EU;
-  return tollPer100km_AU;
-}
+      function isEUCountry(cc){
+        cc = (cc || "").toUpperCase();
+        return tollPer100km_EU[cc] !== undefined || vignetteFlat[cc] !== undefined;
+      }
 
-function estimateTollForCountry(cc, km){
-  const table = getTollTable(cc);
-  const rate = (table[cc] ?? 4); // fallback
-  return Math.round(((km / 100) * rate) * 100) / 100;
-}
+      function getTollRate(cc){
+        cc = (cc || "").toUpperCase();
+        if (tollPer100km_EU[cc] !== undefined) return tollPer100km_EU[cc];
+        if (tollPer100km_AU[cc] !== undefined) return tollPer100km_AU[cc];
+        return 4; // fallback
+      }
 
-    function isEUCountry(cc){
-  cc = (cc || "").toUpperCase();
-  return tollPer100km_EU[cc] !== undefined || vignetteFlat[cc] !== undefined;
-}
+      function estimateTollForCountry(cc, km){
+        const rate = getTollRate(cc);
+        return Math.round(((km / 100) * rate) * 100) / 100;
+      }
 
-function getTollRate(cc){
-  cc = (cc || "").toUpperCase();
-  if (tollPer100km_EU[cc] !== undefined) return tollPer100km_EU[cc];
-  if (tollPer100km_AU[cc] !== undefined) return tollPer100km_AU[cc];
-  return 4;
-}
+      function renderTollBreakdown(){
+        if(!routeKm || !startCC){
+          tollTotalEl.textContent = '—';
+          if(vignetteTotalEl) vignetteTotalEl.textContent = '—';
+          tollVignetteSumEl.textContent = '—';
+          tollBreakdownEl.textContent = 'Enter start/destination and calculate the distance.';
+          lastTollTotal = 0;
+          return;
+        }
 
-function estimateTollForCountry(cc, km){
-  const rate = getTollRate(cc);
-  return Math.round(((km / 100) * rate) * 100) / 100;
-}
+        const isCross = (startCC && destCC && startCC !== destCC);
 
-function renderTollBreakdown(){
-  if(!routeKm || !startCC){
-    tollTotalEl.textContent = '—';
-    if (vignetteTotalEl) vignetteTotalEl.textContent = '—';
-    tollVignetteSumEl.textContent = '—';
-    tollBreakdownEl.textContent = 'Enter start/destination and calculate the distance.';
-    lastTollTotal = 0;
-    return;
-  }
+        // simple split (same as your older EN version): 100% same-country, 50/50 if different
+        const parts = [];
+        if(!isCross){
+          parts.push({ cc: startCC, km: routeKm });
+        } else {
+          const half = routeKm / 2;
+          parts.push({ cc: startCC, km: half });
+          parts.push({ cc: destCC, km: routeKm - half });
+        }
 
-  const isCross = (startCC && destCC && startCC !== destCC);
-  const parts = [];
-  if(!isCross){
-    parts.push({ cc: startCC, km: routeKm });
-  } else {
-    const half = routeKm / 2;
-    parts.push({ cc: startCC, km: half });
-    parts.push({ cc: destCC, km: routeKm - half });
-  }
+        let tollSum = 0;
+        let vignetteSum = 0;
+        const seenVignettes = new Set();
 
-  let tollSum = 0;
-  let vignetteSum = 0;
-  const seen = new Set();
+        const lines = parts.map(p => {
+          const cc = (p.cc || "").toUpperCase();
+          const name = getCountryName(cc);
 
-  const lines = parts.map(p => {
-    const cc = (p.cc || "").toUpperCase();
-    const name = getCountryName(cc);
+          const toll = estimateTollForCountry(cc, p.km);
+          tollSum += toll;
 
-    const toll = estimateTollForCountry(cc, p.km);
-    tollSum += toll;
+          // vignettes only for EU list, once per country
+          if(isEUCountry(cc) && !seenVignettes.has(cc)){
+            vignetteSum += estimateVignetteForCountry(cc);
+            seenVignettes.add(cc);
+          }
 
-    if(isEUCountry(cc) && !seen.has(cc)){
-      vignetteSum += estimateVignetteForCountry(cc);
-      seen.add(cc);
-    }
+          const rate = getTollRate(cc);
+          return `• ${name} (${cc}): ${fmtL(p.km)} km × ${fmt(rate)} $/100km ≈ <b>${fmtMoney(toll)}</b>`;
+        });
 
-    const rate = getTollRate(cc);
-    return `• ${name} (${cc}): ${fmtL(p.km)} km × ${fmt(rate)} $/100km ≈ <b>${fmtMoney(toll)}</b>`;
-  });
+        // IMPORTANT: used later in running-cost calculation
+        lastTollTotal = tollSum + vignetteSum;
 
-  lastTollTotal = tollSum + vignetteSum;
+        tollTotalEl.textContent = fmtMoney(tollSum);
+        if(vignetteTotalEl) vignetteTotalEl.textContent = fmtMoney(vignetteSum);
+        tollVignetteSumEl.textContent = fmtMoney(tollSum + vignetteSum);
 
-  tollTotalEl.textContent = fmtMoney(tollSum);
-  if (vignetteTotalEl) vignetteTotalEl.textContent = fmtMoney(vignetteSum);
-  tollVignetteSumEl.textContent = fmtMoney(tollSum + vignetteSum);
+        const vignetteLine = (vignetteSum > 0)
+          ? `<br><br><span class="small">Vignettes (flat, once per country): <b>${fmtMoney(vignetteSum)}</b></span>`
+          : '';
 
-  const vignetteLine = (vignetteSum > 0 && vignetteTotalEl)
-    ? `<br><br><span class="small">Vignettes (flat, once per country): <b>${fmtMoney(vignetteSum)}</b></span>`
-    : '';
+        tollBreakdownEl.innerHTML =
+          lines.join('<br>') +
+          vignetteLine +
+          `<br><span class="small">Note: toll/vignette values are estimates.</span>`;
+      }
 
-  tollBreakdownEl.innerHTML =
-    lines.join('<br>') +
-    vignetteLine +
-    `<br><span class="small">Note: toll/vignette values are estimates.</span>`;
-}
-
-
+      // ---------- Route buttons ----------
       const btnGeocode = document.getElementById('btn-geocode');
 
       btnGeocode.addEventListener('click', async () => {
@@ -846,9 +845,11 @@ function renderTollBreakdown(){
         setTimeout(safeInvalidate, 120);
       });
 
+      // Spinner km
       document.getElementById('km-inc').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.round((cur+1)*10)/10; });
       document.getElementById('km-dec').addEventListener('click', ()=>{ const cur = parse(kmEl.value)||0; kmEl.value = Math.max(0, Math.round((cur-1)*10)/10); });
 
+      // ---------- Costs ----------
       function estimateRunningPer100(consumptionL100){
         if(!Number.isFinite(consumptionL100) || consumptionL100 <= 0) return 12.0;
         const est = 1.2 * consumptionL100 + 3.5;
@@ -876,7 +877,7 @@ function renderTollBreakdown(){
         const costFuel = liters * p;
 
         const runningPer100Base = estimateRunningPer100(v);
-        const tollPer100 = (km > 0) ? (lastTollTotal / km * 100) : 0;
+        const tollPer100 = (km > 0) ? (lastTollTotal / km * 100) : 0; // includes vignettes
         const runningPer100Total = runningPer100Base + (tollPer100 || 0);
 
         const costRunning = (km * runningPer100Total) / 100;
@@ -946,6 +947,7 @@ function renderTollBreakdown(){
         setTimeout(safeInvalidate, 120);
       });
 
+      // initial
       renderTollBreakdown();
     });
   </script>
@@ -985,7 +987,7 @@ function renderTollBreakdown(){
 
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        header.classList.contains('is-open') ? close() : open();
+        header.classList.contains('is-open') ? close() : open() ;
       });
 
       document.addEventListener('click', (e) => {
