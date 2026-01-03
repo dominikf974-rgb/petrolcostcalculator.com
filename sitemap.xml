@@ -22,13 +22,6 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Contact -->
-  <url>
-    <loc>https://petrolcostcalculator.com/contact.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
   <!-- Legal / Trust Pages -->
   <url>
     <loc>https://petrolcostcalculator.com/legal-notice.html</loc>
