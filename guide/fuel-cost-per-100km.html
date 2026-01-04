@@ -2,115 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fuel cost per 100km: formula, examples & quick calculator</title>
-  <meta name="description" content="Calculate fuel cost per 100km using a simple formula. See worked examples and tips to reduce fuel spend. Convert 100km costs to any trip." />
-  <link rel="canonical" href="https://petrolcostcalculator.com/guide/fuel-cost-per-100km.html" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Fuel cost per 100km (Formula + Examples)" />
-  <meta property="og:description" content="A simple way to estimate running costs: fuel cost per 100km." />
-  <meta property="og:url" content="https://petrolcostcalculator.com/guide/fuel-cost-per-100km.html" />
-  <meta name="robots" content="index,follow" />
+  <title>Fuel cost per 100 km: formula, table & examples</title>
+  <meta name="description" content="Calculate fuel cost per 100 km: simple formula, examples and conversion to cost per km. Great for comparing cars – incl. FAQ." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://petrolcostcalculator.com/guide/cost-per-100km.html" />
+
+  <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/guide/cost-per-100km.html" />
+  <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/guide/cost-per-100km.html" />
+  <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/ratgeber/spritkosten-pro-100km.html" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=2026-02" />
 
   <!-- Google AdSense Library (global, once) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437"
           crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"How do I calculate fuel cost per 100 km?","acceptedAnswer":{"@type":"Answer","text":"Fuel cost/100 km = consumption (L/100 km) × price per litre."}},
+      {"@type":"Question","name":"How do I convert cost per 100 km to cost per km?","acceptedAnswer":{"@type":"Answer","text":"Cost per km = (cost per 100 km) ÷ 100."}},
+      {"@type":"Question","name":"Why is cost per 100 km better than L/100 km?","acceptedAnswer":{"@type":"Answer","text":"Because it includes the current fuel price and lets you compare cars more realistically."}}
+    ]
+  }
+  </script>
+
+  <style>
+    .note{border:1px solid rgba(15,23,42,0.08);background:#fbfdff;border-radius:14px;padding:12px}
+    .toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .toc a{text-decoration:none}
+    .checklist{margin:0;padding-left:18px;line-height:1.85}
+    [hidden]{display:none!important;}
+  </style>
 </head>
-<body>
 
-  <header>
-    <nav aria-label="Breadcrumb">
-      <a href="/guide.html">Guide</a> › <span>Fuel cost per 100km</span>
-    </nav>
-    <h1>Fuel cost per 100km</h1>
-    <p><strong>Quick formula:</strong> Fuel consumption (L/100km) × Fuel price (per litre) = <strong>cost per 100km</strong>.</p>
-  </header>
+<body data-page="ratgeber-article">
+  <div id="site-header"></div>
 
-  <!-- Ad #1: Above the fold -->
-  <div class="ad-block" aria-label="Werbung">
-    <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-4852698472752437"
-      data-ad-slot="7158625008"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+  <main class="page-container" aria-label="Page content">
+    <section class="card intro-section">
+      <nav aria-label="Breadcrumb" class="small">
+        <a href="/guide.html">Guide</a> › <span>Fuel cost per 100 km</span>
+      </nav>
 
-  <main>
-    <section>
-      <h2>Why cost per 100km is so useful</h2>
-      <p>“L/100km” tells you efficiency, but <strong>cost per 100km</strong> tells you what you’ll pay. It’s perfect for comparing cars, fuel types, and routes—especially when prices change.</p>
-      <ul>
-        <li>Compare diesel vs petrol in real money</li>
-        <li>Estimate commute and monthly spend</li>
-        <li>Convert quickly to any trip distance</li>
-      </ul>
+      <h1>Calculate fuel cost per 100 km</h1>
+      <p>
+        <b>Cost per 100 km</b> is the best metric for comparing cars and routes — because the fuel price is already included.
+        For a quick result you can also use the
+        <a href="/en/"><b>calculator</b></a>.
+      </p>
+
+      <div class="toc">
+        <a class="btn secondary" href="#formel">Formula</a>
+        <a class="btn secondary" href="#beispiel">Example</a>
+        <a class="btn secondary" href="#umrechnung">Conversion</a>
+        <a class="btn secondary" href="#faq">FAQ</a>
+      </div>
+
+      <div class="note" style="margin-top:14px">
+        <b>Next:</b>
+        <div class="toc" style="margin-top:10px">
+          <a class="btn secondary" href="/guide/cost-per-km.html">Cost per km</a>
+          <a class="btn secondary" href="/guide/fuel-costs.html">Calculate fuel costs</a>
+          <a class="btn secondary" href="/guide/diesel-vs-petrol.html">Diesel vs petrol</a>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>The formula</h2>
-      <p><code>Cost per 100km = Consumption (L/100km) × Price (per litre)</code></p>
-
-      <h3>Example (petrol)</h3>
-      <p>6.8 L/100km × 1.85 per litre = <strong>12.58 per 100km</strong></p>
-
-      <h3>Example (diesel)</h3>
-      <p>5.5 L/100km × 1.75 per litre = <strong>9.63 per 100km</strong></p>
-    </section>
-
-    <!-- Ad #2: Mid content -->
-    <div class="ad-block" aria-label="Werbung">
-      <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-4852698472752437"
-        data-ad-slot="3355111369"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <section>
-      <h2>Convert cost per 100km to any trip</h2>
-      <p><code>Trip cost = (Trip distance ÷ 100) × Cost per 100km</code></p>
-      <p><strong>Example:</strong> 240km at 12.58/100km → (240 ÷ 100) × 12.58 = <strong>30.19</strong></p>
-
-      <p>Prefer a direct calculator (distance + consumption + price)?</p>
-      <p><a href="/">→ Use the fuel cost calculator</a></p>
-    </section>
-
-    <section>
-      <h2>Common mistakes</h2>
-      <ul>
-        <li><strong>Using unrealistic consumption:</strong> real-world driving differs from official figures.</li>
-        <li><strong>Mixing units:</strong> make sure it’s L/100km (not km/L).</li>
-        <li><strong>Cherry-picking fuel price:</strong> use the price you actually pay.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Tips to reduce fuel cost per 100km</h2>
-      <ul>
-        <li>Check tyre pressure</li>
-        <li>Reduce cruising speed</li>
-        <li>Drive smoothly and avoid hard braking</li>
-        <li>Remove unnecessary weight and roof boxes when possible</li>
-      </ul>
-      <p>More long-distance tips:</p>
-      <p><a href="/guide/road-trip-fuel-tips.html">→ Road trip fuel-saving tips</a></p>
-    </section>
-
-    <section>
-      <h2>Related guides</h2>
-      <ul>
-        <li><a href="/guide/diesel-vs-petrol.html">Diesel vs petrol: which is cheaper?</a></li>
-        <li><a href="/guide/split-fuel-costs.html">Split fuel costs fairly</a></li>
-      </ul>
-    </section>
-
-    <!-- Ad #3: Bottom / High fill -->
-    <div class="ad-block" aria-label="Werbung">
+    <!-- Ad #1: Above the fold -->
+    <div class="ad-block" aria-label="Advertising">
       <ins class="adsbygoogle"
         style="display:block"
         data-ad-client="ca-pub-4852698472752437"
@@ -120,39 +91,110 @@
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <section>
+    <section id="formel" class="card">
+      <h2>Formula</h2>
+      <p><b>Fuel cost per 100 km</b> = consumption (L/100 km) × price per litre</p>
+      <p class="small">Example: 6.8 L/100 km × €1.85 = €12.58 per 100 km</p>
+    </section>
+
+    <section id="beispiel" class="card">
+      <h2>Worked example</h2>
+      <ul class="checklist">
+        <li>Consumption: 7.2 L/100 km</li>
+        <li>Price: €1.80/L</li>
+      </ul>
+      <p>7.2 × 1.80 = <b>€12.96 per 100 km</b></p>
+    </section>
+
+    <!-- Ad #2: Mid content -->
+    <div class="ad-block" aria-label="Advertising">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="3355111369"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <section id="umrechnung" class="card">
+      <h2>Convert to cost per km and trip cost</h2>
+      <p><b>Cost per km</b> = (cost per 100 km) ÷ 100</p>
+      <p class="small">
+        If you have €12.96 per 100 km: 12.96 ÷ 100 = €0.1296/km.
+        More here:
+        <a href="/guide/cost-per-km.html"><b>Cost per km</b></a>.
+      </p>
+      <p><b>Trip cost</b> = km × cost per km</p>
+    </section>
+
+    <!-- Ad #3: Bottom / High fill -->
+    <div class="ad-block" aria-label="Advertising">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-4852698472752437"
+        data-ad-slot="7158625008"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <section id="faq" class="card">
       <h2>FAQ</h2>
+      <div class="note">
+        <p><b>How do I calculate cost per 100 km?</b><br>Consumption × price.</p>
+        <p><b>How do I convert cost per 100 km to cost per km?</b><br>Divide by 100.</p>
+        <p><b>What is it useful for?</b><br>Real comparisons between cars and routes — faster than “litres only”.</p>
+      </div>
 
-      <h3>How do I calculate fuel cost per 100km?</h3>
-      <p>Multiply your consumption (L/100km) by the fuel price per litre.</p>
-
-      <h3>What is a good cost per 100km?</h3>
-      <p>It depends on fuel price, vehicle, and driving conditions. Use the formula to compare your real-world costs.</p>
-
-      <h3>Can I estimate monthly fuel costs from this?</h3>
-      <p>Yes: (monthly km ÷ 100) × cost per 100km.</p>
-
-      <h3>Why does my real cost differ from official figures?</h3>
-      <p>Weather, speed, load, tyre choice, and short trips can all increase real-world consumption.</p>
+      <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+        <a class="btn large" href="/en/">Calculate now</a>
+        <a class="btn secondary large" href="/guide.html">Back to Guide overview</a>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p><a href="/guide.html">← Back to Guide overview</a></p>
-  </footer>
+  <div id="site-footer"></div>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"How do I calculate fuel cost per 100km?","acceptedAnswer":{"@type":"Answer","text":"Multiply your consumption (L/100km) by the fuel price per litre."}},
-      {"@type":"Question","name":"What is a good cost per 100km?","acceptedAnswer":{"@type":"Answer","text":"It depends on fuel price, vehicle, and driving conditions. Use the formula to compare your real-world costs."}},
-      {"@type":"Question","name":"Can I estimate monthly fuel costs from this?","acceptedAnswer":{"@type":"Answer","text":"Yes: (monthly km ÷ 100) × cost per 100km."}},
-      {"@type":"Question","name":"Why does my real cost differ from official figures?","acceptedAnswer":{"@type":"Answer","text":"Weather, speed, load, tyres, and short trips can increase real-world consumption."}}
-    ]
-  }
+  <script src="/assets/js/active-nav.js" defer></script>
+
+  <script>
+    async function loadPart(id, url){
+      const el = document.getElementById(id);
+      if(!el) return false;
+      try{
+        const r = await fetch(url, { cache: 'no-cache' });
+        el.innerHTML = await r.text();
+        return true;
+      }catch(e){
+        console.warn('Konnte nicht laden:', url);
+        return false;
+      }
+    }
+    function initMobileNav(){
+      const header = document.querySelector('.site-header');
+      const btn = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if(!header || !btn || !nav) return;
+      const close = () => { header.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-label','Open menu'); };
+      const open  = () => { header.classList.add('is-open');    btn.setAttribute('aria-expanded','true');  btn.setAttribute('aria-label','Close menu'); };
+      btn.addEventListener('click',(e)=>{ e.stopPropagation(); header.classList.contains('is-open') ? close() : open(); });
+      document.addEventListener('click',(e)=>{ if(!header.classList.contains('is-open')) return; if(header.contains(e.target)) return; close(); });
+      document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') close(); });
+      window.addEventListener('resize',()=>{ if(window.innerWidth>720) close(); });
+    }
+    function loadCookiesAfterFooter(){
+      const s = document.createElement('script');
+      s.src = '/assets/js/cookies.js';
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadPart('site-header', '/practice/header.html');
+      initMobileNav();
+      await loadPart('site-footer', '/practice/footer.html');
+      loadCookiesAfterFooter();
+    });
   </script>
-
 </body>
 </html>
