@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title>Guide – Save Fuel, Reduce Consumption & Plan Trip Costs | PetrolCostCalculator.com</title>
+  <title>Guide – Save Fuel, Reduce Consumption & Plan Trip Costs | PetrolCostCalculator.com</title>
   <meta name="description" content="A practical driver’s guide: save fuel, reduce consumption, plan road trips, understand tolls, and put CO₂ into context. Tips, checklists, formulas and a mini FAQ." />
   <meta name="robots" content="index, follow" />
 
@@ -13,7 +13,6 @@
   <link rel="canonical" href="https://petrolcostcalculator.com/guide.html" />
   <link rel="alternate" hreflang="en" href="https://petrolcostcalculator.com/guide.html" />
   <link rel="alternate" hreflang="x-default" href="https://petrolcostcalculator.com/guide.html" />
-  <!-- (optional but recommended if you keep the DE site) -->
   <link rel="alternate" hreflang="de" href="https://spritkosten-check.de/ratgeber.html" />
 
   <!-- Icons -->
@@ -23,7 +22,7 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" href="/favicon.ico">
 
-  <!-- Global CSS (IMPORTANT: leading slash) -->
+  <!-- Global CSS -->
   <link rel="stylesheet" href="/assets/css/style.css?v=2026-02" />
 
   <!-- Article Schema -->
@@ -40,7 +39,7 @@
   </script>
 
   <style>
-    /* Guide: small content styles */
+    /* Basics */
     .toc{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
     .toc a{ text-decoration:none; }
     .note{
@@ -50,6 +49,8 @@
       padding:12px 12px;
     }
     .checklist{ margin:0; padding-left:18px; line-height:1.85; }
+
+    /* Mini FAQ */
     .mini-faq{ display:flex; flex-direction:column; gap:10px; }
     .mini-faq details{
       border:1px solid rgba(15,23,42,0.10);
@@ -73,6 +74,7 @@
     .mini-faq .chev{ opacity:.7; transition:transform .18s ease; user-select:none; }
     .mini-faq details[open] .chev{ transform:rotate(180deg); }
 
+    /* Mobile: TOC als Grid (Desktop bleibt flex) */
     @media (max-width: 720px){
       .toc{
         display:grid;
@@ -85,6 +87,50 @@
         justify-self:center;
         max-width: 320px;
         width: 100%;
+      }
+    }
+
+    /* Hidden Fix */
+    [hidden]{ display:none !important; }
+
+    /* Desktop/Mobile Umschaltung: Beliebte Rechner */
+    .popular-mobile{ display:none; }
+    @media (max-width:720px){
+      .popular-desktop{ display:none; }
+      .popular-mobile{ display:block; }
+    }
+
+    /* Desktop/Mobile Umschaltung: Inhalte */
+    .mobile-sections{ display:none; }
+    @media (max-width:720px){
+      .mobile-sections{ display:block; }
+      .toc[aria-label="Table of contents"]{ display:none; }
+    }
+
+    /* Menü-Boxen */
+    .popular-menu,
+    .sections-menu{
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px solid rgba(15,23,42,0.10);
+    }
+
+    /* Mobile Menüs: Buttons sauber anordnen */
+    .popular-menu ul,
+    .sections-menu ul{
+      list-style:none;
+      margin:10px 0 0 0;
+      padding:0;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:10px;
+    }
+
+    @media (max-width:720px){
+      /* On phones: 1 column so it doesn’t get cramped */
+      .popular-menu ul,
+      .sections-menu ul{
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -101,12 +147,69 @@
     <section class="card intro-section" aria-label="Guide intro">
       <h2>Guide: Save fuel & plan your costs realistically</h2>
       <p>
-        Here you’ll find practical tips to <strong>reduce fuel consumption</strong>, plan trips better,
+        Here you’ll find practical tips to <strong>reduce fuel consumption</strong>, plan trips better
         and avoid common cost traps (e.g. roof box, speed, short trips).
-        If you want to calculate right away:
-        <a href="https://petrolcostcalculator.com/en/" class="small"><b>go to the fuel cost calculator</b></a>.
+        If you want to calculate right away: <a href="/en/" class="small"><b>go to the fuel cost calculator</b></a>.
       </p>
 
+      <!-- Popular calculators & guides (Desktop + Mobile) -->
+      <div class="popular-links" style="margin-top:14px">
+
+        <!-- Desktop -->
+        <div class="popular-desktop note">
+          <b>Popular calculators & guides:</b>
+          <div class="toc" style="margin-top:10px">
+            <a class="btn secondary" href="/guide/fuel-costs.html">Fuel cost calculator</a>
+            <a class="btn secondary" href="/guide/cost-per-km.html">Cost per km</a>
+            <a class="btn secondary" href="/guide/cost-per-100km.html">Cost per 100 km</a>
+            <a class="btn secondary" href="/guide/split-costs.html">Split trip costs</a>
+            <a class="btn secondary" href="/guide/diesel-vs-petrol.html">Diesel or petrol</a>
+            <a class="btn secondary" href="/guide/long-distance-tips.html">Long-distance tips</a>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="popular-mobile note">
+          <button class="popular-toggle btn secondary" type="button"
+            aria-expanded="false" aria-controls="popularMenu">
+            ☰ Popular calculators & guides
+          </button>
+
+          <div id="popularMenu" class="popular-menu" hidden>
+            <ul class="checklist">
+              <li><a class="btn secondary" href="/guide/fuel-costs.html">Fuel costs</a></li>
+              <li><a class="btn secondary" href="/guide/cost-per-km.html">$/km</a></li>
+              <li><a class="btn secondary" href="/guide/cost-per-100km.html">$/100km</a></li>
+              <li><a class="btn secondary" href="/guide/split-costs.html">Split</a></li>
+              <li><a class="btn secondary" href="/guide/diesel-vs-petrol.html">Diesel vs petrol</a></li>
+              <li><a class="btn secondary" href="/guide/long-distance-tips.html">Long-distance</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mobile Table of contents (short) -->
+      <div class="mobile-sections note" style="margin-top:14px">
+        <button class="sections-toggle btn secondary" type="button"
+          aria-expanded="false" aria-controls="sectionsMenu">
+          ☰ Contents
+        </button>
+
+        <div id="sectionsMenu" class="sections-menu" hidden>
+          <ul class="checklist">
+            <li><a class="btn secondary" href="#save-fuel">Save fuel</a></li>
+            <li><a class="btn secondary" href="#consumption">Consumption</a></li>
+            <li><a class="btn secondary" href="#cost-formulas">Formulas</a></li>
+            <li><a class="btn secondary" href="#roadtrip">Road trip</a></li>
+            <li><a class="btn secondary" href="#tolls">Tolls</a></li>
+            <li><a class="btn secondary" href="#co2">CO₂</a></li>
+            <li><a class="btn secondary" href="#faq-mini">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Desktop Table of contents (stays visible) -->
       <div class="toc" aria-label="Table of contents">
         <a class="btn secondary" href="#save-fuel">Save fuel</a>
         <a class="btn secondary" href="#consumption">Consumption</a>
@@ -205,14 +308,14 @@
           <h3 style="margin:0 0 8px 0;font-size:1rem;color:var(--accent-2)">Mini example</h3>
           <p class="small" style="margin:0;line-height:1.7">
             450 km, 7.0 L/100 km → <b>31.5 L</b><br>
-            At $1.85/L → <b>$58.28</b> fuel cost<br>
-            Three people → <b>$19.43 per person</b> (fuel only)
+            At 1.85 €/L → <b>58.28 €</b> fuel cost<br>
+            Three people → <b>19.43 € per person</b> (fuel only)
           </p>
         </div>
       </div>
 
       <div style="margin-top:16px;display:flex;justify-content:center">
-        <a class="btn large" href="https://petrolcostcalculator.com/en/">Calculate now</a>
+        <a class="btn large" href="/en/">Calculate now</a>
       </div>
     </section>
 
@@ -234,7 +337,7 @@
         <li>Check oil and washer fluid</li>
         <li>Only fit a roof box if you really need it</li>
         <li>Check route + alternatives (avoid traffic / tolls?)</li>
-        <li>Check toll rules for your route</li>
+        <li>Check whether your route includes vignette requirements</li>
         <li>Enter a realistic consumption figure (not brochure)</li>
         <li>Use a current fuel price or a planning average</li>
         <li>Agree a fair cost split per person</li>
@@ -243,20 +346,21 @@
       </ol>
 
       <div class="note" style="margin-top:14px">
-        <b>Tip:</b> Enter start & destination as <b>“City, State”</b> (e.g. “Sydney, NSW”) for the most reliable results.
+        <b>Tip:</b> Always enter start & destination as <b>“City, Country”</b> (e.g. “Paris, France”).
       </div>
     </section>
 
     <!-- Tolls -->
     <section id="tolls" class="card" aria-label="Tolls">
-      <h2>Tolls: quick explanation</h2>
+      <h2>Tolls & vignettes: quick explanation</h2>
       <p class="small" style="margin-top:0;line-height:1.7">
-        Toll systems vary by region: some roads charge per section or distance, others use fixed fees.
-        The calculator shows a rough estimate — for exact amounts, the route and the current rules matter.
+        Systems vary by country: distance-based tolls or vignettes (fixed fee).
+        The calculator shows a rough estimate — for exact amounts, the route, class and local rules matter.
       </p>
       <ul class="checklist">
-        <li><strong>Toll roads:</strong> charges may depend on route/section</li>
-        <li><strong>Tip:</strong> check tolls ahead of time to avoid surprises</li>
+        <li><strong>Vignette:</strong> fixed price, often time-based</li>
+        <li><strong>Tolls:</strong> depend on route/section or distance</li>
+        <li><strong>Tip:</strong> plan vignettes early to avoid stress</li>
       </ul>
     </section>
 
@@ -279,7 +383,7 @@
       <div class="mini-faq">
         <details>
           <summary>How accurate are the results? <span class="chev">▼</span></summary>
-          <div class="answer">It’s most accurate with your real consumption and a current price. Toll estimates are intentionally approximate.</div>
+          <div class="answer">It’s most accurate with your real consumption and a current price. Toll/vignette estimates are intentionally approximate.</div>
         </details>
 
         <details>
@@ -288,14 +392,14 @@
         </details>
 
         <details>
-          <summary>Why “City, State” for start/destination? <span class="chev">▼</span></summary>
-          <div class="answer">It makes geocoding much more reliable. Entering only a country/state can lead to ambiguous matches or errors.</div>
+          <summary>Why “City, Country” for start/destination? <span class="chev">▼</span></summary>
+          <div class="answer">It makes geocoding much more reliable. Entering only a country can lead to ambiguous matches or errors.</div>
         </details>
       </div>
 
       <div style="margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
-        <a class="btn large" href="https://petrolcostcalculator.com/en/">Go to calculator</a>
-        <a class="btn secondary large" href="https://petrolcostcalculator.com/faq.html">Go to FAQ</a>
+        <a class="btn large" href="/en/">Go to calculator</a>
+        <a class="btn secondary large" href="/faq.html">Go to FAQ</a>
       </div>
     </section>
 
@@ -373,6 +477,25 @@
 
       await loadPart('site-footer', '/practice/footer.html');
       loadCookiesAfterFooter();
+    });
+  </script>
+
+  <!-- Both hamburger menus (Popular + Contents) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = (btnSelector, menuId) => {
+        const btn = document.querySelector(btnSelector);
+        const menu = document.getElementById(menuId);
+        if(!btn || !menu) return;
+        btn.addEventListener('click', () => {
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          menu.hidden = open;
+        });
+      };
+
+      toggle('.popular-toggle', 'popularMenu');
+      toggle('.sections-toggle', 'sectionsMenu');
     });
   </script>
 
