@@ -24,7 +24,7 @@
     s.async = true;
     s.crossOrigin = "anonymous";
     s.src =
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4852698472752437";
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8454646193293670";
     document.head.appendChild(s);
 
     s.onload = () => {
